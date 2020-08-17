@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">KK HMS Study</string>
+    <string name="id_auth_button_text">ID-Token Mode signin</string>
+    <string name="sign_out_text">Sign Out</string>
+    <string name="sign_out_success">Signed out successfully</string>
+    <string name="sign_out_failed">Signed out failed</string>
+    <string name="sign_in_success">Signed in successfully</string>
+    <string name="account_kit_lab_button_text">Account Kit Lab</string>
+    <string name="main_page_heading">HMS Codelabs App by KK</string>
+    <string name="auth_kit_codelab_title">Auth Kit Codelab</string>
+    <string name="push_kit_lab_button_text">Push Kit Lab</string>
+    <string name="silent_signin_result_success_text">Silent sign-in successful</string>
+    <string name="trying_token_signin_after_silent_signin_failed">Silent sign-in failed, trying token sign-in</string>
+    <string name="silent_sign_in_button_text">Silent Sign In</string>
+    <string name="push_token_heading">Push token:</string>
+</resources>
