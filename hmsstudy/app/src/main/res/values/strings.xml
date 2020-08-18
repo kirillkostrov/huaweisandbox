@@ -13,4 +13,22 @@
     <string name="trying_token_signin_after_silent_signin_failed">Silent sign-in failed, trying token sign-in</string>
     <string name="silent_sign_in_button_text">Silent Sign In</string>
     <string name="push_token_heading">Push token:</string>
+
+    <!-- Analytics Lab -->
+    <string name="true_button">True</string>
+    <string name="false_button">False</string>
+    <string name="setting_button">Settings</string>
+    <string name="next_button">Next</string>
+    <string name="post_score_button">Post Score</string>
+    <string name="save_setting_button">Save</string>
+    <string name="q1">The largest planet in the solar system is Jupiter</string>
+    <string name="q2">The first Olympic Games were held in Athens, Greece</string>
+    <string name="q3">The violin has 6 strings</string>
+    <string name="q4">Flying bats belong to birds</string>
+    <string name="q5">Sound spreads faster in the water than in the air</string>
+    <string name="wrong_answer">The answer is wrong.</string>
+    <string name="correct_answer">The answer is correct.</string>
+    <string name="hianalytics_lab_button">HiAnalytics Lab</string>
+    <string name="iap_lab_button">IAP lab</string>
+    <string name="favorite_sport_text">Favorite Sport:</string>
 </resources>

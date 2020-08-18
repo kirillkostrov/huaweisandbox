@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.huawei.hms.analytics.HiAnalytics;
+import com.huawei.hms.analytics.HiAnalyticsInstance;
+import com.huawei.kkstudy.LabActivities.Analytics.MainActivity;
 import com.huawei.kkstudy.LabActivities.AuthKitActivity;
 import com.huawei.kkstudy.LabActivities.IAPActivity;
 import com.huawei.kkstudy.LabActivities.PushKitActivity;
@@ -16,12 +19,16 @@ public class RootActivity extends AppCompatActivity {
     public static final String TOKEN_EXTRA_KEY = "com.huawei.kkstudy.TOKEN_KEY";
     public static final String MY_PREFERENCES = "MyPrefs";
 
+    HiAnalyticsInstance analyticsInstance;
+
     private String pushToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_root);
+
+        analyticsInstance = HiAnalytics.getInstance(this);
     }
 
     public void AccountKirClick(View view) {
@@ -37,5 +44,10 @@ public class RootActivity extends AppCompatActivity {
     public void IAPLabClick(View view) {
         Intent startIAPActivity = new Intent(this, IAPActivity.class);
         startActivity(startIAPActivity);
+    }
+
+    public void AnalyticsLabClick(View view) {
+        Intent startHiAnalyticsActivity = new Intent(this, MainActivity.class);
+        startActivity(startHiAnalyticsActivity);
     }
 }
