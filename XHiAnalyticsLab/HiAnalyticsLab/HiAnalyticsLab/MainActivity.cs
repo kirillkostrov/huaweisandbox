@@ -3,12 +3,23 @@ using Android.OS;
 using Android.Support.V7.App;
 using Android.Runtime;
 using Android.Widget;
+using Com.Huawei.Agconnect.Config;
+using Android.Content;
 
 namespace HiAnalyticsLab
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
+
+        //protected override void AttachBaseContext(Context context)
+        //{
+        //    base.AttachBaseContext(context);
+        //    AGConnectServicesConfig config =
+        //    AGConnectServicesConfig.FromContext(context);
+        //    config.OverlayWith(new HmsLazyInputStream(context));
+        //}
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);

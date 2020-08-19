@@ -13,7 +13,7 @@ using Android.Views;
 using Android.Widget;
 using Com.Huawei.Agconnect.Config;
 
-namespace KKHiAnalyticsStudy
+namespace HiAnalyticsLab
 {
     class HmsLazyInputStream : LazyInputStream
     {
@@ -25,7 +25,11 @@ namespace KKHiAnalyticsStudy
         {
             try
             {
-                return context.Assets.Open("agconnect-services.json");
+                var stream = context.Assets.Open("agconnect-services.json");
+
+                StreamReader reader = new StreamReader(stream);
+                var bar = reader.ReadToEnd();
+                return stream;
             }
             catch (Exception e)
             {

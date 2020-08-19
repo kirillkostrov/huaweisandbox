@@ -2,11 +2,11 @@
 using Android.Content;
 using Android.Database;
 using Com.Huawei.Agconnect.Config;
-using KKHiAnalyticsStudy;
 
-namespace XamarinHmsHiAnalyticsDemo
+namespace HiAnalyticsLab
 {
-    [ContentProvider(new string[] { "com.xam.hianalytics.demo.XamarinCustomProvider" })]
+    //[ContentProvider(new string[] { "com.huawei.kkostrov.xhianalyticsstudy.XamarinCustomProvider" }, InitOrder = 99)]
+    [ContentProvider(new string[] { "com.huawei.kkostrov.xhianalyticsstudy" }, InitOrder = 9)]
     public class XamarinCustomProvider : ContentProvider
     {
         public override int Delete(Android.Net.Uri uri, string selection, string[] selectionArgs)

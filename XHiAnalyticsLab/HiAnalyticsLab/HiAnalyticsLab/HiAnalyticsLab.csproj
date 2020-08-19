@@ -115,7 +115,9 @@
     <Compile Include="XamarinCustomProvider.cs" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\agconnect-services.json" />
+    <AndroidAsset Include="Assets\agconnect-services.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </AndroidAsset>
     <None Include="Resources\AboutResources.txt" />
     <None Include="Properties\AndroidManifest.xml" />
     <None Include="Assets\AboutAssets.txt" />
