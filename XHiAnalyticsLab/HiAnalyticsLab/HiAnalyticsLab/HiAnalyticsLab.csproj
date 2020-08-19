@@ -52,17 +52,17 @@
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
     <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
     <AndroidKeyStore>true</AndroidKeyStore>
-    <AndroidSigningKeyStore>D:\Workspace\xamarin.keystore</AndroidSigningKeyStore>
+    <AndroidSigningKeyStore>D:\Workspace\kirill-kostrov\XHiAnalyticsLab\HiAnalyticsLab\HiAnalyticsLab\xamarin.keystore</AndroidSigningKeyStore>
     <AndroidSigningStorePass>123456</AndroidSigningStorePass>
     <AndroidSigningKeyAlias>hianalytics</AndroidSigningKeyAlias>
     <AndroidSigningKeyPass>123456</AndroidSigningKeyPass>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Square.OkHttp3">
-      <HintPath>..\..\..\..\xamarin-plugin-hms-analytics\XHiAnalytics-5.0.0.301\bin\Debug\Square.OkHttp3.dll</HintPath>
+      <HintPath>HMS\Square.OkHttp3.dll</HintPath>
     </Reference>
     <Reference Include="Square.OkIO">
-      <HintPath>..\..\..\..\xamarin-plugin-hms-analytics\XHiAnalytics-5.0.0.301\bin\Debug\Square.OkIO.dll</HintPath>
+      <HintPath>HMS\Square.OkIO.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
@@ -71,40 +71,40 @@
     <Reference Include="System.Numerics" />
     <Reference Include="System.Numerics.Vectors" />
     <Reference Include="XAgConnectCore-1.0.0.300">
-      <HintPath>..\..\..\..\xamarin-plugin-hms-analytics\XHiAnalytics-5.0.0.301\bin\Debug\XAgConnectCore-1.0.0.300.dll</HintPath>
+      <HintPath>HMS\XAgConnectCore-1.0.0.300.dll</HintPath>
     </Reference>
     <Reference Include="XAgConnectCredential-1.0.0.300">
-      <HintPath>..\..\..\..\xamarin-plugin-hms-analytics\XHiAnalytics-5.0.0.301\bin\Debug\XAgConnectCredential-1.0.0.300.dll</HintPath>
+      <HintPath>HMS\XAgConnectCredential-1.0.0.300.dll</HintPath>
     </Reference>
     <Reference Include="XAgConnectHttps-1.0.0.300">
-      <HintPath>..\..\..\..\xamarin-plugin-hms-analytics\XHiAnalytics-5.0.0.301\bin\Debug\XAgConnectHttps-1.0.0.300.dll</HintPath>
+      <HintPath>HMS\XAgConnectHttps-1.0.0.300.dll</HintPath>
     </Reference>
     <Reference Include="XBase-4.0.2.300">
-      <HintPath>..\..\..\..\xamarin-plugin-hms-analytics\XHiAnalytics-5.0.0.301\bin\Debug\XBase-4.0.2.300.dll</HintPath>
+      <HintPath>HMS\XBase-4.0.2.300.dll</HintPath>
     </Reference>
     <Reference Include="XDataStoreAnnotation-1.0.0.300">
-      <HintPath>..\..\..\..\xamarin-plugin-hms-analytics\XHiAnalytics-5.0.0.301\bin\Debug\XDataStoreAnnotation-1.0.0.300.dll</HintPath>
+      <HintPath>HMS\XDataStoreAnnotation-1.0.0.300.dll</HintPath>
     </Reference>
     <Reference Include="XDataStoreCore-1.0.0.300">
-      <HintPath>..\..\..\..\xamarin-plugin-hms-analytics\XHiAnalytics-5.0.0.301\bin\Debug\XDataStoreCore-1.0.0.300.dll</HintPath>
+      <HintPath>HMS\XDataStoreCore-1.0.0.300.dll</HintPath>
     </Reference>
     <Reference Include="XHiAnalytics-5.0.0.301">
-      <HintPath>..\..\..\..\xamarin-plugin-hms-analytics\XHiAnalytics-5.0.0.301\bin\Debug\XHiAnalytics-5.0.0.301.dll</HintPath>
+      <HintPath>HMS\XHiAnalytics-5.0.0.301.dll</HintPath>
     </Reference>
     <Reference Include="XNetworkCommon-4.0.2.300">
-      <HintPath>..\..\..\..\xamarin-plugin-hms-analytics\XHiAnalytics-5.0.0.301\bin\Debug\XNetworkCommon-4.0.2.300.dll</HintPath>
+      <HintPath>HMS\XNetworkCommon-4.0.2.300.dll</HintPath>
     </Reference>
     <Reference Include="XNetworkGrs-4.0.2.300">
-      <HintPath>..\..\..\..\xamarin-plugin-hms-analytics\XHiAnalytics-5.0.0.301\bin\Debug\XNetworkGrs-4.0.2.300.dll</HintPath>
+      <HintPath>HMS\XNetworkGrs-4.0.2.300.dll</HintPath>
     </Reference>
     <Reference Include="XOpenDevice-4.0.1.301">
-      <HintPath>..\..\..\..\xamarin-plugin-hms-analytics\XHiAnalytics-5.0.0.301\bin\Debug\XOpenDevice-4.0.1.301.dll</HintPath>
+      <HintPath>HMS\XOpenDevice-4.0.1.301.dll</HintPath>
     </Reference>
     <Reference Include="XTasks-1.3.3.300">
-      <HintPath>..\..\..\..\xamarin-plugin-hms-analytics\XHiAnalytics-5.0.0.301\bin\Debug\XTasks-1.3.3.300.dll</HintPath>
+      <HintPath>HMS\XTasks-1.3.3.300.dll</HintPath>
     </Reference>
     <Reference Include="XUpdate-2.0.6.300">
-      <HintPath>..\..\..\..\xamarin-plugin-hms-analytics\XHiAnalytics-5.0.0.301\bin\Debug\XUpdate-2.0.6.300.dll</HintPath>
+      <HintPath>HMS\XUpdate-2.0.6.300.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -149,6 +149,7 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher_round.png" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="HMS\" />
     <Folder Include="Resources\drawable\" />
   </ItemGroup>
   <ItemGroup>
