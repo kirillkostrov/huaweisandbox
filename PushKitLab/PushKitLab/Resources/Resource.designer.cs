@@ -4422,127 +4422,136 @@ namespace PushKitLab
 			public const int hms_install_message = 2131558467;
 			
 			// aapt resource value: 0x7F0D0044
-			public const int hms_retry = 2131558468;
+			public const int hms_push_channel = 2131558468;
 			
 			// aapt resource value: 0x7F0D0045
-			public const int hms_update = 2131558469;
+			public const int hms_push_google = 2131558469;
 			
 			// aapt resource value: 0x7F0D0046
-			public const int hms_update_continue = 2131558470;
+			public const int hms_push_vmall = 2131558470;
 			
 			// aapt resource value: 0x7F0D0047
-			public const int hms_update_message = 2131558471;
+			public const int hms_retry = 2131558471;
 			
 			// aapt resource value: 0x7F0D0048
-			public const int hms_update_message_new = 2131558472;
+			public const int hms_update = 2131558472;
 			
 			// aapt resource value: 0x7F0D0049
-			public const int hms_update_nettype = 2131558473;
+			public const int hms_update_continue = 2131558473;
 			
 			// aapt resource value: 0x7F0D004A
-			public const int hms_update_title = 2131558474;
+			public const int hms_update_message = 2131558474;
 			
 			// aapt resource value: 0x7F0D004B
-			public const int mtrl_chip_close_icon_content_description = 2131558475;
+			public const int hms_update_message_new = 2131558475;
 			
 			// aapt resource value: 0x7F0D004C
-			public const int password_toggle_content_description = 2131558476;
+			public const int hms_update_nettype = 2131558476;
 			
 			// aapt resource value: 0x7F0D004D
-			public const int path_password_eye = 2131558477;
+			public const int hms_update_title = 2131558477;
 			
 			// aapt resource value: 0x7F0D004E
-			public const int path_password_eye_mask_strike_through = 2131558478;
+			public const int mtrl_chip_close_icon_content_description = 2131558478;
 			
 			// aapt resource value: 0x7F0D004F
-			public const int path_password_eye_mask_visible = 2131558479;
+			public const int password_toggle_content_description = 2131558479;
 			
 			// aapt resource value: 0x7F0D0050
-			public const int path_password_strike_through = 2131558480;
+			public const int path_password_eye = 2131558480;
 			
 			// aapt resource value: 0x7F0D0051
-			public const int push_cat_body = 2131558481;
+			public const int path_password_eye_mask_strike_through = 2131558481;
 			
 			// aapt resource value: 0x7F0D0052
-			public const int push_cat_head = 2131558482;
+			public const int path_password_eye_mask_visible = 2131558482;
 			
 			// aapt resource value: 0x7F0D0053
-			public const int search_menu_title = 2131558483;
+			public const int path_password_strike_through = 2131558483;
 			
 			// aapt resource value: 0x7F0D0054
-			public const int status_bar_notification_info_overflow = 2131558484;
+			public const int push_cat_body = 2131558484;
 			
 			// aapt resource value: 0x7F0D0055
-			public const int upsdk_app_dl_installing = 2131558485;
+			public const int push_cat_head = 2131558485;
 			
 			// aapt resource value: 0x7F0D0056
-			public const int upsdk_app_download_info_new = 2131558486;
+			public const int search_menu_title = 2131558486;
 			
 			// aapt resource value: 0x7F0D0057
-			public const int upsdk_app_size = 2131558487;
+			public const int status_bar_notification_info_overflow = 2131558487;
 			
 			// aapt resource value: 0x7F0D0058
-			public const int upsdk_app_version = 2131558488;
+			public const int upsdk_app_dl_installing = 2131558488;
 			
 			// aapt resource value: 0x7F0D0059
-			public const int upsdk_cancel = 2131558489;
+			public const int upsdk_app_download_info_new = 2131558489;
 			
 			// aapt resource value: 0x7F0D005A
-			public const int upsdk_checking_update_prompt = 2131558490;
+			public const int upsdk_app_size = 2131558490;
 			
 			// aapt resource value: 0x7F0D005B
-			public const int upsdk_choice_update = 2131558491;
+			public const int upsdk_app_version = 2131558491;
 			
 			// aapt resource value: 0x7F0D005C
-			public const int upsdk_connect_server_fail_prompt_toast = 2131558492;
+			public const int upsdk_cancel = 2131558492;
 			
 			// aapt resource value: 0x7F0D005D
-			public const int upsdk_detail = 2131558493;
+			public const int upsdk_checking_update_prompt = 2131558493;
 			
 			// aapt resource value: 0x7F0D005E
-			public const int upsdk_getting_message_fail_prompt_toast = 2131558494;
+			public const int upsdk_choice_update = 2131558494;
 			
 			// aapt resource value: 0x7F0D005F
-			public const int upsdk_install = 2131558495;
+			public const int upsdk_connect_server_fail_prompt_toast = 2131558495;
 			
 			// aapt resource value: 0x7F0D0060
-			public const int upsdk_no_available_network_prompt_toast = 2131558496;
+			public const int upsdk_detail = 2131558496;
 			
 			// aapt resource value: 0x7F0D0061
-			public const int upsdk_ota_app_name = 2131558497;
+			public const int upsdk_getting_message_fail_prompt_toast = 2131558497;
 			
 			// aapt resource value: 0x7F0D0062
-			public const int upsdk_ota_cancel = 2131558498;
+			public const int upsdk_install = 2131558498;
 			
 			// aapt resource value: 0x7F0D0063
-			public const int upsdk_ota_force_cancel_new = 2131558499;
+			public const int upsdk_no_available_network_prompt_toast = 2131558499;
 			
 			// aapt resource value: 0x7F0D0064
-			public const int upsdk_ota_notify_updatebtn = 2131558500;
+			public const int upsdk_ota_app_name = 2131558500;
 			
 			// aapt resource value: 0x7F0D0065
-			public const int upsdk_ota_title = 2131558501;
+			public const int upsdk_ota_cancel = 2131558501;
 			
 			// aapt resource value: 0x7F0D0066
-			public const int upsdk_storage_utils = 2131558502;
+			public const int upsdk_ota_force_cancel_new = 2131558502;
 			
 			// aapt resource value: 0x7F0D0067
-			public const int upsdk_store_url = 2131558503;
+			public const int upsdk_ota_notify_updatebtn = 2131558503;
 			
 			// aapt resource value: 0x7F0D0068
-			public const int upsdk_third_app_dl_cancel_download_prompt_ex = 2131558504;
+			public const int upsdk_ota_title = 2131558504;
 			
 			// aapt resource value: 0x7F0D0069
-			public const int upsdk_third_app_dl_install_failed = 2131558505;
+			public const int upsdk_storage_utils = 2131558505;
 			
 			// aapt resource value: 0x7F0D006A
-			public const int upsdk_third_app_dl_sure_cancel_download = 2131558506;
+			public const int upsdk_store_url = 2131558506;
 			
 			// aapt resource value: 0x7F0D006B
-			public const int upsdk_update_check_no_new_version = 2131558507;
+			public const int upsdk_third_app_dl_cancel_download_prompt_ex = 2131558507;
 			
 			// aapt resource value: 0x7F0D006C
-			public const int upsdk_updating = 2131558508;
+			public const int upsdk_third_app_dl_install_failed = 2131558508;
+			
+			// aapt resource value: 0x7F0D006D
+			public const int upsdk_third_app_dl_sure_cancel_download = 2131558509;
+			
+			// aapt resource value: 0x7F0D006E
+			public const int upsdk_update_check_no_new_version = 2131558510;
+			
+			// aapt resource value: 0x7F0D006F
+			public const int upsdk_updating = 2131558511;
 			
 			static String()
 			{

@@ -29,7 +29,10 @@ namespace PushKitLab
 
                 StreamReader reader = new StreamReader(stream);
                 var bar = reader.ReadToEnd();
+
                 return stream;
+
+                //return context.Assets.Open("agconnect-services.json");
             }
             catch (Exception e)
             {
