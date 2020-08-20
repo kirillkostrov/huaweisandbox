@@ -52,7 +52,7 @@ namespace PushKitLab
                 {
                     string appid = AGConnectServicesConfig.FromContext(this).GetString("client/app_id");
                     string token = HmsInstanceId.GetInstance(this).GetToken(appid, "HCM");
-                    Log.Info(TAG, "token = " + token);
+                    Log.Info(TAG, "token = " + token);  
 
                     if (!TextUtils.IsEmpty(token))
                     {
