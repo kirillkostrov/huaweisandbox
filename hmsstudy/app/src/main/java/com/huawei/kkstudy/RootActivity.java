@@ -11,6 +11,7 @@ import com.huawei.hms.analytics.HiAnalyticsInstance;
 import com.huawei.kkstudy.LabActivities.Analytics.MainActivity;
 import com.huawei.kkstudy.LabActivities.AuthKitActivity;
 import com.huawei.kkstudy.LabActivities.IAPActivity;
+import com.huawei.kkstudy.LabActivities.LocationActivity;
 import com.huawei.kkstudy.LabActivities.PushKitActivity;
 
 public class RootActivity extends AppCompatActivity {
@@ -49,5 +50,10 @@ public class RootActivity extends AppCompatActivity {
     public void AnalyticsLabClick(View view) {
         Intent startHiAnalyticsActivity = new Intent(this, MainActivity.class);
         startActivity(startHiAnalyticsActivity);
+    }
+
+    public void LocationKitClick(View view) {
+        Intent startLocationKitActivity = new Intent(this, LocationActivity.class);
+        startActivity(startLocationKitActivity);
     }
 }
