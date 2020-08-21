@@ -13,6 +13,7 @@ import com.huawei.kkstudy.LabActivities.AuthKitActivity;
 import com.huawei.kkstudy.LabActivities.IAPActivity;
 import com.huawei.kkstudy.LabActivities.LocationActivity;
 import com.huawei.kkstudy.LabActivities.PushKitActivity;
+import com.huawei.kkstudy.LabActivities.ScanActivity;
 
 public class RootActivity extends AppCompatActivity {
 
@@ -55,5 +56,10 @@ public class RootActivity extends AppCompatActivity {
     public void LocationKitClick(View view) {
         Intent startLocationKitActivity = new Intent(this, LocationActivity.class);
         startActivity(startLocationKitActivity);
+    }
+
+    public void ScanKitClick(View view) {
+        Intent scanKitActivity = new Intent(this, ScanActivity.class);
+        startActivity(scanKitActivity);
     }
 }

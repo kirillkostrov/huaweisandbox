@@ -34,4 +34,7 @@
     <string name="location_button_text">Location Kit Lab</string>
     <string name="remove_location_update_callback_button">Remove location update callback</string>
     <string name="request_location_update_with_callback_button">Request location update with callback</string>
+    <string name="scan_kit_lab_button_text">Scan Kit Lab</string>
+    <string name="scan_kit_demo">Scan Kit Demo</string>
+    <string name="scan_button">Scan</string>
 </resources>
