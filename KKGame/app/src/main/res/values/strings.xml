@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">KKGame</string>
+    <string name="app_name">KKGame (HMS Game Kit Lab)</string>
+    <string name="init_button_text">Init</string>
+    <string name="sign_in_button_text">Sign In</string>
+    <string name="get_current_player_button_text">Get Current Player</string>
+    <string name="submit_player_event_begin_text">Submit Player Event Begin</string>
+    <string name="sumbit_player_event_end_button_text">Sumbit Player Event End</string>
+    <string name="get_player_extra_info_button_text">Get Player Extra Info</string>
 </resources>

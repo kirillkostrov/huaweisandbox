@@ -1,4 +1,4 @@
-package com.huawei.kkgame;
+package com.huawei.kkstudy.game.huawei;
 
 import org.junit.Test;
 

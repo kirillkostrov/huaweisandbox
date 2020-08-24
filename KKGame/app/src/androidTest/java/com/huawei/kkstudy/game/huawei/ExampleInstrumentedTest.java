@@ -1,4 +1,4 @@
-package com.huawei.kkgame;
+package com.huawei.kkstudy.game.huawei;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.huawei.kkgame", appContext.getPackageName());
+        assertEquals("com.huawei.kkstudy.game.huawei", appContext.getPackageName());
     }
 }
