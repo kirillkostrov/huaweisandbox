@@ -117,7 +117,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void login() {
         playersClient = Games.getPlayersClient(this);
-        Task<Player> playerTask = playersClient.getCurrentPlayer();
+        //Task<Player> playerTask = playersClient.getCurrentPlayer();
+
+        Task<Player> playerTask = playersClient.getGamePlayer();
         playerTask.addOnSuccessListener(new OnSuccessListener<Player>() {
             @Override
             public void onSuccess(Player player) {
@@ -141,13 +143,13 @@ public class MainActivity extends AppCompatActivity {
     private void timeReportStart() {
         if (playersClient == null) {
 
-            Log.i(TAG, "playersClient is null, please init  playersClient first");
+            LogAndToast("playersClient is null, please init  playersClient first");
             login();
             return;
         }
         if (playerID == null) {
 
-            Log.i(TAG, "playerID is null, please getcurrentPlayer login first");
+            LogAndToast("playerID is null, please getcurrentPlayer login first");
             login();
             return;
         }

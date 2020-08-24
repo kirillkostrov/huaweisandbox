@@ -64,7 +64,7 @@
         app:layout_constraintTop_toBottomOf="@+id/button_player_event_begin" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/button_get_player_extra"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
