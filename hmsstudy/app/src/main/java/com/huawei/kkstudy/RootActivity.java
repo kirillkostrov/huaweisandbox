@@ -13,6 +13,7 @@ import com.huawei.kkstudy.LabActivities.AuthKitActivity;
 import com.huawei.kkstudy.LabActivities.IAPActivity;
 import com.huawei.kkstudy.LabActivities.LocationActivity;
 import com.huawei.kkstudy.LabActivities.PushKitActivity;
+import com.huawei.kkstudy.LabActivities.SafetyKitActivity;
 import com.huawei.kkstudy.LabActivities.ScanActivity;
 
 public class RootActivity extends AppCompatActivity {

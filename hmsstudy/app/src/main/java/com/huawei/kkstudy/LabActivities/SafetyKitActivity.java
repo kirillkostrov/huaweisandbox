@@ -1,4 +1,4 @@
-package com.huawei.kkstudy;
+package com.huawei.kkstudy.LabActivities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,7 +9,6 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.huawei.hmf.tasks.OnFailureListener;
@@ -26,7 +25,7 @@ import com.huawei.hms.support.api.entity.safetydetect.WifiDetectResponse;
 import com.huawei.hms.support.api.safetydetect.SafetyDetect;
 import com.huawei.hms.support.api.safetydetect.SafetyDetectClient;
 import com.huawei.hms.support.api.safetydetect.SafetyDetectStatusCodes;
-import com.huawei.kkstudy.LabActivities.DisplayResultActivity;
+import com.huawei.kkstudy.R;
 
 
 import java.util.List;

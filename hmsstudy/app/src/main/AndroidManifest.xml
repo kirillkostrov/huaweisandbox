@@ -19,21 +19,47 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LabActivities.DisplayResultActivity"></activity>
-        <activity android:name=".SafetyKitActivity" />
-        <activity android:name=".LabActivities.ScanActivity" />
-        <activity android:name=".LabActivities.LocationActivity" />
+
 
         <meta-data
             android:name="push_kit_auto_init_enabled"
             android:value="true" />
 
-        <activity android:name=".RootActivity">
+        <activity
+            android:name=".LabActivities.SplashActivity"
+            android:exported="false"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity android:name=".LabActivities.DisplayResultActivity" />
+
+        <activity android:name=".LabActivities.SafetyKitActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".RootActivity" />
+        </activity>
+        <activity android:name=".LabActivities.ScanActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".RootActivity" />
+        </activity>
+        <activity android:name=".LabActivities.LocationActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".RootActivity" />
+        </activity>
+
+
+        <activity android:name=".RootActivity">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
         <activity
             android:name=".LabActivities.AuthKitActivity"
@@ -51,9 +77,21 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".RootActivity" />
         </activity>
-        <activity android:name=".LabActivities.Analytics.MainActivity" />
-        <activity android:name=".LabActivities.Analytics.SettingActivity" />
-        <activity android:name=".LabActivities.IAPActivity" />
+        <activity android:name=".LabActivities.Analytics.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".RootActivity" />
+        </activity>
+        <activity android:name=".LabActivities.Analytics.SettingActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".LabActivities.Analytics.MainActivity" />
+        </activity>
+        <activity android:name=".LabActivities.IAPActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".RootActivity" />
+        </activity>
 
         <service
             android:name=".Utils.MyPushService"
