@@ -53,6 +53,7 @@ dependencies {
     implementation 'com.huawei.hms:hianalytics:5.0.1.301'
     implementation 'com.huawei.hms:location:5.0.0.301'
     implementation 'com.huawei.hms:scan:1.2.1.300'
+    implementation 'com.huawei.hms:safetydetect:5.0.1.300'
 
 }
 

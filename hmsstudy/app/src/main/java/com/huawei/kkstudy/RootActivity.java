@@ -62,4 +62,9 @@ public class RootActivity extends AppCompatActivity {
         Intent scanKitActivity = new Intent(this, ScanActivity.class);
         startActivity(scanKitActivity);
     }
+
+    public void SafetyKitClick(View view) {
+        Intent safetyKitActivity = new Intent(this, SafetyKitActivity.class);
+        startActivity(safetyKitActivity);
+    }
 }

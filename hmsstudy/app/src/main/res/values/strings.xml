@@ -37,4 +37,11 @@
     <string name="scan_kit_lab_button_text">Scan Kit Lab</string>
     <string name="scan_kit_demo">Scan Kit Demo</string>
     <string name="scan_button">Scan</string>
+    <string name="safety_kit_header">Safety Kit Demo</string>
+    <string name="check_system_integrity_button_text">Check System Integrity</string>
+    <string name="integrity_check_result_placeholder">Integrity check result:</string>
+    <string name="check_apps_button_text">Check Apps</string>
+    <string name="check_url_default_value">https://shop.huawei.com/ru/</string>
+    <string name="check_url_button_text">Check Url</string>
+    <string name="check_wifi_button_text">Check Wifi</string>
 </resources>
