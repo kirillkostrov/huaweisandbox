@@ -32,7 +32,7 @@ import org.json.JSONObject;
 
 import java.util.UUID;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     private static final String TAG = "KKGame";
 
@@ -117,9 +117,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void login() {
         playersClient = Games.getPlayersClient(this);
-        //Task<Player> playerTask = playersClient.getCurrentPlayer();
+        Task<Player> playerTask = playersClient.getCurrentPlayer();
 
-        Task<Player> playerTask = playersClient.getGamePlayer();
+        //Task<Player> playerTask = playersClient.getGamePlayer();
         playerTask.addOnSuccessListener(new OnSuccessListener<Player>() {
             @Override
             public void onSuccess(Player player) {
@@ -137,19 +137,16 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * Report the game addiction prevention event start time.
-     */
     private void timeReportStart() {
         if (playersClient == null) {
 
-            LogAndToast("playersClient is null, please init  playersClient first");
+            Log.i(TAG, "playersClient is null, please init  playersClient first");
             login();
             return;
         }
         if (playerID == null) {
 
-            LogAndToast("playerID is null, please getcurrentPlayer login first");
+            Log.i(TAG, "playerID is null, please getcurrentPlayer login first");
             login();
             return;
         }
@@ -274,5 +271,10 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, message);
         Toast toast = Toast.makeText(this, message, Toast.LENGTH_LONG);
         toast.show();
+    }
+
+    @Override
+    public void onClick(View view) {
+        LogAndToast("Someone invoked onClick, beehatch");
     }
 }
