@@ -32,7 +32,7 @@ import org.json.JSONObject;
 
 import java.util.UUID;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "KKGame";
 
@@ -271,10 +271,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Log.d(TAG, message);
         Toast toast = Toast.makeText(this, message, Toast.LENGTH_LONG);
         toast.show();
-    }
-
-    @Override
-    public void onClick(View view) {
-        LogAndToast("Someone invoked onClick, beehatch");
     }
 }
