@@ -56,4 +56,5 @@
     <string name="check_url_default_value">https://shop.huawei.com/ru/</string>
     <string name="check_url_button_text">Check Url</string>
     <string name="check_wifi_button_text">Check Wifi</string>
+    <string name="safety_kit_button_text">Safety Kit</string>
 </resources>
