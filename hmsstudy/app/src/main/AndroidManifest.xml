@@ -19,7 +19,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat">
-
+        <activity android:name=".LabActivities.SiteKitActivity"></activity>
 
         <meta-data
             android:name="push_kit_auto_init_enabled"
@@ -30,12 +30,11 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".LabActivities.DisplayResultActivity" />
-
         <activity android:name=".LabActivities.SafetyKitActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -46,19 +45,19 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".RootActivity" />
         </activity>
-        <activity android:name=".LabActivities.LocationActivity" >
+        <activity android:name=".LabActivities.LocationActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".RootActivity" />
         </activity>
-
-
         <activity android:name=".RootActivity">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity
             android:name=".LabActivities.AuthKitActivity"
@@ -76,7 +75,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".RootActivity" />
         </activity>
-        <activity android:name=".LabActivities.Analytics.MainActivity" >
+        <activity android:name=".LabActivities.Analytics.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".RootActivity" />

@@ -39,8 +39,6 @@
     <string name="status_ad_dismissed">Ad is dismissed.</string>
 
 
-
-
     <string name="iap_lab_button">IAP lab</string>
     <string name="favorite_sport_text">Favorite Sport:</string>
     <string name="location_button_text">Location Kit Lab</string>
@@ -56,5 +54,6 @@
     <string name="check_url_default_value">https://shop.huawei.com/ru/</string>
     <string name="check_url_button_text">Check Url</string>
     <string name="check_wifi_button_text">Check Wifi</string>
-    <string name="safety_kit_button_text">Safety Kit</string>
+    <string name="safety_kit_button_text">Safety Kit Lab</string>
+    <string name="site_kit_button_text">Site Kit Lab</string>
 </resources>

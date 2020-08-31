@@ -17,6 +17,7 @@ import com.huawei.kkstudy.LabActivities.LocationActivity;
 import com.huawei.kkstudy.LabActivities.PushKitActivity;
 import com.huawei.kkstudy.LabActivities.SafetyKitActivity;
 import com.huawei.kkstudy.LabActivities.ScanActivity;
+import com.huawei.kkstudy.LabActivities.SiteKitActivity;
 
 public class RootActivity extends Activity implements OnClickListener {
 
@@ -96,8 +97,15 @@ public class RootActivity extends Activity implements OnClickListener {
             case R.id.safety_button:
                 openSafetyKitLab();
                 break;
+            case R.id.site_button:
+                openSiteKitLab();
             default:
                 break;
         }
+    }
+
+    private void openSiteKitLab() {
+        Intent siteKitActivity = new Intent(this, SiteKitActivity.class);
+        startActivity(siteKitActivity);
     }
 }
