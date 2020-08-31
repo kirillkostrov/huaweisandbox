@@ -18,8 +18,11 @@ package com.huawei.www.driveapplication;
 
 import android.Manifest;
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.OpenableColumns;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -70,6 +73,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private final static String TAG = "MainActivity";
 
     private static int REQUEST_SIGN_IN_LOGIN = 1002;
+
+    public static final int REQUEST_PICKFILE = 1;
 
     private DriveCredential mCredential;
     // huawei account AT
@@ -178,6 +183,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(getApplicationContext(), "onActivityResult, signIn failed.", Toast.LENGTH_LONG).show();
             }
         }
+        if (requestCode == REQUEST_PICKFILE) {
+
+            if (resultCode == -1) {
+                Uri fileUri = data.getData();
+                assert fileUri != null;
+
+                FileUtils fu = new FileUtils(this);
+
+                String filePath = fu.getPath(fileUri);
+                uploadFileName.setText(filePath);
+            }
+        }
     }
 
     private void showTips(final String toastText) {
@@ -220,9 +237,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.buttonQueryHistoryVersion:
                 queryHistoryVersion();
+            case R.id.uploadFileName:
+                openFileDialog();
             default:
                 break;
         }
+    }
+
+    private void openFileDialog() {
+        Intent chooseFile = new Intent(Intent.ACTION_GET_CONTENT);
+        chooseFile.setType("*/*");
+        chooseFile = Intent.createChooser(chooseFile, "Choose a file");
+        startActivityForResult(chooseFile, REQUEST_PICKFILE);
     }
 
     private void driveLogin() {
@@ -258,7 +284,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         showTips("please input upload file name above.");
                         return;
                     }
-                    java.io.File fileObject = new java.io.File("/sdcard/" + uploadFileName.getText());
+                    java.io.File fileObject = new java.io.File(String.valueOf(uploadFileName.getText()));
+
+
                     if (!fileObject.exists()) {
                         showTips("the input file does not exit.");
                         return;

@@ -112,6 +112,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="96dp"
             android:hint="Enter the file name in SD card"
+            android:onClick="onClick"
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_editor_absoluteX="0dp" />
 
