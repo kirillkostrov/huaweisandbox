@@ -10,4 +10,5 @@
 
     <dimen name="progress_bar_min_height">6dp</dimen>
     <dimen name="progress_bar_top_margin">4dp</dimen>
+    <dimen name="main_button_text_fontsize">10sp</dimen>
 </resources>

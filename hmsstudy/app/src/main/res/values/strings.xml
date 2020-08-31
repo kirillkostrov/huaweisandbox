@@ -5,10 +5,10 @@
     <string name="sign_out_success">Signed out successfully</string>
     <string name="sign_out_failed">Signed out failed</string>
     <string name="sign_in_success">Signed in successfully</string>
-    <string name="account_kit_lab_button_text">Account Kit Lab</string>
+    <string name="account_kit_lab_button_text">Account Kit</string>
     <string name="main_page_heading">HMS Codelabs App by KK</string>
     <string name="auth_kit_codelab_title">Auth Kit Codelab</string>
-    <string name="push_kit_lab_button_text">Push Kit Lab</string>
+    <string name="push_kit_lab_button_text">Push Kit</string>
     <string name="silent_signin_result_success_text">Silent sign-in successful</string>
     <string name="trying_token_signin_after_silent_signin_failed">Silent sign-in failed, trying token sign-in</string>
     <string name="silent_sign_in_button_text">Silent Sign In</string>
@@ -28,7 +28,7 @@
     <string name="q5">Sound spreads faster in the water than in the air</string>
     <string name="wrong_answer">The answer is wrong.</string>
     <string name="correct_answer">The answer is correct.</string>
-    <string name="hianalytics_lab_button">HiAnalytics Lab</string>
+    <string name="hianalytics_lab_button">HiAnalytics</string>
 
     <!-- Splash Ads lab -->
     <string name="ad_id_splash">testq6zq98hecj</string>
@@ -39,12 +39,12 @@
     <string name="status_ad_dismissed">Ad is dismissed.</string>
 
 
-    <string name="iap_lab_button">IAP lab</string>
+    <string name="iap_lab_button">IAP</string>
     <string name="favorite_sport_text">Favorite Sport:</string>
-    <string name="location_button_text">Location Kit Lab</string>
+    <string name="location_button_text">Location Kit</string>
     <string name="remove_location_update_callback_button">Remove location update callback</string>
     <string name="request_location_update_with_callback_button">Request location update with callback</string>
-    <string name="scan_kit_lab_button_text">Scan Kit Lab</string>
+    <string name="scan_kit_lab_button_text">Scan Kit</string>
     <string name="scan_kit_demo">Scan Kit Demo</string>
     <string name="scan_button">Scan</string>
     <string name="safety_kit_header">Safety Kit Demo</string>
@@ -54,6 +54,7 @@
     <string name="check_url_default_value">https://shop.huawei.com/ru/</string>
     <string name="check_url_button_text">Check Url</string>
     <string name="check_wifi_button_text">Check Wifi</string>
-    <string name="safety_kit_button_text">Safety Kit Lab</string>
-    <string name="site_kit_button_text">Site Kit Lab</string>
+    <string name="safety_kit_button_text">Safety Kit</string>
+    <string name="site_kit_button_text">Site Kit</string>
+    <string name="map_kit_button_text">Map Kit</string>
 </resources>
