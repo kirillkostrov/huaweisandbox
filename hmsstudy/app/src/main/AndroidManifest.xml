@@ -4,9 +4,15 @@
     <!-- required by location kit -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" /> <!-- Required by scan kit -->
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+
+    <!-- Required by scan kit -->
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <!-- Required by map kit -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
@@ -19,7 +25,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat">
-        <activity android:name=".LabActivities.SiteKitActivity"></activity>
 
         <meta-data
             android:name="push_kit_auto_init_enabled"
@@ -34,8 +39,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
+        <activity android:name=".LabActivities.MapActivity"
+            android:label="@string/map_kit_header">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".RootActivity" />
+        </activity>
+
+        <activity android:name=".LabActivities.SiteKitActivity"
+            android:label="@string/site_kit_header">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".RootActivity" />
+        </activity>
+
         <activity android:name=".LabActivities.DisplayResultActivity" />
-        <activity android:name=".LabActivities.SafetyKitActivity">
+
+        <activity android:name=".LabActivities.SafetyKitActivity"
+            android:label="">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".RootActivity" />
@@ -50,15 +73,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".RootActivity" />
         </activity>
+
         <activity android:name=".RootActivity">
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
         </activity>
+
         <activity
             android:name=".LabActivities.AuthKitActivity"
             android:label="@string/auth_kit_codelab_title"

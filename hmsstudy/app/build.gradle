@@ -56,6 +56,7 @@ dependencies {
     implementation 'com.huawei.hms:safetydetect:5.0.1.300'
     implementation 'com.huawei.hms:ads-lite:13.4.32.300'
     implementation 'com.huawei.hms:site:5.0.1.300'
+    implementation 'com.huawei.hms:maps:5.0.1.300'
 
 }
 
