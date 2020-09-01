@@ -59,4 +59,8 @@
     <string name="map_kit_button_text">Map Kit</string>
     <string name="map_kit_header">Map Kit Lab</string>
     <string name="site_kit_header">Site Kit Lab</string>
+    <string name="identity_kit_title">Identity Kit Lab</string>
+    <string name="identity_kit_button_text">Identity Kit</string>
+    <string name="get_huawei_user_address_buttin_text">Get Huawei User Address</string>
+    <string name="identity_kit_demo_title">Identity Kit Demo</string>
 </resources>

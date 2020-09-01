@@ -13,6 +13,7 @@ import com.huawei.hms.analytics.HiAnalyticsInstance;
 import com.huawei.kkstudy.LabActivities.Analytics.MainActivity;
 import com.huawei.kkstudy.LabActivities.AuthKitActivity;
 import com.huawei.kkstudy.LabActivities.IAPActivity;
+import com.huawei.kkstudy.LabActivities.IdentityKitActivity;
 import com.huawei.kkstudy.LabActivities.LocationActivity;
 import com.huawei.kkstudy.LabActivities.MapActivity;
 import com.huawei.kkstudy.LabActivities.PushKitActivity;
@@ -104,9 +105,17 @@ public class RootActivity extends Activity implements OnClickListener {
             case R.id.map_button:
                 openMapKitLab();
                 break;
+            case R.id.identity_button:
+                openIdentityKit();
+                break;
             default:
                 break;
         }
+    }
+
+    private void openIdentityKit() {
+        Intent identityKitActivity = new Intent(this, IdentityKitActivity.class);
+        startActivity(identityKitActivity);
     }
 
     private void openMapKitLab() {

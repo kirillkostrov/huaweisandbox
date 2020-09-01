@@ -166,17 +166,35 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="32dp"
-                android:layout_marginEnd="32dp"
+                android:layout_marginEnd="16dp"
                 android:drawableTop="@mipmap/ic_map"
+
                 android:onClick="onClick"
 
                 android:padding="32dp"
-
                 android:text="@string/map_kit_button_text"
                 android:textSize="@dimen/main_button_text_fontsize"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/identity_button"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/safety_button" />
+
+            <Button
+                android:id="@+id/identity_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+
+                android:drawableTop="@mipmap/ic_identity"
+
+                android:onClick="onClick"
+                android:padding="32dp"
+                android:text="@string/identity_kit_button_text"
+                android:textSize="@dimen/main_button_text_fontsize"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/map_button"
+                app:layout_constraintTop_toBottomOf="@+id/site_button" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
