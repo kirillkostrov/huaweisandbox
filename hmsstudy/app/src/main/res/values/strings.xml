@@ -63,4 +63,7 @@
     <string name="identity_kit_button_text">Identity Kit</string>
     <string name="get_huawei_user_address_buttin_text">Get Huawei User Address</string>
     <string name="identity_kit_demo_title">Identity Kit Demo</string>
+    <string name="panorama_kit_button_text">Panorama Kit</string>
+    <string name="panorama_kit_title">Panorama Kit Lab</string>
+    <string name="scan_kit_lab_title">Scan Kit Lab</string>
 </resources>

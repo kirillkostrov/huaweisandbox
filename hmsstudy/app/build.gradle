@@ -58,6 +58,7 @@ dependencies {
     implementation 'com.huawei.hms:site:5.0.1.300'
     implementation 'com.huawei.hms:maps:5.0.1.300'
     implementation 'com.huawei.hms:identity:4.0.4.300'
+    implementation 'com.huawei.hms:panorama:4.0.2.300'
 }
 
 apply plugin: 'com.huawei.agconnect'

@@ -33,7 +33,7 @@ public class IdentityKitActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_identity_kit);
-        
+
         textView = findViewById(R.id.identity_result);
     }
 

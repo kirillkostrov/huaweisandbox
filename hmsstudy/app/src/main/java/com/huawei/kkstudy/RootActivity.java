@@ -16,6 +16,7 @@ import com.huawei.kkstudy.LabActivities.IAPActivity;
 import com.huawei.kkstudy.LabActivities.IdentityKitActivity;
 import com.huawei.kkstudy.LabActivities.LocationActivity;
 import com.huawei.kkstudy.LabActivities.MapActivity;
+import com.huawei.kkstudy.LabActivities.PanoramaActivity;
 import com.huawei.kkstudy.LabActivities.PushKitActivity;
 import com.huawei.kkstudy.LabActivities.SafetyKitActivity;
 import com.huawei.kkstudy.LabActivities.ScanActivity;
@@ -108,9 +109,16 @@ public class RootActivity extends Activity implements OnClickListener {
             case R.id.identity_button:
                 openIdentityKit();
                 break;
+            case R.id.panorama_button:
+                openPanoramaKit();
+                break;
             default:
                 break;
         }
+    }
+
+    private void openPanoramaKit() {
+        startActivity(new Intent(this, PanoramaActivity.class));
     }
 
     private void openIdentityKit() {
