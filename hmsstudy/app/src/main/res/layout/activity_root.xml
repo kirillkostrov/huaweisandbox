@@ -211,8 +211,27 @@
                 android:text="@string/panorama_kit_button_text"
                 android:textSize="@dimen/main_button_text_fontsize"
 
+                app:layout_constraintEnd_toStartOf="@+id/nearby_button"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/map_button" />
+
+            <Button
+                android:id="@+id/nearby_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+
+                android:drawableTop="@mipmap/ic_nearby"
+
+                android:onClick="onClick"
+                android:padding="32dp"
+                android:text="@string/nearby_kit_button_text"
+                android:textSize="@dimen/main_button_text_fontsize"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/panorama_button"
+                app:layout_constraintTop_toBottomOf="@+id/identity_button" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

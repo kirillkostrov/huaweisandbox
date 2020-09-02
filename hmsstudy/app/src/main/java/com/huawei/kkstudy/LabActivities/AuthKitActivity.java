@@ -27,7 +27,6 @@ public class AuthKitActivity extends AppCompatActivity {
     public static final int REQUEST_SIGN_IN_LOGIN = 1002;
 
     private HuaweiIdAuthService mAuthService;
-    private HuaweiIdAuthParams mAuthParams;
     private EditText mEditText;
 
     @Override
@@ -37,7 +36,7 @@ public class AuthKitActivity extends AppCompatActivity {
 
         mEditText = findViewById(R.id.output);
 
-        mAuthParams = new HuaweiIdAuthParamsHelper(HuaweiIdAuthParams.DEFAULT_AUTH_REQUEST_PARAM)
+        HuaweiIdAuthParams mAuthParams = new HuaweiIdAuthParamsHelper(HuaweiIdAuthParams.DEFAULT_AUTH_REQUEST_PARAM)
                 .setIdToken()
                 .setAccessToken()
                 .createParams();
@@ -62,7 +61,6 @@ public class AuthKitActivity extends AppCompatActivity {
         silentSignInTask.addOnSuccessListener(new OnSuccessListener<AuthHuaweiId>() {
             @Override
             public void onSuccess(AuthHuaweiId authHuaweiId) {
-                Log.i(TAG, getString(R.string.silent_signin_result_success_text));
                 AddTextToLog(getString(R.string.silent_signin_result_success_text));
             }
 
@@ -70,7 +68,6 @@ public class AuthKitActivity extends AppCompatActivity {
             @Override
             public void onFailure(Exception e) {
                 if (e instanceof ApiException) {
-                    Log.i(TAG, getString(R.string.trying_token_signin_after_silent_signin_failed));
                     AddTextToLog(getString(R.string.trying_token_signin_after_silent_signin_failed));
                 }
             }
@@ -88,14 +85,12 @@ public class AuthKitActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Log.i(TAG, getString(R.string.sign_out_success));
                         AddTextToLog(getString(R.string.sign_out_success));
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(Exception e) {
-                        Log.i(TAG, getString(R.string.sign_out_failed));
                         AddTextToLog(getString(R.string.sign_out_failed));
 
                     }
@@ -111,15 +106,15 @@ public class AuthKitActivity extends AppCompatActivity {
             Task<AuthHuaweiId> authHuaweiIdTask = HuaweiIdAuthManager.parseAuthResultFromIntent(data);
             if (authHuaweiIdTask.isSuccessful()) {
                 AuthHuaweiId huaweiAccount = authHuaweiIdTask.getResult();
-                Log.i(TAG, getString(R.string.sign_in_success) + ": " + huaweiAccount.getDisplayName());
                 AddTextToLog(getString(R.string.sign_in_success) + ": " + huaweiAccount.getDisplayName());
             } else {
-                Log.i(TAG, "signIn failed: " + ((ApiException) authHuaweiIdTask.getException()).getStatusCode());
+                AddTextToLog("signIn failed: " + ((ApiException) authHuaweiIdTask.getException()).getStatusCode());
             }
         }
     }
 
     private void AddTextToLog(String text) {
+        Log.i(TAG, text);
         mEditText.setText(mEditText.getText() + System.getProperty("line.separator") + text);
     }
 

@@ -66,4 +66,5 @@
     <string name="panorama_kit_button_text">Panorama Kit</string>
     <string name="panorama_kit_title">Panorama Kit Lab</string>
     <string name="scan_kit_lab_title">Scan Kit Lab</string>
+    <string name="nearby_kit_button_text">Nearby Kit</string>
 </resources>
