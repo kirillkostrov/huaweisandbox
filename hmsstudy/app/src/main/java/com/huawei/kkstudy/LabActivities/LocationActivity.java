@@ -36,11 +36,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 
-public class LocationActivity extends Activity {
+public class LocationActivity extends AppCompatActivity {
     public static final String TAG = "LocationUpdatesCallback";
     private TextView logTextView;
 
