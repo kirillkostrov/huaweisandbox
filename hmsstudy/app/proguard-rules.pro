@@ -32,3 +32,27 @@
 -keep class com.huawei.openalliance.ad.** { *; }
 -keep class com.huawei.hms.ads.** { *; }
 -keep class com.huawei.cloud.services.drive.**{*;}
+
+-dontwarn com.huawei.hms.**
+-keep interface com.huawei.hms.analytics.type.HAEventType{*;}
+-keep interface com.huawei.hms.analytics.type.HAParamType{*;}
+-keep class com.huawei.hms.analytics.HiAnalyticsTools{
+public static void enableLog();
+public static void enableLog(int);
+}
+-keep class com.huawei.hms.analytics.HiAnalyticsInstance{*;}
+-keep class com.huawei.hms.analytics.HiAnalytics{*;}
+-keep class com.huawei.hms.feature.** {
+public *;
+}
+-keep public class com.huawei.hms.common.** {
+public *;
+}
+-keep class com.huawei.hms.analytics.internal.filter.EventFilter{
+public void logFilteredEvent(java.lang.String, android.os.Bundle);
+public java.lang.String getUserProfile(java.lang.String);
+}
+-keep public class com.huawei.hms.dtm.EventFilter {
+public <fields>;
+public <methods>;
+}
