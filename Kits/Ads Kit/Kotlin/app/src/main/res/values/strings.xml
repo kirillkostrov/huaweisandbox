@@ -47,6 +47,8 @@
     <string name="get_reward_brn">Get reward</string>
     <string name="logo">logo</string>
     <string name="ad_kit_sample">Ad kit sample</string>
+    <string name="reward_given">Reward given</string>
+    <string name="reward_not_given">Reward not given</string>
 
     <!-- Consent -->
     <string name="consent_title">Consent Example of HUAWEI X</string>

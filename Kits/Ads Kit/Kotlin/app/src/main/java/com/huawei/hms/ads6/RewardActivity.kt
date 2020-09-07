@@ -1,5 +1,6 @@
 package com.huawei.hms.ads6
 
+import android.graphics.Color
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -15,6 +16,8 @@ class RewardActivity : AppCompatActivity(R.layout.activity_reward) {
 
     private lateinit var rewardedAd: RewardAd
 
+    private var isRewarded: Boolean = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         loadRewardAd()
@@ -23,8 +26,19 @@ class RewardActivity : AppCompatActivity(R.layout.activity_reward) {
         }
     }
 
+    private fun giveReward(giveReward: Boolean) {
+        if (giveReward) {
+            rewardResult.text = getString(R.string.reward_given)
+            rewardResult.setTextColor(resources.getColor(R.color.colorRewardGiven))
+        } else {
+            rewardResult.text = getString(R.string.reward_not_given)
+            rewardResult.setTextColor(resources.getColor(R.color.colorRewardRejected))
+        }
+    }
+
     private fun rewardAdShow() {
         if (rewardedAd.isLoaded) {
+            isRewarded = false
             rewardedAd.show(this, rewardAdStatusListener)
         }
     }
@@ -36,6 +50,8 @@ class RewardActivity : AppCompatActivity(R.layout.activity_reward) {
 
     private val rewardAdStatusListener = object : RewardAdStatusListener() {
         override fun onRewardAdClosed() {
+            Toast.makeText(applicationContext, "onRewardAdClosed", Toast.LENGTH_SHORT).show()
+            giveReward(isRewarded)
             loadRewardAd()
         }
 
@@ -50,8 +66,10 @@ class RewardActivity : AppCompatActivity(R.layout.activity_reward) {
 
         override fun onRewarded(reward: Reward) {
             Toast.makeText(applicationContext, "Ad finished, you get a reward", Toast.LENGTH_SHORT).show()
+            isRewarded = true
             loadRewardAd()
         }
+
     }
 
     private val rewardAdLoadListener = object : RewardAdLoadListener() {

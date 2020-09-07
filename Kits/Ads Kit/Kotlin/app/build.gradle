@@ -61,58 +61,6 @@ dependencies {
     implementation 'com.huawei.hms:ads-lite:13.4.32.303'
     implementation 'com.huawei.hms:ads-consent:3.4.32.303'
 
-//    implementation 'com.huawei.hms:ads-identifier:3.4.28.313'
-//    implementation 'com.huawei.hms:ads-installreferrer:3.4.28.313'
-
-
-    // . . . . . . . . . . . . . . . . . . . . . . . .
-    // Размер самого kit / размер с зависимостями:
-    // Account Kit 168 KB / 616 KB
-    // Awareness Kit 158 KB / 581 KB
-    // Health Kit 269 KB / 684 KB
-    // Panorama Kit (panorama + panorama-local)  28 KB + 42 KB / 713 KB
-    // DTM 270 KB / 851 KB
-    // Site Kit 31 KB / 1578 KB
-    // Near By 138 KB / 714 KB
-    // ML Kit 835 KB / 323 KB?
-    // Identity Kit 9 KB / 538 KB
-    // FIDO Kit 53 KB / 833 KB
-    // Push Kit 111 KB / 631 KB
-    // In-App Purchases 66 KB / 604 KB
-    // Game Service 622 KB / 1467 KB
-    // Location Kit 91 KB / 625 KB
-    // Analytics Kit 119 KB / 961 KB
-    // Ads Kit (identifier) 6 KB / 93 KB
-    // Map Kit (maps + maps-base) 420 KB / 823 KB
-    // Drive Kit 587 KB / 868 KB
-    // Safe Detect Kit 16 KB / 703 KB
-    // Scan Kit 74 KB / 243 KB
-    // Wallet Kit 24 KB / 841 KB
-
-//    implementation 'com.huawei.hms:hwid:4.0.0.300'
-//    implementation 'com.huawei.hms:awareness:1.0.1.300'
-//    implementation 'com.huawei.hms:hihealth-base:4.0.0.350'
-//    implementation 'com.huawei.hms:panorama:4.0.1.300'
-//    implementation 'com.huawei.hms:panorama-local:4.0.1.300'
-//    implementation 'com.huawei.hms:hianalytics:4.0.0.300'
-//    implementation 'com.huawei.hms:dtm-api:4.0.1.300'
-//    implementation 'com.huawei.hms:site:4.0.0.300'
-//    implementation 'com.huawei.hms:nearby:4.0.1.300'
-//    implementation 'com.huawei.hms:ml-computer-vision:1.0.0.325'
-//    implementation 'com.huawei.hms:identity:4.0.1.300'
-//    implementation 'com.huawei.hms:fido:4.0.0.300'
-//    implementation 'com.huawei.hms:push:3.0.3.301'
-//    implementation 'com.huawei.hms:iap:3.0.3.300'
-//    implementation 'com.huawei.hms:game:3.0.3.300'
-//    implementation 'com.huawei.hms:location:3.0.3.300'
-//    implementation 'com.huawei.hms:hms-ads-identifier:3.4.26.303'
-//    implementation 'com.huawei.hms:maps:3.0.2.301'
-//    implementation 'com.huawei.hms:drive:4.0.0.301'
-//    implementation 'com.huawei.hms:push:4.0.0.300'
-//    implementation 'com.huawei.hms:safetydetect:3.0.3.300'
-//    implementation 'com.huawei.hms:scan:1.0.3.301'
-//    implementation 'com.huawei.hms:wallet:2.0.0.300'
-
 }
 
 apply plugin: 'com.huawei.agconnect'
