@@ -1,12 +1,30 @@
 {
-	"client":{
-		"cp_id":"890007000000001798",
-		"product_id":"736430079244480008",
-		"client_id":"372354590311449792",
-		"client_secret":"C31F1938C96A61016D1CE8DB54E56A8D5C10EBEC37BAA1F046F3EA271799363D",
-		"app_id":"102302805",
-		"package_name":"com.huawei.hms.ads6",
-		"api_key":"CV73GTxAiZTeHc7WBuc7FoXjq34nZcxTvpsuoUE18fdQ1CCoAErM3YkDSVwMeH3obXWgfPfoGFxJxtrP/QJppOayjCAC"
+	"agcgw":{
+		"backurl":"connect-drru.dbankcloud.cn",
+		"url":"connect-drru.hispace.hicloud.com"
 	},
+	"client":{
+		"cp_id":"1340007000008433512",
+		"product_id":"736430079244598815",
+		"client_id":"427507946587423872",
+		"client_secret":"6DED769438706CF06E4EB75D8D3E8591371CA1A2DC49813ACF7170BCE6931932",
+		"app_id":"102852263",
+		"package_name":"com.huawei.kkostrov.adskitdemo.huawei",
+		"api_key":"CgB6e3x9iu5QgMULcrdQXQykYgYdm1ofZMRBjpBE8BlGCYDKPLBl9fywqsfUVEqddne2mdfrsl3+TYsEb2QjyyMc"
+	},
+	"service":{
+		"analytics":{
+			"collector_url":"datacollector-drru.dt.hicloud.com,datacollector-drru.dt.dbankcloud.cn",
+			"resource_id":"p1",
+			"channel_id":""
+		},
+		"cloudstorage":{
+			"storage_url":"https://agc-storage-drru.platform.dbankcloud.cn"
+		},
+		"ml":{
+			"mlservice_url":"ml-api-drru.ai.dbankcloud.com,ml-api-drru.ai.dbankcloud.cn"
+		}
+	},
+	"region":"RU",
 	"configuration_version":"1.0"
 }

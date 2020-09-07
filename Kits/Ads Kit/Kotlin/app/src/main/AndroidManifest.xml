@@ -5,11 +5,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <!--    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />-->
     <uses-permission android:name="com.huawei.appmarket.service.commondata.permission.GET_COMMON_DATA" />
-
-    <!--    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>-->
-    <!--    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>-->
 
     <application
         android:name="com.huawei.hms.ads6.AdsApplication"
@@ -30,16 +26,36 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.huawei.hms.ads6.BannerActivity" />
-        <activity android:name="com.huawei.hms.ads6.NativeActivity" />
-        <activity android:name="com.huawei.hms.ads6.RewardActivity" />
-        <activity android:name="com.huawei.hms.ads6.InterstitialActivity" />
+        <activity android:name="com.huawei.hms.ads6.BannerActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.huawei.hms.ads6.MainActivity" />
+        </activity>
+        <activity android:name="com.huawei.hms.ads6.NativeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.huawei.hms.ads6.MainActivity" />
+        </activity>
+        <activity android:name="com.huawei.hms.ads6.RewardActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.huawei.hms.ads6.MainActivity" />
+        </activity>
+        <activity android:name="com.huawei.hms.ads6.InterstitialActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.huawei.hms.ads6.MainActivity" />
+        </activity>
         <activity android:name="com.huawei.hms.ads6.MainActivity" />
-        <activity android:name="com.huawei.hms.ads6.ConsentActivity" />
+        <activity android:name="com.huawei.hms.ads6.ConsentActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.huawei.hms.ads6.MainActivity" />
+        </activity>
 
         <meta-data
             android:name="com.huawei.hms.client.appid"
-            android:value="appid=101611999" />
+            android:value="appid=102852263" />
     </application>
 
 </manifest>
