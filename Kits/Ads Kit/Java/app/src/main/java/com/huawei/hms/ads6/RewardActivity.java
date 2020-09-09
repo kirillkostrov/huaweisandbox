@@ -41,7 +41,6 @@ public class RewardActivity extends AppCompatActivity {
             }
     }
 
-
     private void loadRewardAd() {
         rewardAd = new RewardAd(this, getString(R.string.ad_rewarded_vertical));
         rewardAd.loadAd(new AdParam.Builder().build(), rewardAdListener);
