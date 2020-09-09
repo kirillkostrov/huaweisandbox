@@ -80,8 +80,8 @@ class ConsentDialog(context: Context, providers: MutableList<AdProvider>): Dialo
     private fun updateConsentStatus(consentStatus: ConsentStatus) {
         Consent.getInstance(mContext).setConsentStatus(consentStatus)
 
-        val preferences = mContext!!.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE)
-        preferences.edit().putInt(SP_CONSENT_KEY, consentStatus.value).apply()
+        val preferences = mContext!!.getSharedPreferences(Constants.SP_NAME, Context.MODE_PRIVATE)
+        preferences.edit().putInt(Constants.SP_CONSENT_KEY, consentStatus.value).apply()
 
         if (mCallback != null) {
             mCallback!!.updateConsentStatus(consentStatus)

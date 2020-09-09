@@ -23,17 +23,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-    dataSet = new ArrayList<AdFormat>();
-    dataSet.add(new AdFormat("Banner Ad", BannerActivity.class));
-    dataSet.add(new AdFormat("Interstitial Ad", InterstitialActivity.class));
-    dataSet.add(new AdFormat("Native Ad", NativeActivity.class));
-    dataSet.add(new AdFormat("Reward Ad", RewardActivity.class));
+        dataSet = new ArrayList<AdFormat>();
+        dataSet.add(new AdFormat("Banner Ad", BannerActivity.class));
+        dataSet.add(new AdFormat("Interstitial Ad", InterstitialActivity.class));
+        dataSet.add(new AdFormat("Native Ad", NativeActivity.class));
+        dataSet.add(new AdFormat("Reward Ad", RewardActivity.class));
 
-    recyclerView = findViewById(R.id.rv);
-    recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView = findViewById(R.id.rv);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-    recyclerView.setAdapter(new RvAdapter(dataSet, this));
-    recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        recyclerView.setAdapter(new RvAdapter(dataSet, this));
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
     }
 }
 
