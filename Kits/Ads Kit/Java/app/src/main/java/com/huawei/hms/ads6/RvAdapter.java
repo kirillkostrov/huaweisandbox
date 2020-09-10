@@ -29,11 +29,10 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.RvDataHolder> {
 
     class RvDataHolder extends RecyclerView.ViewHolder {
 
-        LinearLayout textView;
-
         public RvDataHolder(@NonNull View itemView) {
             super(itemView);
         }
+
     }
 
     @NonNull

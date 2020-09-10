@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                         Constants.DEFAULT_SP_CONSENT_VALUE
                 ) < 0) {
                     // В нашем примере мы показываем диалог с согласием независимо от того,
-                    // получили ли мы список провайдеров или нет, просто передаём туда пустой список
+                    // получили ли список провайдеров или нет, просто передаём туда пустой список
                     showConsentDialog(adProviderList);
                 }
             }

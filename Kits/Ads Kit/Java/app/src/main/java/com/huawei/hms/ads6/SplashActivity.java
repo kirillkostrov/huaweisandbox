@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.huawei.hms.ads.AdParam;
 import com.huawei.hms.ads.AudioFocusType;
-import com.huawei.hms.ads.HwAds;
+
 import com.huawei.hms.ads.R;
 import com.huawei.hms.ads.splash.SplashAdDisplayListener;
 import com.huawei.hms.ads.splash.SplashView;
@@ -53,14 +53,12 @@ public class SplashActivity extends AppCompatActivity {
     private SplashView.SplashAdLoadListener splashAdLoadListener = new SplashView.SplashAdLoadListener() {
         @Override
         public void onAdLoaded() {
-            // Call this method when an ad is successfully loaded.
             Log.i(TAG, "SplashAdLoadListener onAdLoaded.");
             Toast.makeText(SplashActivity.this, getString(R.string.status_load_ad_success), Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void onAdFailedToLoad(int errorCode) {
-            // Call this method when an ad fails to be loaded.
             Log.i(TAG, "SplashAdLoadListener onAdFailedToLoad, errorCode: " + errorCode);
             Toast.makeText(SplashActivity.this, getString(R.string.status_load_ad_fail) + errorCode, Toast.LENGTH_SHORT).show();
             proceedToMainActivity();
@@ -68,7 +66,7 @@ public class SplashActivity extends AppCompatActivity {
 
         @Override
         public void onAdDismissed() {
-            // Call this method when the ad display is complete.
+            // Этот метод выполняется когда заканчивается показ рекламы
             Log.i(TAG, "SplashAdLoadListener onAdDismissed.");
             Toast.makeText(SplashActivity.this, getString(R.string.status_ad_dismissed), Toast.LENGTH_SHORT).show();
             proceedToMainActivity();
@@ -78,13 +76,11 @@ public class SplashActivity extends AppCompatActivity {
     private SplashAdDisplayListener adDisplayListener = new SplashAdDisplayListener() {
         @Override
         public void onAdShowed() {
-            // Call this method when an ad is displayed.
             Log.i(TAG, "SplashAdDisplayListener onAdShowed.");
         }
 
         @Override
         public void onAdClick() {
-            // Call this method when an ad is clicked.
             Log.i(TAG, "SplashAdDisplayListener onAdClick.");
         }
     };
@@ -97,37 +93,32 @@ public class SplashActivity extends AppCompatActivity {
         splashView = findViewById(R.id.splashAdView);
         splashView.setAdDisplayListener(adDisplayListener);
 
-        // Set a logo image.
+        // Устанавливаем лого
         splashView.setLogoResId(R.mipmap.ic_launcher);
-        // Set logo description.
+        // Описание к лого
         splashView.setMediaNameResId(R.string.app_name);
-        // Set the audio focus type for a video splash ad.
+        // Задаём аудиофокус для видео
         splashView.setAudioFocusType(AudioFocusType.NOT_GAIN_AUDIO_FOCUS_WHEN_MUTE);
 
         splashView.load(getString(R.string.ad_splash), ActivityInfo.SCREEN_ORIENTATION_PORTRAIT, adParam, splashAdLoadListener);
         Log.i(TAG, "Finished loading ad");
 
-        // Remove the timeout message from the message queue.
+        // Убираем сообщение о таймауте из очереди
         timeoutHandler.removeMessages(MSG_AD_TIMEOUT);
-        // Send a delay message to ensure that the app home screen can be displayed when the ad display times out.
+        // Посылаем отложенное сообщение, чтобы быть уверенными что домашняя страница приложения
+        // уже может быть отображена после того как реклама закончила показ
         timeoutHandler.sendEmptyMessageDelayed(MSG_AD_TIMEOUT, AD_TIMEOUT);
     }
 
-    /**
-     * Set this parameter to true when exiting the app to ensure that the app home screen is not displayed.
-     */
     @Override
     protected void onStop() {
         Log.i(TAG, "SplashActivity onStop.");
-        // Remove the timeout message from the message queue.
+        // Убираем сообщение о таймауте из очереди
         timeoutHandler.removeMessages(MSG_AD_TIMEOUT);
         hasPaused = true;
         super.onStop();
     }
 
-    /**
-     * Call this method when returning to the splash ad screen from another screen to access the app home screen.
-     */
     @Override
     protected void onRestart() {
         Log.i(TAG, "SplashActivity onRestart.");
@@ -164,7 +155,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     /**
-     * Switch from the splash ad screen to the app home screen when the ad display is complete.
+     * Переход со сплэш-страницы на домашнюю когда закончился показ рекламы
      */
     private void proceedToMainActivity() {
         if (!hasPaused) {
