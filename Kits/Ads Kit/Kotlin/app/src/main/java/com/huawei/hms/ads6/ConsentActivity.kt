@@ -10,7 +10,6 @@ import com.huawei.hms.ads.consent.constant.ConsentStatus
 import com.huawei.hms.ads.consent.constant.DebugNeedConsent
 import com.huawei.hms.ads.consent.inter.Consent
 import com.huawei.hms.ads.consent.inter.ConsentUpdateListener
-import timber.log.Timber
 
 class ConsentActivity : AppCompatActivity(R.layout.activity_consent),
     ConsentDialog.ConsentDialogCallback {

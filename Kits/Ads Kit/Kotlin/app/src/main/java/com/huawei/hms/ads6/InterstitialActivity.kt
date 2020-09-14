@@ -11,7 +11,6 @@ import com.huawei.hms.ads.AdParam
 import com.huawei.hms.ads.InterstitialAd
 import com.huawei.hms.ads.R
 import kotlinx.android.synthetic.main.activity_interstitial.*
-import timber.log.Timber
 
 class InterstitialActivity : AppCompatActivity(R.layout.activity_interstitial) {
 

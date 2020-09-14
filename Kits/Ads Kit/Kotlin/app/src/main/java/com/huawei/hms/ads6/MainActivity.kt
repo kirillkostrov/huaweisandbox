@@ -13,7 +13,6 @@ import com.huawei.hms.ads.consent.constant.DebugNeedConsent
 import com.huawei.hms.ads.consent.inter.Consent
 import com.huawei.hms.ads.consent.inter.ConsentUpdateListener
 import kotlinx.android.synthetic.main.activity_main.*
-import timber.log.Timber
 import java.util.*
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
