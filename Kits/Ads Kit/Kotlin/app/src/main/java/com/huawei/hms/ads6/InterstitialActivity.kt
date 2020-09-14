@@ -2,6 +2,7 @@ package com.huawei.hms.ads6
 
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +14,8 @@ import kotlinx.android.synthetic.main.activity_interstitial.*
 import timber.log.Timber
 
 class InterstitialActivity : AppCompatActivity(R.layout.activity_interstitial) {
+
+    private val TAG = BannerActivity::class.java.simpleName
 
     private lateinit var interstitialAd: InterstitialAd
     private lateinit var loadAd: View.OnClickListener
@@ -46,18 +49,18 @@ class InterstitialActivity : AppCompatActivity(R.layout.activity_interstitial) {
 
     private val adListener: AdListener = object : AdListener() {
         override fun onAdLoaded() {
-            Timber.d("onAdLoaded")
+            Log.d(TAG, "onAdLoaded")
             showInterstitial()
         }
 
         override fun onAdFailed(errorCode: Int) {
-            Timber.d("onAdFailed %s", errorCode)
+            Log.d(TAG, "onAdFailed $errorCode")
             Toast.makeText(applicationContext,
                 Utils.getErrorMessage(errorCode), Toast.LENGTH_LONG).show()
         }
 
         override fun onAdClosed() {
-            Timber.d("onAdClosed")
+            Log.d(TAG, "onAdClosed")
         }
     }
 

@@ -1,6 +1,7 @@
 package com.huawei.hms.ads6
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.huawei.hms.ads.R
@@ -14,6 +15,7 @@ import timber.log.Timber
 class ConsentActivity : AppCompatActivity(R.layout.activity_consent),
     ConsentDialog.ConsentDialogCallback {
 
+    private val TAG = ConsentActivity::class.java.simpleName
 
     private var providers: MutableList<AdProvider> = mutableListOf()
 
@@ -23,18 +25,17 @@ class ConsentActivity : AppCompatActivity(R.layout.activity_consent),
     }
 
     private fun checkConsentStatus() {
-        val consentInfo = Consent.getInstance(this)
-
-        consentInfo.setConsentStatus(ConsentStatus.UNKNOWN)
-        val testDeviceId = consentInfo.testDeviceId
-        consentInfo.addTestDeviceId(testDeviceId)
-        consentInfo.setDebugNeedConsent(DebugNeedConsent.DEBUG_NEED_CONSENT)
-        consentInfo.requestConsentUpdate(consentUpdateListener)
+        Consent.getInstance(this).apply {
+            setConsentStatus(ConsentStatus.UNKNOWN)
+            addTestDeviceId(testDeviceId)
+            setDebugNeedConsent(DebugNeedConsent.DEBUG_NEED_CONSENT)
+            requestConsentUpdate(consentUpdateListener)
+        }
     }
 
     private val consentUpdateListener = object : ConsentUpdateListener {
         override fun onSuccess(consentStatus: ConsentStatus, isNeedConsent: Boolean, adProviders: List<AdProvider>) {
-            Timber.d("ConsentStatus: $consentStatus, isNeedConsent: $isNeedConsent")
+            Log.d(TAG, "ConsentStatus: $consentStatus, isNeedConsent: $isNeedConsent")
 
             if (isNeedConsent) {
                 // If ConsentStatus is set to UNKNOWN, re-collect user consent.
@@ -47,23 +48,24 @@ class ConsentActivity : AppCompatActivity(R.layout.activity_consent),
                 }
             } else {
                 // If a country does not require your app to collect user consent before displaying ads, your app can request a personalized ad directly.
-                Timber.d("User is NOT need Consent")
+                Log.d(TAG,"User is NOT need Consent")
             }
         }
 
         // In this demo,if the request fails ,you can load a non-personalized ad by default.
         override fun onFail(errorDescription: String) {
-            Timber.d("User's consent status failed to update: $errorDescription")
+            Log.d(TAG, "User's consent status failed to update: $errorDescription")
             Toast.makeText(applicationContext, "User's consent status failed to update: $errorDescription", Toast.LENGTH_LONG).show()
         }
     }
 
     private fun showConsentDialog() {
         // Start to process the consent dialog box.
-        val dialog = ConsentDialog(this, providers)
-        dialog.setCallback(this)
-        dialog.setCanceledOnTouchOutside(false)
-        dialog.show()
+        ConsentDialog(this, providers).apply {
+            setCallback(this@ConsentActivity)
+            setCanceledOnTouchOutside(false)
+            show()
+        }
     }
 
     override fun updateConsentStatus(consentStatus: ConsentStatus?) {

@@ -11,6 +11,7 @@ import com.huawei.hms.ads.reward.RewardAd
 import com.huawei.hms.ads.reward.RewardAdLoadListener
 import com.huawei.hms.ads.reward.RewardAdStatusListener
 import kotlinx.android.synthetic.main.activity_reward.*
+import kotlinx.android.synthetic.main.text_view.*
 
 class RewardActivity : AppCompatActivity(R.layout.activity_reward) {
 
@@ -27,6 +28,7 @@ class RewardActivity : AppCompatActivity(R.layout.activity_reward) {
     }
 
     private fun giveReward(giveReward: Boolean) {
+
         if (giveReward) {
             rewardResult.text = getString(R.string.reward_given)
             rewardResult.setTextColor(resources.getColor(R.color.colorRewardGiven))

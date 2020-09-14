@@ -31,12 +31,15 @@ class SplashActivity: AppCompatActivity(R.layout.activity_splash) {
     }
 
     private fun loadSplashAd() {
-        splashAdView.setAdDisplayListener(adDisplayListener)
-        splashAdView.setLogoResId(R.mipmap.ic_launcher)
-        splashAdView.setMediaNameResId(R.string.app_name)
-        splashAdView.setAudioFocusType(AudioFocusType.NOT_GAIN_AUDIO_FOCUS_WHEN_MUTE)
-        splashAdView.load(getString(R.string.ad_splash), ActivityInfo.SCREEN_ORIENTATION_PORTRAIT, AdParam.Builder()
-            .build(), splashAdLoadListener)
+        splashAdView.apply {
+            setAdDisplayListener(adDisplayListener)
+            setLogoResId(R.mipmap.ic_launcher)
+            setMediaNameResId(R.string.app_name)
+            setAudioFocusType(AudioFocusType.NOT_GAIN_AUDIO_FOCUS_WHEN_MUTE)
+            load(getString(R.string.ad_splash), ActivityInfo.SCREEN_ORIENTATION_PORTRAIT, AdParam.Builder()
+                    .build(), splashAdLoadListener)
+        }
+
         timeoutHandler.removeMessages(MSG_AD_TIMEOUT)
         timeoutHandler.sendEmptyMessageDelayed(MSG_AD_TIMEOUT, AD_TIMEOUT.toLong())
     }

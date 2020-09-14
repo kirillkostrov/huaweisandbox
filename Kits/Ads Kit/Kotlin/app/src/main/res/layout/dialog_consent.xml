@@ -21,7 +21,8 @@
             android:alpha="0.9"
             android:gravity="center_vertical"
             android:textColor="@color/dialog_title"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:text="@string/consent_title"/>
     </RelativeLayout>
 
     <LinearLayout

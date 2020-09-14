@@ -2,6 +2,7 @@ package com.huawei.hms.ads6
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,6 +18,7 @@ import java.util.*
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
+    private val TAG = MainActivity::class.java.simpleName
 
     var dataset: List<AdFormat> = listOf(
         AdFormat(
@@ -40,10 +42,12 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        rv.layoutManager = LinearLayoutManager(applicationContext)
-        rv.adapter = RvAdapter(dataset, this)
-        rv.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
 
+        rv.apply {
+            layoutManager = LinearLayoutManager(applicationContext)
+            adapter = RvAdapter(dataset, this@MainActivity)
+            addItemDecoration(DividerItemDecoration(this@MainActivity, DividerItemDecoration.VERTICAL))
+        }
         checkConsentStatus()
     }
 
@@ -54,7 +58,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         consentInfo.setDebugNeedConsent(DebugNeedConsent.DEBUG_NEED_CONSENT)
         consentInfo.requestConsentUpdate(object : ConsentUpdateListener {
             override fun onSuccess(consentStatus: ConsentStatus, isNeedConsent: Boolean, adProviders: List<AdProvider>) {
-                Timber.d("ConsentStatus: $consentStatus, isNeedConsent: $isNeedConsent")
+                Log.d(TAG, "ConsentStatus: $consentStatus, isNeedConsent: $isNeedConsent")
                 if (isNeedConsent) {
                     if (adProviders.isNotEmpty()) {
                         adProviderList.addAll(adProviders)
@@ -64,7 +68,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
             }
 
             override fun onFail(errorDescription: String) {
-                Timber.d("User's consent status failed to update: $errorDescription")
+                Log.d(TAG, "User's consent status failed to update: $errorDescription")
                 if (getPreferences(
                         SP_CONSENT_KEY,
                         DEFAULT_SP_CONSENT_VALUE
@@ -79,7 +83,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     private fun getPreferences(key: String, defValue: Int): Int {
         val preferences = getSharedPreferences(SP_NAME, Context.MODE_PRIVATE)
         val value = preferences.getInt(key, defValue)
-        Timber.d("Key:$key, Preference value is: $value")
+        Log.d(TAG, "Key:$key, Preference value is: $value")
         return value
     }
 
@@ -88,7 +92,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         dialog.setCanceledOnTouchOutside(false)
         dialog.show()
     }
-
 
 }
 

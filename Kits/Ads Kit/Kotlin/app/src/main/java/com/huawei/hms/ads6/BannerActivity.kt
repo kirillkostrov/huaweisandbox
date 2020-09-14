@@ -18,22 +18,22 @@ package com.huawei.hms.ads6
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.huawei.hms.ads.AdListener
 import com.huawei.hms.ads.AdParam
-import com.huawei.hms.ads.AdParam.ErrorCode.*
 import com.huawei.hms.ads.BannerAdSize
 import com.huawei.hms.ads.R
 import com.huawei.hms.ads.banner.BannerView
 import kotlinx.android.synthetic.main.activity_banner.*
-import timber.log.Timber
 
 class BannerActivity : AppCompatActivity(R.layout.activity_banner) {
 
     var bannerView: BannerView? = null
     private lateinit var loadAd: View.OnClickListener
+    private val TAG = BannerActivity::class.java.simpleName
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,29 +86,29 @@ class BannerActivity : AppCompatActivity(R.layout.activity_banner) {
 
     private val adListener: AdListener = object : AdListener() {
         override fun onAdLoaded() {
-            Timber.d("onAdLoaded")
+            Log.d(TAG, "onAdLoaded")
         }
 
         override fun onAdFailed(errorCode: Int) {
-            Timber.d("onAdFailed %s", errorCode)
+            Log.d(TAG,"onAdFailed $errorCode")
             Toast.makeText(applicationContext,
                 Utils.getErrorMessage(errorCode), Toast.LENGTH_LONG).show()
         }
 
         override fun onAdOpened() {
-            Timber.d("onAdOpened")
+            Log.d(TAG,"onAdOpened")
         }
 
         override fun onAdClicked() {
-            Timber.d("onAdClicked")
+            Log.d(TAG,"onAdClicked")
         }
 
         override fun onAdLeave() {
-            Timber.d("onAdLeave")
+            Log.d(TAG,"onAdLeave")
         }
 
         override fun onAdClosed() {
-            Timber.d("onAdClosed")
+            Log.d(TAG,"onAdClosed")
         }
     }
 }

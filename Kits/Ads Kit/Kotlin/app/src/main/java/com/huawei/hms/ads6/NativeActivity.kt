@@ -67,14 +67,16 @@ class NativeActivity : AppCompatActivity(R.layout.activity_native) {
 
     private fun initNativeAdView(nativeAd: NativeAd?, nativeView: NativeView) {
         // инициализируем view в классе NativeView
-        nativeView.titleView = nativeView.findViewById(R.id.ad_title)
-        nativeView.mediaView = nativeView.findViewById<View>(R.id.ad_media) as MediaView
-        nativeView.adSourceView = nativeView.findViewById(R.id.ad_source)
-        nativeView.callToActionView = nativeView.findViewById(R.id.ad_call_to_action)
+        nativeView.apply {
+            titleView = findViewById(R.id.ad_title)
+            mediaView = findViewById<View>(R.id.ad_media) as MediaView
+            adSourceView = findViewById(R.id.ad_source)
+            callToActionView = findViewById(R.id.ad_call_to_action)
 
-        // заполняем данными
-        (nativeView.titleView as TextView).text = nativeAd?.title
-        nativeView.mediaView.setMediaContent(nativeAd?.mediaContent)
+            // заполняем данными
+            (titleView as TextView).text = nativeAd?.title
+            mediaView.setMediaContent(nativeAd?.mediaContent)
+        }
 
         when {
             nativeAd?.adSource != null -> {
