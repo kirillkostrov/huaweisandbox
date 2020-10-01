@@ -12,8 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.huawei.hms.ads.R;
-
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {

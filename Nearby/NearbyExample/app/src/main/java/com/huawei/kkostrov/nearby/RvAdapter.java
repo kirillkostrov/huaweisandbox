@@ -11,9 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.huawei.hms.ads.R;
-import com.huawei.kkostrov.nearby.MainMenuItem;
-
 import java.util.ArrayList;
 import java.util.List;
 
