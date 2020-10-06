@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         dataSet = new ArrayList<MainMenuItem>();
-        dataSet.add(new MainMenuItem("Main Activity, Surprise?", MainActivity.class));
+        dataSet.add(new MainMenuItem("Main Activity,  Surprise?", MainActivity.class));
 
         recyclerView = findViewById(R.id.rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
