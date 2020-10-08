@@ -2,4 +2,8 @@
     <string name="app_name">Nearby Kit Demo</string>
     <string name="owner">HUAWEI Developer</string>
     <string name="copyright_info">Copyright 2020. Huawei Technologies Co., Ltd</string>
+    <string name="message_engine_example_header">Message Engine Example</string>
+    <string name="huawei_logo_content_description">Huawei Logo</string>
+    <string name="confirm">OK</string>
+    <string name="warn">Warn</string>
 </resources>
