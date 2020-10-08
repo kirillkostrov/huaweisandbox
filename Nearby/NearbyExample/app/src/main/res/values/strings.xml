@@ -6,4 +6,13 @@
     <string name="huawei_logo_content_description">Huawei Logo</string>
     <string name="confirm">OK</string>
     <string name="warn">Warn</string>
+    <string name="searching_dialog_header">Searching…</string>
+    <string name="subscribe_item_text">Discover Messages</string>
+    <string name="publish_message_item_text">Publish Message</string>
+    <string name="publish_new_message_dialog_title">Publish New Message</string>
+    <string name="message_title_placeholder">Message Title</string>
+    <string name="message_content_placeholder">Message Content</string>
+    <string name="dialog_ok">Ok</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="unpublish_last_message_checkbox_text">Unpublish Last Message</string>
 </resources>

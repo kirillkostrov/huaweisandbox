@@ -6,30 +6,25 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.huawei.kkostrov.nearby.model.MessageItem;
-
 import java.util.HashMap;
 
 public class SearchMessageDialogFragment extends DialogFragment implements MessageRecyclerViewAdapter.OnItemClickListener {
 
     private MessageRecyclerViewAdapter adapter;
-    private HashMap<String, MessageItem> items;
+    private HashMap<String, MessageItem> items = new HashMap<>();
     private OnCloseListener onCloseListener;
 
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View view = inflater.inflate(R.layout.dialog_search_card, null);
-
-        items = new HashMap<>();
+        View view = inflater.inflate(R.layout.discover_message_dialog, null);
 
         RecyclerView rv = view.findViewById(R.id.recycler_view);
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));

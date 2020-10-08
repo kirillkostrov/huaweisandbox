@@ -24,10 +24,6 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ArrayList<MainMenuItem> dataSet;
-
-    private RecyclerView recyclerView;
-
     private static final String TAG = MainActivity.class.getSimpleName();
 
     @Override
@@ -35,10 +31,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        dataSet = new ArrayList<MainMenuItem>();
+        ArrayList<MainMenuItem> dataSet = new ArrayList<>();
         dataSet.add(new MainMenuItem("Message Engine", MessageEngineActivity.class));
 
-        recyclerView = findViewById(R.id.rv);
+        RecyclerView recyclerView = findViewById(R.id.rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         recyclerView.setAdapter(new RvAdapter(dataSet, this));

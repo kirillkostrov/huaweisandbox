@@ -38,7 +38,7 @@
         android:minHeight="?android:attr/listPreferredItemHeightSmall"
         android:paddingStart="?android:attr/listPreferredItemPaddingStart"
         android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
-        android:text="Publish"
+        android:text="@string/publish_message_item_text"
         android:textAlignment="center"
         android:textAppearance="?android:attr/textAppearanceListItemSmall"
         app:layout_constraintEnd_toEndOf="parent"
@@ -66,7 +66,7 @@
         android:minHeight="?android:attr/listPreferredItemHeightSmall"
         android:paddingStart="?android:attr/listPreferredItemPaddingStart"
         android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
-        android:text="Subscribe"
+        android:text="@string/subscribe_item_text"
         android:textAlignment="center"
         android:textAppearance="?android:attr/textAppearanceListItemSmall"
         app:layout_constraintEnd_toEndOf="parent"
@@ -85,8 +85,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/receive_message_item" />
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
