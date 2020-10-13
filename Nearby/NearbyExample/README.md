@@ -1,2 +1,2 @@
-# AdsKit Java
+# Nearby Kit Java
 

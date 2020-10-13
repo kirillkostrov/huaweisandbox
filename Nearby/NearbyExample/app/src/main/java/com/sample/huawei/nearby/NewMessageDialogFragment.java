@@ -1,4 +1,4 @@
-package com.huawei.kkostrov.nearby;
+package com.sample.huawei.nearby;
 
 import android.app.AlertDialog;
 import android.app.Dialog;

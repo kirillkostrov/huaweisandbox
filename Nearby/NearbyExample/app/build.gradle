@@ -6,7 +6,7 @@ android {
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        applicationId "com.huawei.kkostrov.nearby"
+        applicationId "com.sample.huawei.nearby"
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
@@ -15,10 +15,27 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        release {
+            storeFile file("HuaweiSampleKey.jks")
+            storePassword "HuaweiSampleKey"
+            keyAlias "HuaweiSampleKey"
+            keyPassword "HuaweiSampleKey"
+            v1SigningEnabled true
+            v2SigningEnabled true
+        }
+    }
+
     buildTypes {
         release {
+            debuggable true
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFile 'proguard-project.txt'
+            signingConfig signingConfigs.release
+        }
+        debug {
+            signingConfig signingConfigs.release
+            debuggable true
         }
     }
 
@@ -29,8 +46,16 @@ android {
 }
 
 dependencies {
+    // Нужно добавить SHA256 сертификата которым вы подписываете приложение в вашем Web-интерфейсе
+    // Подробный гайд здесь: https://developer.huawei.com/consumer/en/doc/development/HMS-Guides/iap-configuring-appGallery-connect
+
+    // Не забудьте включить соответствующие Kits в вашем Web-интерфейсе
+    // Подробный гайд здесь: https://developer.huawei.com/consumer/en/service/hms/catalog/AGCHelp.html?page=AGC_appGalleryConnect_associated_service
+    // После включения Kits и добавления SHA256, скачайте agconnect-services.json и положите его в проект
+
+    // Если Android studio не видит ваше Huawei устройство - переключите его в режим соединения MTP (передача файлов)
     implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.2'
     implementation 'androidx.navigation:navigation-fragment:2.3.0'
     implementation 'androidx.navigation:navigation-ui:2.3.0'
     testImplementation 'junit:junit:4.12'

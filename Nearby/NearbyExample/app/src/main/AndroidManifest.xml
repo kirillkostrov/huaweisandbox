@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.huawei.kkostrov.nearby">
+    package="com.sample.huawei.nearby">
 
     <uses-permission android:name="android.permission.INTERNET " />
     <uses-permission android:name="android.permission.BLUETOOTH" />
@@ -30,7 +30,7 @@
         <activity android:name=".MessageEngineActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.huawei.kkostrov.nearby.MainActivity" />
+                android:value=".MainActivity" />
         </activity>
         <meta-data
             android:name="com.huawei.hms.client.appid"
