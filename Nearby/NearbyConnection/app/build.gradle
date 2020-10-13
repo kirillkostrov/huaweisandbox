@@ -5,7 +5,7 @@ android {
     compileSdkVersion 29
     buildToolsVersion "28.0.3"
     defaultConfig {
-        applicationId "com.huawei.hms.nearbyconnectiondemo"
+        applicationId "com.huawei.kkostrov.nearby"
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
