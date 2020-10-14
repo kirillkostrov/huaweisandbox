@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         ArrayList<MainMenuItem> dataSet = new ArrayList<>();
         dataSet.add(new MainMenuItem("Message Engine", MessageEngineActivity.class));
+        dataSet.add(new MainMenuItem("Nearby Connection", ConnectionActivity.class));
 
         RecyclerView recyclerView = findViewById(R.id.rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
