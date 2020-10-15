@@ -29,11 +29,9 @@ public class MessageEngineActivity extends AppCompatActivity {
 
     private Message publishedMessage;
 
-    private MessageItem messageItem;
+    private SearchDialogFragment<MessageItem> searchDialogFragment;
 
-    private SearchMessageDialogFragment searchMessageDialogFragment;
-
-    private MessageHandler mMessageHandler = new MessageHandler() {
+    private final MessageHandler mMessageHandler = new MessageHandler() {
         @Override
         public void onFound(Message message) {
             MessageItem foundMessage = JsonUtils.json2Object(new String(message.getContent(), StandardCharsets.UTF_8),
@@ -41,7 +39,7 @@ public class MessageEngineActivity extends AppCompatActivity {
             if (foundMessage == null) {
                 return;
             }
-            searchMessageDialogFragment.addItem(foundMessage);
+            searchDialogFragment.addItem(foundMessage.getTitle(), foundMessage);
             Toast.makeText(getApplicationContext(), "Message found: " + foundMessage.getTitle(), Toast.LENGTH_LONG).show();
         }
 
@@ -52,7 +50,7 @@ public class MessageEngineActivity extends AppCompatActivity {
             if (foundMessage == null) {
                 return;
             }
-            searchMessageDialogFragment.removeItem(foundMessage);
+            searchDialogFragment.removeItem(foundMessage.getTitle());
             Toast.makeText(getApplicationContext(), "Message lost: " + foundMessage.getTitle(), Toast.LENGTH_LONG).show();
         }
     };
@@ -62,8 +60,44 @@ public class MessageEngineActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message_engine);
 
-        searchMessageDialogFragment = new SearchMessageDialogFragment();
+        searchDialogFragment = new SearchDialogFragment<MessageItem>(itemHandler, onCloseListener, onSelectListener);
+        searchDialogFragment.setDialogTitle(getString(R.string.searching_dialog_header));
     }
+
+    private final SearchDialogFragment.OnSelectListener onSelectListener = new SearchDialogFragment.OnSelectListener() {
+        @Override
+        public void OnItemSelected(Object item) {
+            MessageItem messageItem = (MessageItem)item;
+            Toast.makeText(getApplicationContext(), "Id:" + messageItem.getTitle() + "Content: " + messageItem.getContent(), Toast.LENGTH_LONG).show();
+        }
+    };
+
+    private final SearchDialogFragment.ItemHandler itemHandler = new SearchDialogFragment.ItemHandler() {
+        @Override
+        public String getItemTitle(Object item) {
+            MessageItem messageItem = (MessageItem)item;
+            return messageItem == null ? null : messageItem.getTitle();
+        }
+
+        @Override
+        public String getItemStringContent(Object item) {
+            MessageItem messageItem = (MessageItem)item;
+            return messageItem == null ? null : messageItem.getContent();
+        }
+    };
+
+    private final SearchDialogFragment.OnCloseListener onCloseListener = new SearchDialogFragment.OnCloseListener() {
+        @Override
+        public void onClose() {
+            unsubscribe(task -> {
+                if (!task.isSuccessful()) {
+                    searchDialogFragment.clearItems();
+                    Toast.makeText(getApplicationContext(), "Unsubscribe failed, exception: "
+                            + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                }
+            });
+        }
+    };
 
     public void publishItemClick(View view) {
 
@@ -88,15 +122,9 @@ public class MessageEngineActivity extends AppCompatActivity {
                 Toast.makeText(this, str, Toast.LENGTH_LONG).show();
                 return;
             }
-            searchMessageDialogFragment.setOnCloseListener(() -> {
-                unsubscribe(task -> {
-                    if (!task.isSuccessful()) {
-                        Toast.makeText(this, "Unsubscribe failed, exception: "
-                                + task.getException().getMessage(), Toast.LENGTH_LONG).show();
-                    }
-                });
-            });
-            searchMessageDialogFragment.show(getSupportFragmentManager(), "Search Message");
+
+            searchDialogFragment.show(getSupportFragmentManager(), "Search Message");
+
             Toast.makeText(this, "Subscribed successfully.", Toast.LENGTH_LONG).show();
         }, null);
     }
