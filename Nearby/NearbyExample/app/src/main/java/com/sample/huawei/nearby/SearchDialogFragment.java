@@ -19,7 +19,7 @@ import java.util.Optional;
 
 public class SearchDialogFragment<T> extends DialogFragment implements MessageRecyclerViewAdapter.OnItemClickListener {
 
-    private MessageRecyclerViewAdapter adapter;
+    private final MessageRecyclerViewAdapter adapter = new MessageRecyclerViewAdapter(this);;
     private final HashMap<String, T> items = new HashMap<>();
     private final OnCloseListener onCloseListener;
     private final ItemHandler itemHandler;
@@ -27,9 +27,11 @@ public class SearchDialogFragment<T> extends DialogFragment implements MessageRe
     private String dialogTitle;
 
     public SearchDialogFragment(@NonNull ItemHandler itemHandler, OnCloseListener onCloseListener, OnSelectListener onSelectListener) {
+
         this.itemHandler = itemHandler;
         this.onCloseListener = onCloseListener;
         this.onSelectListener = onSelectListener;
+
     }
 
     @NonNull
@@ -39,10 +41,12 @@ public class SearchDialogFragment<T> extends DialogFragment implements MessageRe
         View view = inflater.inflate(R.layout.discover_message_dialog, null);
         TextView titleTextView = view.findViewById(R.id.dialog_title);
         titleTextView.setText(dialogTitle);
+
         RecyclerView rv = view.findViewById(R.id.recycler_view);
+
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapter = new MessageRecyclerViewAdapter(this);
         rv.setAdapter(adapter);
+
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity())
                 .setView(view)
                 .setCancelable(false)
@@ -64,7 +68,9 @@ public class SearchDialogFragment<T> extends DialogFragment implements MessageRe
                 .filter(x -> itemHandler.getItemTitle(x.getValue()).equals(name)).findFirst();
 
         if (result.isPresent()) {
-            onSelectListener.OnItemSelected(result.get());
+            Map.Entry<String, T> item = result.get();
+            onSelectListener.OnItemSelected(item);
+            onCloseListener.onClose();
             this.dismiss();
         }
     }

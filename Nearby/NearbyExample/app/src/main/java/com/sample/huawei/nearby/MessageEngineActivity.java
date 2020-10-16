@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Toast;
 import com.huawei.hmf.tasks.OnCompleteListener;
 import com.huawei.hms.nearby.Nearby;
+import com.huawei.hms.nearby.discovery.ScanEndpointInfo;
 import com.huawei.hms.nearby.message.GetCallback;
 import com.huawei.hms.nearby.message.GetOption;
 import com.huawei.hms.nearby.message.Message;
@@ -19,6 +20,7 @@ import com.sample.huawei.nearby.model.MessageItem;
 import com.sample.huawei.nearby.utils.JsonUtils;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Map;
 
 public class MessageEngineActivity extends AppCompatActivity {
 
@@ -40,7 +42,7 @@ public class MessageEngineActivity extends AppCompatActivity {
                 return;
             }
             searchDialogFragment.addItem(foundMessage.getTitle(), foundMessage);
-            Toast.makeText(getApplicationContext(), "Message found: " + foundMessage.getTitle(), Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(), "Message found: " + foundMessage.getTitle(), Toast.LENGTH_LONG).show();
         }
 
         @Override
@@ -51,7 +53,7 @@ public class MessageEngineActivity extends AppCompatActivity {
                 return;
             }
             searchDialogFragment.removeItem(foundMessage.getTitle());
-            Toast.makeText(getApplicationContext(), "Message lost: " + foundMessage.getTitle(), Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(), "Message lost: " + foundMessage.getTitle(), Toast.LENGTH_LONG).show();
         }
     };
 
@@ -67,7 +69,8 @@ public class MessageEngineActivity extends AppCompatActivity {
     private final SearchDialogFragment.OnSelectListener onSelectListener = new SearchDialogFragment.OnSelectListener() {
         @Override
         public void OnItemSelected(Object item) {
-            MessageItem messageItem = (MessageItem)item;
+            Map.Entry<String, MessageItem> mapEntry = (Map.Entry<String, MessageItem>)item;
+            MessageItem messageItem = mapEntry.getValue();
             Toast.makeText(getApplicationContext(), "Id:" + messageItem.getTitle() + "Content: " + messageItem.getContent(), Toast.LENGTH_LONG).show();
         }
     };
@@ -119,13 +122,13 @@ public class MessageEngineActivity extends AppCompatActivity {
             if (!result.isSuccessful()) {
                 String str = "Subscribe failed, exception: " + result.getException().getMessage();
                 Log.e(TAG, str);
-                Toast.makeText(this, str, Toast.LENGTH_LONG).show();
+                //Toast.makeText(this, str, Toast.LENGTH_LONG).show();
                 return;
             }
 
             searchDialogFragment.show(getSupportFragmentManager(), "Search Message");
 
-            Toast.makeText(this, "Subscribed successfully.", Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, "Subscribed successfully.", Toast.LENGTH_LONG).show();
         }, null);
     }
 
@@ -141,7 +144,7 @@ public class MessageEngineActivity extends AppCompatActivity {
             }
             String str = "Failed to publish message, exception: " + result.getException().getMessage();
             Log.e(TAG, str);
-            Toast.makeText(this, str, Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, str, Toast.LENGTH_LONG).show();
         });
     }
 

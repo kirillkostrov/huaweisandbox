@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.huawei.hms.nearby.Nearby;
@@ -26,16 +27,23 @@ public class ConnectionActivity extends AppCompatActivity {
     private Policy policy = Policy.POLICY_STAR;
     private final String SERVICE_ID = "com.sample.huawei.nearby";
 
+    private Boolean isBroadcasting = false;
     private String endpointName;
-    private SearchDialogFragment searchDialogFragment;
+    private SearchDialogFragment<ScanEndpointInfo> searchDialogFragment;
+    private TextView broadCastingItemTextView;
+    private TextView status;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_connection);
 
-        searchDialogFragment = new SearchDialogFragment(itemHandler, onCloseListener, onSelectListener);
+        status = findViewById(R.id.status);
+        broadCastingItemTextView = findViewById(R.id.start_broadcast_item);
+        searchDialogFragment = new SearchDialogFragment<>(itemHandler, onCloseListener, onSelectListener);
         searchDialogFragment.setDialogTitle("Searching...");
+
+        setStatus("");
 
         endpointName = Settings.Secure.getString(getContentResolver(), "bluetooth_name");
         if (endpointName == null || endpointName.isEmpty()) {
@@ -48,7 +56,7 @@ public class ConnectionActivity extends AppCompatActivity {
         super.onDestroy();
 
         stopAdvertising();
-        stopAdvertising();
+        stopDiscovery();
     }
 
     private final ItemHandler itemHandler = new ItemHandler() {
@@ -84,7 +92,11 @@ public class ConnectionActivity extends AppCompatActivity {
 
 
     public void startBroadcastingItemClick(View view) {
-        startAdvertising();
+        if (!isBroadcasting) {
+            startAdvertising();
+        } else {
+            stopAdvertising();
+        }
     }
 
     public void startScanItemClick(View view) {
@@ -108,7 +120,7 @@ public class ConnectionActivity extends AppCompatActivity {
         }
     };
 
-    private ScanEndpointCallback scanEndpointCallback = new ScanEndpointCallback() {
+    private final ScanEndpointCallback scanEndpointCallback = new ScanEndpointCallback() {
                 @Override
                 public void onFound(String endpointId, ScanEndpointInfo discoveryEndpointInfo) {
                     Toast.makeText(getApplicationContext(), "Found: " + discoveryEndpointInfo.getName(), Toast.LENGTH_LONG).show();
@@ -126,11 +138,15 @@ public class ConnectionActivity extends AppCompatActivity {
             };
 
     private void startAdvertising() {
+        stopDiscovery();
         BroadcastOption broadcastOption = new BroadcastOption.Builder().setPolicy (policy).build();
         Nearby.getDiscoveryEngine(getApplicationContext())
                 .startBroadcasting(endpointName, SERVICE_ID, connectionCallback, broadcastOption)
                 .addOnSuccessListener(aVoid -> {
-                    Toast.makeText(getApplicationContext(), "startAdvertising OnSuccess", Toast.LENGTH_LONG).show();
+                    setStatus("Advertising");
+                    isBroadcasting = true;
+                    broadCastingItemTextView.setText(getString(R.string.start_broadcasting_item_text_stop));
+                    //Toast.makeText(getApplicationContext(), "startAdvertising OnSuccess", Toast.LENGTH_LONG).show();
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(getApplicationContext(), "startAdvertising OnFailure", Toast.LENGTH_LONG).show();
@@ -138,22 +154,32 @@ public class ConnectionActivity extends AppCompatActivity {
     }
 
     private void startDiscovery() {
+        stopAdvertising();
         searchDialogFragment.show(getSupportFragmentManager(), "Search endpoints");
 
         ScanOption scanOption = new ScanOption.Builder().setPolicy(policy).build();
         Nearby.getDiscoveryEngine(getApplicationContext())
                 .startScan(SERVICE_ID, scanEndpointCallback, scanOption)
-                .addOnSuccessListener(aVoid -> Toast.makeText(getApplicationContext(), "Start scan success", Toast.LENGTH_SHORT).show())
+                .addOnSuccessListener(aVoid -> {
+                    setStatus("Discovering");
+                    //Toast.makeText(getApplicationContext(), "Start scan success", Toast.LENGTH_SHORT).show();
+                })
                 .addOnFailureListener(e -> Toast.makeText(getApplicationContext(), "Start scan failure", Toast.LENGTH_SHORT).show());
     }
 
     private void stopAdvertising() {
+        setStatus("");
+        isBroadcasting = false;
+        broadCastingItemTextView.setText(getString(R.string.start_broadcasting_item_text_start));
         Nearby.getDiscoveryEngine(getApplicationContext()).stopBroadcasting();
     }
 
     private void stopDiscovery() {
+        setStatus("");
         Nearby.getDiscoveryEngine(getApplicationContext()).stopScan();
     }
 
-
+    private void setStatus (String status) {
+        this.status.setText(String.format("Status: %s", !status.isEmpty() ? status : "Idle"));
+    }
 }
