@@ -42,7 +42,7 @@ public class MessageEngineActivity extends AppCompatActivity {
                 return;
             }
             searchDialogFragment.addItem(foundMessage.getTitle(), foundMessage);
-            //Toast.makeText(getApplicationContext(), "Message found: " + foundMessage.getTitle(), Toast.LENGTH_LONG).show();
+            //Toast.makeText(ConnectionActivity.this, "Message found: " + foundMessage.getTitle(), Toast.LENGTH_LONG).show();
         }
 
         @Override
@@ -53,7 +53,7 @@ public class MessageEngineActivity extends AppCompatActivity {
                 return;
             }
             searchDialogFragment.removeItem(foundMessage.getTitle());
-            //Toast.makeText(getApplicationContext(), "Message lost: " + foundMessage.getTitle(), Toast.LENGTH_LONG).show();
+            //Toast.makeText(ConnectionActivity.this, "Message lost: " + foundMessage.getTitle(), Toast.LENGTH_LONG).show();
         }
     };
 
@@ -71,7 +71,7 @@ public class MessageEngineActivity extends AppCompatActivity {
         public void OnItemSelected(Object item) {
             Map.Entry<String, MessageItem> mapEntry = (Map.Entry<String, MessageItem>)item;
             MessageItem messageItem = mapEntry.getValue();
-            Toast.makeText(getApplicationContext(), "Id:" + messageItem.getTitle() + "Content: " + messageItem.getContent(), Toast.LENGTH_LONG).show();
+            Toast.makeText(MessageEngineActivity.this, "Id:" + messageItem.getTitle() + "Content: " + messageItem.getContent(), Toast.LENGTH_LONG).show();
         }
     };
 
@@ -95,7 +95,7 @@ public class MessageEngineActivity extends AppCompatActivity {
             unsubscribe(task -> {
                 if (!task.isSuccessful()) {
                     searchDialogFragment.clearItems();
-                    Toast.makeText(getApplicationContext(), "Unsubscribe failed, exception: "
+                    Toast.makeText(MessageEngineActivity.this, "Unsubscribe failed, exception: "
                             + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                 }
             });

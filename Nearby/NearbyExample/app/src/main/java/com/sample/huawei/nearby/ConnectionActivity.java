@@ -96,7 +96,7 @@ public class ConnectionActivity extends AppCompatActivity {
             Map.Entry<String, ScanEndpointInfo> mapEntry = (Map.Entry<String, ScanEndpointInfo>)item;
             ScanEndpointInfo info = mapEntry.getValue();
             if (info != null) {
-                //Toast.makeText(getApplicationContext(), "Selected endpoint:" + info.getName(), Toast.LENGTH_LONG).show();
+                //Toast.makeText(ConnectionActivity.this, "Selected endpoint:" + info.getName(), Toast.LENGTH_LONG).show();
                 doStartConnection(mapEntry.getKey(), info.getName());
             }
         }
@@ -120,8 +120,8 @@ public class ConnectionActivity extends AppCompatActivity {
 //        public void onEstablish(String endpointId, ConnectInfo connectInfo) {
 //            /* Accept the connection request without notifying user.
 //            * normally we would like to ask user if he want to accept */
-//            Nearby.getDiscoveryEngine(getApplicationContext()).acceptConnect(connectInfo.getEndpointName(), () -> {return true;});
-//            Toast.makeText(getApplicationContext(), "onEstablish", Toast.LENGTH_LONG).show();
+//            Nearby.getDiscoveryEngine(ConnectionActivity.this).acceptConnect(connectInfo.getEndpointName(), () -> {return true;});
+//            Toast.makeText(ConnectionActivity.this, "onEstablish", Toast.LENGTH_LONG).show();
 //        }
 
         @Override
@@ -135,7 +135,7 @@ public class ConnectionActivity extends AppCompatActivity {
                             (dialog,  which) ->
                             {
                                Toast.makeText(ConnectionActivity.this, "Accepting connection", Toast.LENGTH_LONG).show();
-                               //Nearby.getDiscoveryEngine(getApplicationContext()).acceptConnect(endpointId, new ReceiveBytesDataListener());
+                               //Nearby.getDiscoveryEngine(ConnectionActivity.this).acceptConnect(endpointId, new ReceiveBytesDataListener());
                             })
 
                     .setNegativeButton(
@@ -162,13 +162,13 @@ public class ConnectionActivity extends AppCompatActivity {
                 default:
                     /* other unknown status code */
             }
-            Toast.makeText(getApplicationContext(), "onResult", Toast.LENGTH_LONG).show();
+            Toast.makeText(ConnectionActivity.this, "onResult", Toast.LENGTH_LONG).show();
         }
 
         @Override
         public void onDisconnected(String s) {
             /* The connection was disconnected. */
-            Toast.makeText(getApplicationContext(), "onDisconnected", Toast.LENGTH_LONG).show();
+            Toast.makeText(ConnectionActivity.this, "onDisconnected", Toast.LENGTH_LONG).show();
         }
     };
 
@@ -190,7 +190,7 @@ public class ConnectionActivity extends AppCompatActivity {
     private final ScanEndpointCallback scanEndpointCallback = new ScanEndpointCallback() {
                 @Override
                 public void onFound(String endpointId, ScanEndpointInfo discoveryEndpointInfo) {
-                    Toast.makeText(getApplicationContext(), "Found: " + discoveryEndpointInfo.getName(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(ConnectionActivity.this, "Found: " + discoveryEndpointInfo.getName(), Toast.LENGTH_LONG).show();
                     searchDialogFragment.addItem(endpointId, discoveryEndpointInfo);
                     //mEndpointId = endpointId;
                     //mDiscoveryEngine.requestConnect(myNameStr, mEndpointId, mConnCb);
@@ -200,23 +200,23 @@ public class ConnectionActivity extends AppCompatActivity {
                 @Override
                 public void onLost(String endpointId) {
                     searchDialogFragment.removeItem(endpointId);
-                    Toast.makeText(getApplicationContext(), "onLost", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ConnectionActivity.this, "onLost", Toast.LENGTH_LONG).show();
                 }
             };
 
     private void startAdvertising() {
         stopDiscovery();
         BroadcastOption broadcastOption = new BroadcastOption.Builder().setPolicy (policy).build();
-        Nearby.getDiscoveryEngine(getApplicationContext())
+        Nearby.getDiscoveryEngine(ConnectionActivity.this)
                 .startBroadcasting(endpointName, SERVICE_ID, connectionCallback, broadcastOption)
                 .addOnSuccessListener(aVoid -> {
                     setStatus("Advertising");
                     isBroadcasting = true;
                     broadCastingItemTextView.setText(getString(R.string.start_broadcasting_item_text_stop));
-                    //Toast.makeText(getApplicationContext(), "startAdvertising OnSuccess", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(ConnectionActivity.this, "startAdvertising OnSuccess", Toast.LENGTH_LONG).show();
                 })
                 .addOnFailureListener(e -> {
-                    Toast.makeText(getApplicationContext(), "startAdvertising OnFailure", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ConnectionActivity.this, "startAdvertising OnFailure", Toast.LENGTH_LONG).show();
                 });
     }
 
@@ -225,29 +225,29 @@ public class ConnectionActivity extends AppCompatActivity {
         searchDialogFragment.show(getSupportFragmentManager(), "Search endpoints");
 
         ScanOption scanOption = new ScanOption.Builder().setPolicy(policy).build();
-        Nearby.getDiscoveryEngine(getApplicationContext())
+        Nearby.getDiscoveryEngine(ConnectionActivity.this)
                 .startScan(SERVICE_ID, scanEndpointCallback, scanOption)
                 .addOnSuccessListener(aVoid -> {
                     setStatus("Discovering");
-                    //Toast.makeText(getApplicationContext(), "Start scan success", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(ConnectionActivity.this, "Start scan success", Toast.LENGTH_SHORT).show();
                 })
-                .addOnFailureListener(e -> Toast.makeText(getApplicationContext(), "Start scan failure", Toast.LENGTH_SHORT).show());
+                .addOnFailureListener(e -> Toast.makeText(ConnectionActivity.this, "Start scan failure", Toast.LENGTH_SHORT).show());
     }
 
     private void stopAdvertising() {
         setStatus("");
         isBroadcasting = false;
         broadCastingItemTextView.setText(getString(R.string.start_broadcasting_item_text_start));
-        Nearby.getDiscoveryEngine(getApplicationContext()).stopBroadcasting();
+        Nearby.getDiscoveryEngine(ConnectionActivity.this).stopBroadcasting();
     }
 
     private void stopDiscovery() {
         setStatus("");
-        Nearby.getDiscoveryEngine(getApplicationContext()).stopScan();
+        Nearby.getDiscoveryEngine(ConnectionActivity.this).stopScan();
     }
 
     public void doStartConnection(String endpointId, String remoteEndpointName) {
-        Nearby.getDiscoveryEngine(getApplicationContext())
+        Nearby.getDiscoveryEngine(ConnectionActivity.this)
                 .requestConnect(endpointName, endpointId, connectionCallback)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -259,7 +259,7 @@ public class ConnectionActivity extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(Exception e) {
-                        Toast.makeText(getApplicationContext(), "requestConnect onFailure ", Toast.LENGTH_LONG).show();
+                        Toast.makeText(ConnectionActivity.this, "requestConnect onFailure ", Toast.LENGTH_LONG).show();
                         /* Fail to request connect. */
                     }
                 });
