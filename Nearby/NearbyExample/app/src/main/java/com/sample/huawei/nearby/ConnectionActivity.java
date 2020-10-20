@@ -1,14 +1,20 @@
 package com.sample.huawei.nearby;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.RemoteException;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.huawei.hmf.tasks.OnFailureListener;
+import com.huawei.hmf.tasks.OnSuccessListener;
 import com.huawei.hms.nearby.Nearby;
+import com.huawei.hms.nearby.StatusCode;
 import com.huawei.hms.nearby.discovery.BroadcastOption;
 import com.huawei.hms.nearby.discovery.ConnectCallback;
 import com.huawei.hms.nearby.discovery.ConnectInfo;
@@ -17,6 +23,9 @@ import com.huawei.hms.nearby.discovery.Policy;
 import com.huawei.hms.nearby.discovery.ScanEndpointCallback;
 import com.huawei.hms.nearby.discovery.ScanEndpointInfo;
 import com.huawei.hms.nearby.discovery.ScanOption;
+import com.huawei.hms.nearby.transfer.Data;
+import com.huawei.hms.nearby.transfer.DataCallback;
+import com.huawei.hms.nearby.transfer.TransferStateUpdate;
 
 import java.util.Map;
 
@@ -24,10 +33,12 @@ import static com.sample.huawei.nearby.SearchDialogFragment.*;
 
 public class ConnectionActivity extends AppCompatActivity {
 
+    private final String TAG = "com.sample.huawei.nearby";
     private Policy policy = Policy.POLICY_STAR;
     private final String SERVICE_ID = "com.sample.huawei.nearby";
 
     private Boolean isBroadcasting = false;
+    private Boolean isConnected = false;
     private String endpointName;
     private SearchDialogFragment<ScanEndpointInfo> searchDialogFragment;
     private TextView broadCastingItemTextView;
@@ -85,7 +96,8 @@ public class ConnectionActivity extends AppCompatActivity {
             Map.Entry<String, ScanEndpointInfo> mapEntry = (Map.Entry<String, ScanEndpointInfo>)item;
             ScanEndpointInfo info = mapEntry.getValue();
             if (info != null) {
-                Toast.makeText(getApplicationContext(), "Selected endpoint:" + info.getName(), Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "Selected endpoint:" + info.getName(), Toast.LENGTH_LONG).show();
+                doStartConnection(mapEntry.getKey(), info.getName());
             }
         }
     };
@@ -104,21 +116,76 @@ public class ConnectionActivity extends AppCompatActivity {
     }
 
     private ConnectCallback connectionCallback = new ConnectCallback() {
+//        @Override
+//        public void onEstablish(String endpointId, ConnectInfo connectInfo) {
+//            /* Accept the connection request without notifying user.
+//            * normally we would like to ask user if he want to accept */
+//            Nearby.getDiscoveryEngine(getApplicationContext()).acceptConnect(connectInfo.getEndpointName(), () -> {return true;});
+//            Toast.makeText(getApplicationContext(), "onEstablish", Toast.LENGTH_LONG).show();
+//        }
+
         @Override
-        public void onEstablish(String s, ConnectInfo connectInfo) {
-            Toast.makeText(getApplicationContext(), "onEstablish", Toast.LENGTH_LONG).show();
+        public void onEstablish(String endpointId, ConnectInfo connectInfo) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(ConnectionActivity.this);
+            builder
+                    .setTitle(connectInfo.getEndpointName() + " request connection")
+                    .setMessage("Please confirm the match code is: " + connectInfo.getAuthCode())
+                    .setPositiveButton(
+                            "Accept",
+                            (dialog,  which) ->
+                            {
+                               Toast.makeText(ConnectionActivity.this, "Accepting connection", Toast.LENGTH_LONG).show();
+                               //Nearby.getDiscoveryEngine(getApplicationContext()).acceptConnect(endpointId, new ReceiveBytesDataListener());
+                            })
+
+                    .setNegativeButton(
+                            "Reject",
+                            (DialogInterface dialog, int which) ->
+                                    /* Reject the connection. */
+                                    Nearby.getDiscoveryEngine(ConnectionActivity.this).rejectConnect(endpointId))
+                    .setIcon(android.R.drawable.ic_dialog_alert);
+            AlertDialog alert = builder.create();
+            alert.show();
         }
 
         @Override
-        public void onResult(String s, ConnectResult connectResult) {
+        public void onResult(String endpointId, ConnectResult connectResult) {
+            switch (connectResult.getStatus().getStatusCode()) {
+                case StatusCode.STATUS_SUCCESS:
+                    /* The connection was established successfully, we can exchange data. */
+                    setStatus(String.format("Connected to: %s", endpointId));
+                    break;
+                case StatusCode.STATUS_CONNECT_REJECTED:
+                    setStatus("");
+                    /* The Connection was rejected. */
+                    break;
+                default:
+                    /* other unknown status code */
+            }
             Toast.makeText(getApplicationContext(), "onResult", Toast.LENGTH_LONG).show();
         }
 
         @Override
         public void onDisconnected(String s) {
+            /* The connection was disconnected. */
             Toast.makeText(getApplicationContext(), "onDisconnected", Toast.LENGTH_LONG).show();
         }
     };
+
+    static class ReceiveBytesDataListener extends DataCallback {
+        @Override
+        public void onReceived(String endpointId, Data data) {
+            /* BYTES data is sent as a single block, so we can get complete data. */
+            if (data.getType() == Data.Type.BYTES) {
+                byte[] receivedBytes = data.asBytes();
+            }
+        }
+
+        @Override
+        public void onTransferUpdate(String endpointId, TransferStateUpdate transferStateUpdate) {
+            /* onTransferUpdate */
+        }
+    }
 
     private final ScanEndpointCallback scanEndpointCallback = new ScanEndpointCallback() {
                 @Override
@@ -177,6 +244,25 @@ public class ConnectionActivity extends AppCompatActivity {
     private void stopDiscovery() {
         setStatus("");
         Nearby.getDiscoveryEngine(getApplicationContext()).stopScan();
+    }
+
+    public void doStartConnection(String endpointId, String remoteEndpointName) {
+        Nearby.getDiscoveryEngine(getApplicationContext())
+                .requestConnect(endpointName, endpointId, connectionCallback)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        setStatus(String.format("Connecting to: %s(%s)", endpointId, remoteEndpointName));
+                        /* Request success, connecting. */
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(Exception e) {
+                        Toast.makeText(getApplicationContext(), "requestConnect onFailure ", Toast.LENGTH_LONG).show();
+                        /* Fail to request connect. */
+                    }
+                });
     }
 
     private void setStatus (String status) {
