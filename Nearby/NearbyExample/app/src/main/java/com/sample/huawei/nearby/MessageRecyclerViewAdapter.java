@@ -1,6 +1,5 @@
 package com.sample.huawei.nearby;
 
-import android.os.RemoteException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
