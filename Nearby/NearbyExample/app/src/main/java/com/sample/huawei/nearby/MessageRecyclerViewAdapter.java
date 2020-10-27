@@ -74,4 +74,10 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
     public interface OnItemClickListener {
         void onItemClick(String name);
     }
+
+    public void clearItems() {
+        itemList.clear();
+        notifyDataSetChanged();
+    }
+
 }

@@ -3,7 +3,6 @@ package com.sample.huawei.nearby;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.os.Bundle;
-import android.os.RemoteException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -28,25 +27,22 @@ public class SearchDialogFragment<T> extends DialogFragment implements MessageRe
     private String dialogTitle;
 
     public SearchDialogFragment(@NonNull ItemHandler itemHandler, OnCloseListener onCloseListener, OnSelectListener onSelectListener) {
-
         this.itemHandler = itemHandler;
         this.onCloseListener = onCloseListener;
         this.onSelectListener = onSelectListener;
-
     }
 
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View view = inflater.inflate(R.layout.discover_message_dialog, null);
+        View view = inflater.inflate(R.layout.discover_dialog, null);
         TextView titleTextView = view.findViewById(R.id.dialog_title);
         titleTextView.setText(dialogTitle);
 
-        RecyclerView rv = view.findViewById(R.id.recycler_view);
-
-        rv.setLayoutManager(new LinearLayoutManager(getActivity()));
-        rv.setAdapter(adapter);
+        RecyclerView itemsView = view.findViewById(R.id.recycler_view);
+        itemsView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        itemsView.setAdapter(adapter);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity())
                 .setView(view)
@@ -96,6 +92,7 @@ public class SearchDialogFragment<T> extends DialogFragment implements MessageRe
 
     public void clearItems() {
         items.clear();
+        adapter.clearItems();
     }
 
     public void setDialogTitle(String title) {

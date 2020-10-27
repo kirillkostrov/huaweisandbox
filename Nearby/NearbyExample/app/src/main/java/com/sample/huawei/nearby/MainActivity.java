@@ -59,7 +59,9 @@ public class MainActivity extends AppCompatActivity {
 
         String[] deniedPermission = PermissionUtil.getDeniedPermissions(this, new String[] {
                 Manifest.permission.ACCESS_COARSE_LOCATION,
-                Manifest.permission.ACCESS_FINE_LOCATION
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
         });
         if (deniedPermission.length > 0) {
             PermissionUtil.requestPermissions(this, deniedPermission, 10);
