@@ -1,0 +1,30 @@
+{
+  "package": "com.huawei.kkostrov.quikcapp",
+  "name": "MyQuickApp",
+  "versionName": "1.0.0",
+  "versionCode": 1,
+  "icon": "/Common/logo.png",
+  "minPlatformVersion": 1060,
+  "features": [],
+  "permissions": [
+    {
+      "origin": "*"
+    }
+  ],
+  "config": {},
+  "router": {
+    "entry": "Hello",
+    "pages": {
+      "Hello": {
+        "component": "hello"
+      }
+    }
+  },
+  "display": {
+    "pages": {
+      "Hello": {
+        "titleBarText": "TitleBar"
+      }
+    }
+  }
+}
