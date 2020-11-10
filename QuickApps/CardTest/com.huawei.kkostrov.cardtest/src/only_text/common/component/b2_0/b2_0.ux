@@ -4,7 +4,8 @@
             <text class="b20_text_18sp" style="lines:{{linesOne}}">{{textArray[0]}}</text>
         </div>
         <div class="b20_marginT" style="align-items: center;" for="astronauts">
-            <text class="b20_text_14sp" style="lines:{{linesTwo}}">{{$item}}</text>
+            <text class="b20_text_14sp" style="lines:{{linesTwo}}">{{$item.name}}</text>
+            <text class="badge">{{$item.craft}}</text>
         </div>
     </div>
 
@@ -32,6 +33,21 @@
         color: $textColorSecondary;
         text-overflow: ellipsis;
     }
+
+.badge {
+    color: #fff;
+    font-size: dpConvert(12);
+    background-color: #cc6666;
+    display: flex;
+    padding: dpConvert(7);
+    margin-bottom: dpConvert(2);
+    margin-left: dpConvert(5);
+    line-height: dpConvert(1);
+    text-align: center;
+    border-radius: dpConvert(3);
+}
+
+
 </style>
 
 <script>

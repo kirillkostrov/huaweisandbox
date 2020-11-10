@@ -7,7 +7,7 @@
         <card_title title="{{title}}"></card_title>
         <div>
             <astronaut></astronaut>
-            <b2_0 text-array="{{textArray}}" lines-two="{{linesTwo}}" astronauts="{{astronautNames}}"></b2_0>
+            <b2_0 text-array="{{textArray}}" lines-two="{{linesTwo}}" astronauts="{{astronauts}}"></b2_0>
         </div>
         <card_bottom_3 button-array="{{buttonArray}}"></card_bottom_3>
     </div>
@@ -35,6 +35,7 @@
             buttonArray: ['OK'],
             linesTwo: 2,
             astronautNames: [],
+            astronauts: [],
         },
         onInit: function () {
             var context = this;
@@ -50,11 +51,11 @@
                         let count = 0;
                         console.log(result);
                         if (result.message === 'success') {
-                            astronauts = result.people;
+                            context.astronauts = result.people;
                             text = "";
-                            count = astronauts.length;
+                            count = context.astronauts.length;
                             for (var i = 0; i < count; i++) {
-                                let astrotext = astronauts[i].name + ' ('+ astronauts[i].craft + ')';
+                                let astrotext = context.astronauts[i].name + ' ['+ context.astronauts[i].craft + ']';
                                 text = text + ' ' + astrotext;
                                 context.astronautNames.push(astrotext);
                             }
