@@ -1,0 +1,75 @@
+<import name="astronaut" src="./common/astronaut.ux"></import>
+<import name="card_title" src="./common/component/card_title/card_title.ux"></import>
+<import name="b2_0" src="./common/component/b2_0/b2_0.ux"></import>
+<import name="card_bottom_3" src="./common/component/card_bottom_3/card_bottom_3.ux"></import>
+<template>
+    <div class="onlytext_box" widgetid="b25a17ad-20c9-44d3-b48a-9e5121cbca5e">
+        <card_title title="{{title}}"></card_title>
+        <div>
+            <astronaut></astronaut>
+            <b2_0 text-array="{{textArray}}" lines-two="{{linesTwo}}" astronauts="{{astronautNames}}"></b2_0>
+        </div>
+        <card_bottom_3 button-array="{{buttonArray}}"></card_bottom_3>
+    </div>
+
+</template>
+<style lang="sass">
+    @import './common/css/basic.scss';
+
+    .onlytext_box {
+        flex-direction: column;
+        padding: dpConvert(0) dpConvert($elementsMarginHorizontalL) dpConvert(0) dpConvert($elementsMarginHorizontalL);
+    }
+</style>
+
+<script>
+    //import configuration from '@system.configuration'
+    import fetch from '@system.fetch'
+
+    console.info('Page script');
+
+    module.exports = {
+        data: {
+            title: "Люди в космосе",
+            textArray: ['Космонавтов: 0', '-'],
+            buttonArray: ['OK'],
+            linesTwo: 2,
+            astronautNames: [],
+        },
+        onInit: function () {
+            var context = this;
+            context.title = "Люди в космосе";
+            context.astronautNames = [];
+            fetch.fetch(
+                {
+                    url:"http://api.open-notify.org/astros.json",
+                    success: function(data)  {          
+                        let result = JSON.parse(data.data);
+                        let astronauts = [];
+                        let text = "None";
+                        let count = 0;
+                        console.log(result);
+                        if (result.message === 'success') {
+                            astronauts = result.people;
+                            text = "";
+                            count = astronauts.length;
+                            for (var i = 0; i < count; i++) {
+                                let astrotext = astronauts[i].name + ' ('+ astronauts[i].craft + ')';
+                                text = text + ' ' + astrotext;
+                                context.astronautNames.push(astrotext);
+                            }
+                        }
+
+                        console.log(text);
+                        context.textArray = ["Космонавтов в космосе: " + count, text];
+                        context.title = "Люди в космосе";
+                        context.buttonArray = ['OK'];
+                    },
+                    fail: function(data, code) {
+                        console.log("handling fail, code=" + code);
+                    }
+                })            
+        },
+    }
+
+</script>

@@ -1,0 +1,122 @@
+$textColorPrimary:rgba(#000000, 0.9);
+$textColorSecondary:rgba(#000000, 0.6);
+$textColorTertiary: rgba(#000000, 0.38);
+
+//=======================================
+$color1: #00AAEE;
+$color2: #41BA41;
+$color3: #8CD600;
+$color4: #3F56EA;
+$color5: #8A2BE2;
+$color6: #E40078;
+$color7: #FA2A2D;
+$color8: #FF7500;
+$color9: #FFBF00;
+$color10: #989898;
+
+//=======================================
+$colorAccent:#007DFF;
+
+//=======================================
+$baseWidth: 750;
+    $resolution: 1080;
+    $screenDensity: 3;
+
+@function dpConvert($dpValue, $scale: 1) {
+    @return ($dpValue * $scale * ($baseWidth/($resolution/$screenDensity))) * 1px;
+}
+
+@mixin textSizeCardTags{
+    font-size: dpConvert(10);
+} 
+
+@mixin textSizeCardTitle{
+    font-size: dpConvert(12);
+} 
+
+@mixin textSizeCardBrand{
+    font-size: dpConvert(12);
+}
+
+@mixin textSizeCardCaption1{
+    font-size: dpConvert(12);
+}
+
+@mixin textSizeCardCaption2{
+    font-size: dpConvert(14);
+    font-weight: 500;
+}
+
+@mixin textSizeCardButton{
+    font-size: dpConvert(14);
+    font-weight: 500;
+}
+
+@mixin textSizeCardBody3{
+    font-size: dpConvert(14);
+}
+
+@mixin textSizeCardBody2{
+    font-size: dpConvert(16);
+    font-weight: 500;
+}
+
+@mixin textSizeCardBody1{
+    font-size: dpConvert(18);
+    font-weight: 500;
+}
+
+@mixin textSizeCardNum3{
+    font-size: dpConvert(18);
+    font-weight: 500;
+}
+
+@mixin textSizeCardNum2{
+    font-size: dpConvert(24);
+    font-weight: 500;
+}
+
+@mixin textSizeCardNum1{
+    font-size: dpConvert(30);
+    font-weight: 500;
+}
+
+//=======================================
+$radius1: 2;
+$radius2: 4;
+$radius3: 4;
+
+//=======================================
+@mixin iconCard{
+    width: dpConvert(16);
+    height: dpConvert(16);
+    border-radius: dpConvert($radius2);
+}
+
+@mixin imageWithText1{
+    width: dpConvert(64);
+    height: dpConvert(64);
+    border-radius: dpConvert($radius3);
+}
+
+@mixin imageWithText2{
+    width: dpConvert(64);
+    height: dpConvert((64 / 3) *4);
+    border-radius: dpConvert($radius3);
+}
+
+@mixin imageWithText3{
+    width: dpConvert(96);
+    height: dpConvert((96/16)*9);
+    border-radius: dpConvert($radius3);
+}
+
+//=======================================
+$elementsMarginVerticalS: 2;
+$elementsMarginVerticalM: 4;
+$elementsMarginVerticalL: 8;
+$elementsMarginHorizontalS: 4;
+$elementsMarginHorizontalM: 8;
+$elementsMarginHorizontalL: 16;
+
+

@@ -1,7 +1,11 @@
 <template>
-  <!-- Only one root node is allowed in template. -->
   <div class="container">
-    <text class="title">Hello World</text>
+    <image src="{{imgPath}}" class="img"></image>
+      <div>
+        <input type="button" class="btn" value="take photo" onclick="takePhoto" />
+        <input type="button" class="btn" value="edit photo" onclick="editPhoto" />
+        <input type="button" class="btn" value="share photo" onclick="sharePhoto"/>
+      </div>
   </div>
 </template>
 
@@ -15,13 +19,71 @@
   .title {
     font-size: 100px;
   }
+
+  .img {
+    width: 90%;
+    height: 700px;
+    border: 1px solid #000000;
+  }
+
+  .btn {
+    height: 80px;
+    width: 200px;
+    margin: 20px;
+    background-color: #1e90ff;
+    color: #ffffff;
+  }
 </style>
 
 <script>
+  import media from '@system.media';
+  import image from '@system.image';
+  import share from '@system.share';
+
   module.exports = {
     data: {
       componentData: {},
+      imgPath: '',
     },
+    takePhoto() {
+      let that = this;
+      media.takePhoto({
+        success: function (data) {
+          console.log('handling success: ' + data.uri);
+          that.imgPath = data.uri;
+        },
+        fail: function(data, code) {
+          console.log('handling fail, code = ' + code + ", msg : " + data);
+        }
+      })
+    },
+    editPhoto() {
+      let that = this;
+      image.editImage({
+        uri: this.imgPath,
+        success: function (data) {
+          console.log(data.uri);
+          that.imgPath = data.uri;
+        },
+        fail: function (data, code) {
+          console.log('handling fail, code = ' + code + ", msg : " + data);
+        }
+      })
+    },
+
+    sharePhoto() {
+      share.share({
+        type: "image/jpeg",
+        data: this.imgPath,
+        success: function (data) {
+          console.log("handling success");
+        },
+        fail: function (data, code) {
+          console.log("handling fail, code = " + code + ", msg : " + data);
+        }
+      })
+    },
+
     onInit() {
       this.$page.setTitleBar({
         text: 'menu',

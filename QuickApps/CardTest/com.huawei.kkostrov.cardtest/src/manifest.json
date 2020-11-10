@@ -1,0 +1,48 @@
+{
+  "package": "com.huawei.kkostrov.cardtest",
+  "name": "Card Test",
+  "versionName": "1.0.1",
+  "versionCode": 1,
+  "icon": "/only_text/common/logo.png",
+  "minPlatformVersion": 1060,
+  "features": [
+    {
+      "name": "system.prompt"
+    },
+    {
+      "name": "system.router"
+    },
+    {
+      "name": "system.fetch"
+    }
+  ],
+  "permissions": [
+    {
+      "origin": "*"
+    }
+  ],
+  "config": {},
+  "router": {
+    "entry": "only_text",
+    "pages": {
+      "only_text": {
+        "component": "only_text",
+        "path": "/only_text"
+      }
+    }
+  },
+  "widgets": [
+    {
+      "name": "only_text",
+      "id": "onlyText",
+      "path": "/only_text",
+      "component": "only_text",
+      "minPlatformVersion": 1060,
+      "targetManufactorys": [
+        "huawei"
+      ],
+      "params": [],
+      "uses-permission": []
+    }
+  ]
+}

@@ -5,7 +5,17 @@
   "versionCode": 1,
   "icon": "/Common/logo.png",
   "minPlatformVersion": 1060,
-  "features": [],
+  "features": [
+    {
+      "name": "system.media"
+    },
+    {
+      "name": "system.image"
+    },
+    {
+      "name": "system.share"
+    }
+  ],
   "permissions": [
     {
       "origin": "*"

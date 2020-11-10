@@ -1,0 +1,51 @@
+<template>
+    <div class="b20_box">
+        <div style="align-items: center;">
+            <text class="b20_text_18sp" style="lines:{{linesOne}}">{{textArray[0]}}</text>
+        </div>
+        <div class="b20_marginT" style="align-items: center;" for="astronauts">
+            <text class="b20_text_14sp" style="lines:{{linesTwo}}">{{$item}}</text>
+        </div>
+    </div>
+
+</template>
+<style lang="sass">
+    @import "../../css/basic.scss";
+
+    .b20_box {
+        flex-direction: column;
+        padding: dpConvert($elementsMarginVerticalL) dpConvert(0) dpConvert($elementsMarginVerticalL) dpConvert(0);
+    }
+
+    .b20_text_18sp {
+        @include textSizeCardNum3;
+        color: $textColorPrimary;
+        text-overflow: ellipsis;
+    }
+
+    .b20_marginT{
+        margin-top: dpConvert($elementsMarginVerticalS);
+    }
+
+    .b20_text_14sp {
+        @include textSizeCardBody3;
+        color: $textColorSecondary;
+        text-overflow: ellipsis;
+    }
+</style>
+
+<script>
+    module.exports = {
+        onInit: function () {
+            console.log(this.astronauts);
+        },
+        props: [
+            'textArray', 'linesOne', 'linesTwo', 'astronauts'
+        ],
+        data: {
+            textArray: ['Medium 18sp', 'Regular 14sp'],
+            linesOne: 1,
+            linesTwo: 1
+        },
+    }
+</script>
