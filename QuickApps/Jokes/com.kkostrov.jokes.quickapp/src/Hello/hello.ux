@@ -1,6 +1,10 @@
 <template>
   <!-- Only one root node is allowed in template. -->
-  <div class="container">    
+  <div class="container">
+    <div class="top-button-container">
+      <!-- <input class="button" type="button" value="ПОДЕЛИТЬСЯ" onclick="openShare()"/> -->
+      <image class="share-image" src="../Common/ic_jokes_share_round.png" onclick="openShare()"/>
+    </div>
     <div class="text-container">
       <div class="text-block">
         <text class="{{fontClass}}">
@@ -9,8 +13,8 @@
       </div>    
     </div>
     <div class="button-container">
-      <input class="button" type="button" value="АНЕКДОТ" onclick="loadNew(1)"/>
-      <input class="button button2" type="button" value="ИСТОРИЯ" onclick="loadNew(2)"/>
+      <input class="button bottom-button" type="button" value="АНЕКДОТ" onclick="loadNew(1)"/>
+      <input class="button bottom-button button2" type="button" value="ИСТОРИЯ" onclick="loadNew(2)"/>
     </div>
   </div>
 </template>
@@ -19,8 +23,20 @@
   .container {
     flex-direction: column;
     justify-content: flex-end;
-    align-items: center;
     padding: 20px;
+  }
+
+  .share-image {
+    width: 100px;
+    height: 100px;
+  }
+
+  .top-button-container {
+    flex-direction: row;
+    justify-content:flex-end;
+    align-items: flex-end;
+    width: 100%;
+    height: 120px;
   }
 
   .button-container {
@@ -59,10 +75,12 @@
     background-color:#666666;
     border-radius: 15px;
     font-size: 40px;
-    width: 45%;
     height: 90px;
-    margin: 15px;
-    
+    margin: 15px;    
+  }
+
+  .bottom-button {
+    width: 45%;
   }
 
   .button2 {
@@ -72,6 +90,8 @@
 
 <script>
   import fetch from '@system.fetch'
+  import share from '@system.share'
+
   module.exports = {
     data: {
       componentData: {},
@@ -100,6 +120,10 @@
               //let result = JSON.parse(data.data.replace(/(?:\r\n|\r|\n)/g, '<br>'));             
               //let finalText = result.content.split('<br>').join('\n'); 
 
+              // This weird way of getting content used because API returns not well-formed json sometimes
+              // It just adds prefix {content:" and suffix "} to the text
+              // ignoring inner carriage returns, quotes and backslash, causing JSON.parse to fail with exception
+
               let finalText = data.data.replace("{\"content\":\"", "").replace("\"}", "");
 
               if (finalText.length < 256) {
@@ -121,6 +145,22 @@
             console.log("handling fail, code=" + code);
           }
         })            
+    },
+    openShare() {
+      let sharetext = this.text;
+      sharetext += "\n\nАнекдоты, байки, реальные смешные истории из жизни.\n";
+      sharetext += "https://appgallery.huawei.com/#/app/C103270485";      
+      share.share({
+        type: "text/html",
+        data: sharetext,
+        success: function(data){
+          console.log("handling success");
+          },
+        fail: function(data, code) {
+        console.log("handling fail, code=" + code);
+        },
+      });
     }
+
   }
 </script>

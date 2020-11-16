@@ -8,6 +8,9 @@
   "features": [
     {
       "name": "system.fetch"
+    },
+    {
+      "name": "system.share"
     }
   ],
   "permissions": [
@@ -30,5 +33,6 @@
         "titleBarText": "TitleBar"
       }
     }
-  }
+  },
+  "debugable": true
 }
