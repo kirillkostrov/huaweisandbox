@@ -1,7 +1,27 @@
 <script>
+  import push from '@service.push'
+
   module.exports = {
     onCreate() {
       console.info('Application onCreate');
+      push.subscribe({
+        success: function(data) {
+          console.log("push.subscribe succeeded, result data=" + JSON.stringify(data));
+        },
+        fail: function(data, code) {
+          console.log("push.subscribe failed, result data=" + JSON.stringify(data) + ", code=" + code);
+        },
+        complete: function() {
+          console.log("push.subscribe completed");
+        }
+      });
+      
+      push.on({
+        callback: function(ret) {
+          console.log("received pass through message, ret=" + JSON.stringify(ret));
+        }
+      });
+
     },
     onDestroy() {
       console.info('Application onDestroy');

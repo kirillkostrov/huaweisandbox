@@ -8,9 +8,12 @@
     "features": [
         {
             "name": "system.fetch"
-        }, 
+        },
         {
             "name": "system.share"
+        },
+        {
+            "name": "service.push"
         }
     ],
     "permissions": [

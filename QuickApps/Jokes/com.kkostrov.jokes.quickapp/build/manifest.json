@@ -11,6 +11,9 @@
     },
     {
       "name": "system.share"
+    },
+    {
+      "name": "service.push"
     }
   ],
   "permissions": [

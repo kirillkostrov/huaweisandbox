@@ -3,7 +3,7 @@
   <div class="container">
     <div class="top-button-container">
       <!-- <input class="button" type="button" value="ПОДЕЛИТЬСЯ" onclick="openShare()"/> -->
-      <image class="share-image" src="../Common/ic_jokes_share_round.png" onclick="openShare()"/>
+      <image class="share-image" src="../Common/ic_jokes_share.png" onclick="openShare()"/>
     </div>
     <div class="text-container">
       <div class="text-block">
@@ -23,7 +23,7 @@
   .container {
     flex-direction: column;
     justify-content: flex-end;
-    padding: 20px;
+    padding: 10px 20px 20px 10px;
   }
 
   .share-image {
@@ -51,7 +51,11 @@
     justify-content: center;
     height: 100%;
     width: 100%;
-    padding: 40px;
+    margin-top: -20px;
+    padding-top: -80px;
+    padding-left: 40px;
+    padding-right: 40px;
+    
   }
 
   .text-block {
