@@ -95,6 +95,7 @@
 <script>
   import fetch from '@system.fetch'
   import share from '@system.share'
+  import ad from '@service.ad'
 
   module.exports = {
     data: {
@@ -102,6 +103,7 @@
       text: '- Как только утром по телевидению начинается аэробика, мой муж\nтут же вскакивает с кровати.\n- Он так увлечен аэробикой в его-то годы?\n- Нет, сам он ею не занимается, а наблюдает в окно, как выполняет эти упражнения полуобнаженная молоденькая соседка.',
       fontClass: 'big-font'      
     },
+
     onInit() {
       this.$page.setTitleBar({
         text: 'menu',
@@ -113,11 +115,12 @@
 
       this.loadNew(1);
     },
+
     loadNew(jokeCat) {
       let context = this;
       fetch.fetch(
         {
-          url:"http://rzhunemogu.ru/RandJSON.aspx?CType="+jokeCat,
+          url: "http://rzhunemogu.ru/RandJSON.aspx?CType=" + jokeCat,
           success: function(data)  {
             try {
               //console.log(data.data.replace(/(?:\r\n|\r|\n)/g, '<br>'));
@@ -149,7 +152,26 @@
             console.log("handling fail, code=" + code);
           }
         })            
+        context.loadAd();
     },
+
+    loadAd() {
+      console.log(ad.getProvider());
+      let nativeAd = ad.createNativeAd({ adUnitId: 'testb65czjivt9' });
+
+      nativeAd.onLoad((data) => {
+        console.info('ad data loaded: ' + JSON.stringify(data))
+        this.adItemData = data.adList[0]
+      });
+
+      nativeAd.onError((e) => {
+        console.error('load ad error:' + JSON.stringify(e));
+        const errCode = e.errCode
+        const errMsg = e.errMsg
+      });
+      nativeAd.load();
+    },
+
     openShare() {
       let sharetext = this.text;
       sharetext += "\n\nАнекдоты, байки, реальные смешные истории из жизни.\n";
@@ -157,7 +179,7 @@
       share.share({
         type: "text/html",
         data: sharetext,
-        success: function(data){
+        success: function(data) {
           console.log("handling success");
           },
         fail: function(data, code) {

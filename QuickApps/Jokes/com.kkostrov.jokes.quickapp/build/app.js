@@ -113,7 +113,7 @@ $app_bootstrap$('@app-application/app',{packagerName:'fa-toolkit', packagerVersi
 /*! exports provided: package, name, versionName, versionCode, icon, minPlatformVersion, features, permissions, config, router, display, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"package\":\"com.kkostrov.jokes.quickapp\",\"name\":\"Анкдоты, Шутки и Истории из жизни\",\"versionName\":\"1.0.0\",\"versionCode\":1,\"icon\":\"/Common/ic_jokes.png\",\"minPlatformVersion\":1060,\"features\":[{\"name\":\"system.fetch\"},{\"name\":\"system.share\"},{\"name\":\"service.push\"}],\"permissions\":[{\"origin\":\"*\"}],\"config\":{},\"router\":{\"entry\":\"Hello\",\"pages\":{\"Hello\":{\"component\":\"hello\"}}},\"display\":{\"pages\":{\"Hello\":{\"titleBarText\":\"TitleBar\"}}}}");
+module.exports = JSON.parse("{\"package\":\"com.kkostrov.jokes.quickapp\",\"name\":\"Анкдоты, Шутки и Истории из жизни\",\"versionName\":\"1.0.2\",\"versionCode\":2,\"icon\":\"/Common/ic_jokes.png\",\"minPlatformVersion\":1070,\"features\":[{\"name\":\"system.fetch\"},{\"name\":\"system.share\"},{\"name\":\"service.push\"},{\"name\":\"service.ad\"}],\"permissions\":[{\"origin\":\"*\"}],\"config\":{},\"router\":{\"entry\":\"Hello\",\"pages\":{\"Hello\":{\"component\":\"hello\"}}},\"display\":{\"pages\":{\"Hello\":{\"titleBarText\":\"TitleBar\"}}}}");
 
 /***/ }),
 
