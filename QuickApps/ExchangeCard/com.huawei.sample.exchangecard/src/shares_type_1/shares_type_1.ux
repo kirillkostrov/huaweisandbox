@@ -1,0 +1,126 @@
+<import name="card_title" src="./common/component/card_title/card_title.ux"></import>
+<import name="card_bottom_3" src="./common/component/card_bottom_3/card_bottom_3.ux"></import>
+<template>
+    <div class="shares_type_1_box" widgetid="9560c226-1231-4bd1-91f7-0b37f23acecb">
+        <card_title title="{{title}}"></card_title>
+        <div class="main_content">
+            <div class="shares_type_1_content_box">
+                <block for="{{msgList}}">
+                    <div class="shares_type_1_msg_box">
+                        <text class="shares_type_1_msg_name">{{$item.name}}</text>
+                        <text class="shares_type_1_msg_data1 {{$item.color}}">{{$item.data1}}</text>
+                        <div style="flex: 1;">
+                            <text class="shares_type_1_msg_data2 {{$item.color}}">{{$item.data2}}</text>
+                            <text class="shares_type_1_msg_data3 {{$item.color}}">{{$item.data3}}</text>
+                        </div>
+                    </div>
+                </block>
+            </div>
+            <text class="disclaimer">{{disclaimer}}</text>    
+        </div>
+
+        <card_bottom_3 button-array="{{buttonArray}}"></card_bottom_3>
+    </div>
+</template>
+<style lang="sass">
+    @import "./common/css/basic.scss";
+
+    .main_content {
+        flex-direction: column;
+    }
+
+    .disclaimer {
+        @include textSizeCardTags;
+    }
+
+    .shares_type_1_box {
+        flex-direction: column;
+        padding: dpConvert(0) dpConvert($elementsMarginHorizontalL) dpConvert(0) dpConvert($elementsMarginHorizontalL);
+    }
+
+    .shares_type_1_content_box {
+        padding: dpConvert($elementsMarginVerticalL) dpConvert(0) dpConvert($elementsMarginVerticalL) dpConvert(0);
+        justify-content: space-around;
+    }
+
+    .shares_type_1_msg_box {
+        margin: dpConvert(0) dpConvert($elementsMarginHorizontalS) dpConvert(0) dpConvert($elementsMarginHorizontalS);
+        flex: 1;
+        flex-direction: column;
+    }
+
+    .shares_type_1_msg_name {
+        @include textSizeCardBody3;
+        color: $textColorPrimary;
+        flex: 1;
+        text-align: center;
+    }
+
+    .shares_type_1_msg_data1 {
+        @include textSizeCardBody1;
+        flex: 1;
+        text-align: center;
+    }
+
+    .shares_type_1_msg_data2 {
+        @include textSizeCardBody3;
+        flex: 1;
+        text-align: right;
+    }
+
+    .shares_type_1_msg_data3 {
+        @include textSizeCardBody3;
+        flex: 1;
+        margin-left: dpConvert($elementsMarginHorizontalM);
+    }
+
+    .shares_color_green {
+        color: $color2;
+    }
+
+    .shares_color_red {
+        color: $color7;
+    }
+</style>
+
+<script>
+    import fetch from '@system.fetch'
+
+    module.exports = {
+        data: {
+            title: 'Bitcoin rates',
+            disclaimer: '',
+            buttonArray: ['MORE'],
+            msgList: [],
+        },
+        onInit: function () {
+            var context = this;
+
+            context.msgList = [];
+            fetch.fetch(
+                {
+                    url:"https://api.coindesk.com/v1/bpi/currentprice.json",
+                    success: function(data)  {          
+                        let result = JSON.parse(data.data);
+
+                        context.title = result.chartName;
+                        context.disclaimer = result.disclaimer;
+                        
+                        let color = 'shares_color_green';
+
+                        Object.keys(result.bpi).forEach(e => {
+                            let receivedItem = result.bpi[e];
+                            let item = { 'name': receivedItem.code, 'data1': receivedItem.rate_float, 'data2': '+0.00', 'data3': '+0.0%', 'color': color }
+                            context.msgList.push(item)
+                            color = 'shares_color_red';
+                        });
+
+                    },
+                    fail: function(data, code) {
+                        console.log("handling fail, code=" + code);
+                    }
+                })            
+        },
+
+    }
+</script>

@@ -1,0 +1,35 @@
+<template>
+    <div class="cardbottom3_box">
+        <block for="buttonArray">
+            <text if="$idx === 0" class="cardbottom3_button">{{buttonArray[$idx]}}</text>
+            <text else class="cardbottom3_button cardbottom3_buttonMargin">{{buttonArray[$idx]}}</text>
+        </block>
+    </div>
+</template>
+<style lang="sass">
+    @import "../../css/basic.scss";
+
+    .cardbottom3_box{
+        height: dpConvert(48);
+        width: 100%;
+    }
+
+    .cardbottom3_button{
+        color: $colorAccent;
+        @include textSizeCardButton;
+    }
+
+    .cardbottom3_buttonMargin{
+        margin-left: dpConvert(24);
+    }
+</style>
+<script>
+    module.exports = {
+        props: [
+            'buttonArray'
+        ],
+        data: {
+            buttonArray: ['Button','Button','Button']
+        },
+    }
+</script>
