@@ -6,35 +6,71 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
         <LinearLayout
-            android:id="@+id/main_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:orientation="vertical"
-            android:padding="16dp"
-            style="@style/ShadowDefault">
-
-            <TextView
-                android:id="@+id/header"
-                android:layout_width="wrap_content"
+            android:orientation="vertical" >
+            <LinearLayout
+                android:id="@+id/main_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
-                android:text="Widevine"
-                android:textColor="@color/black"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:orientation="vertical"
+                android:padding="16dp"
+                style="@style/ShadowDefault">
 
-            <View
-                android:id="@+id/divider"
+                <TextView
+                    android:id="@+id/main_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:text="System Information"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:id="@+id/main_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="?android:attr/listDivider"
+                    android:layout_marginBottom="16dp"
+                    tools:layout_editor_absoluteX="25dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/widevine_content"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="?android:attr/listDivider"
-                app:layout_constraintTop_toBottomOf="@id/header"
-                android:layout_marginBottom="16dp"
-                tools:layout_editor_absoluteX="25dp" />
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:orientation="vertical"
+                android:padding="16dp"
+                style="@style/ShadowDefault">
 
+                <TextView
+                    android:id="@+id/widevine_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:text="Widevine"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:id="@+id/widevine_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="?android:attr/listDivider"
+                    android:layout_marginBottom="16dp"
+                    tools:layout_editor_absoluteX="25dp" />
+            </LinearLayout>
         </LinearLayout>
+
+    </ScrollView>
 
 
 </LinearLayout>
