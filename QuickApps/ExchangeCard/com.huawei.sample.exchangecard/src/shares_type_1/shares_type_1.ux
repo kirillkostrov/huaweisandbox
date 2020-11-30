@@ -5,7 +5,19 @@
         <card_title title="{{title}}"></card_title>
         <div class="main_content">
             <div class="shares_type_1_content_box">
-                <block for="{{msgList}}">
+                <block for="{{row1}}">
+                    <div class="shares_type_1_msg_box">
+                        <text class="shares_type_1_msg_name">{{$item.name}}</text>
+                        <text class="shares_type_1_msg_data1 {{$item.color}}">{{$item.data1}}</text>
+                        <div style="flex: 1;">
+                            <text class="shares_type_1_msg_data2 {{$item.color}}">{{$item.data2}}</text>
+                            <text class="shares_type_1_msg_data3 {{$item.color}}">{{$item.data3}}</text>
+                        </div>
+                    </div>
+                </block>
+            </div>
+            <div class="shares_type_1_content_box">
+                <block for="{{row2}}">
                     <div class="shares_type_1_msg_box">
                         <text class="shares_type_1_msg_name">{{$item.name}}</text>
                         <text class="shares_type_1_msg_data1 {{$item.color}}">{{$item.data1}}</text>
@@ -88,10 +100,11 @@
 
     module.exports = {
         data: {
-            title: 'Bitcoin rates',
+            title: 'Курсы валют',
             disclaimer: '',
             buttonArray: ['MORE'],
-            msgList: [],
+            row1: [],
+            row2: [],
         },
         onInit: function () {
             var context = this;
@@ -99,21 +112,48 @@
             context.msgList = [];
             fetch.fetch(
                 {
-                    url:"https://api.coindesk.com/v1/bpi/currentprice.json",
-                    success: function(data)  {          
+                    url: "https://mobile.broker.vtb.ru/mob/AndroidTest/Partner/api/hub.axd/VTB/VTBBroker/MarketService/Instrument/List?instruments=EURRUB_1%E2%82%AC@EES_CETS&instruments=USDRUB_1$@EES_CETS&instruments=AAPL_SPB@SPBXM&instruments=BABA_SPB@SPBXM&instruments=DIS_SPB@SPBXM&instruments=AMZN_SPB@SPBXM&token=",                   
+                    header: { 
+                        "Authorization": "Basic aHVhd2VpOnBuNjlNa05haXVQS1ZMQmE=",
+                        "User-Agent": "Mozilla/5.0 (Linux; U; Android 7.0; zh-cn; STF-AL00 Build/HUAWEISTF-AL00) AppleWebKit/537.36 (KHTML, like Gecko)Version/4.0 Chrome/37.0.0.0 MQQBrowser/7.9 Mobile Safari/537.36",
+                        "Accept-Language": "zh-CN,en-US;q=0.8,en;q=0.6",
+                        "Accept": "application/json"
+                     },
+                    success: function(data)  {    
                         let result = JSON.parse(data.data);
+                        //console.log(result);
 
-                        context.title = result.chartName;
-                        context.disclaimer = result.disclaimer;
+                        //context.disclaimer = result.disclaimer;
                         
-                        let color = 'shares_color_green';
+                        let inst = result.data.instruments;
 
-                        Object.keys(result.bpi).forEach(e => {
-                            let receivedItem = result.bpi[e];
-                            let item = { 'name': receivedItem.code, 'data1': receivedItem.rate_float, 'data2': '+0.00', 'data3': '+0.0%', 'color': color }
-                            context.msgList.push(item)
-                            color = 'shares_color_red';
-                        });
+                        for (var i = 0; i < 3; i++) {
+
+                            let color = inst[i].marketData.change >= 0 ? 'shares_color_green' : 'shares_color_red';
+
+                            let item = { 
+                                'name': inst[i].name.short, 
+                                'data1': inst[i].marketData.last.toFixed(2), 
+                                'data2': inst[i].marketData.change.toFixed(2), 
+                                'data3': inst[i].marketData.changeP.toFixed(2), 
+                                'color': color 
+                            };
+                            context.row1.push(item)
+                        }
+
+                        for (var i = 3; i < 6; i++) {
+
+                            let color = inst[i].marketData.change >= 0 ? 'shares_color_green' : 'shares_color_red';
+
+                            let item = { 
+                                'name': inst[i].name.short, 
+                                'data1': inst[i].marketData.last.toFixed(2), 
+                                'data2': inst[i].marketData.change.toFixed(2), 
+                                'data3': inst[i].marketData.changeP.toFixed(2), 
+                                'color': color 
+                            };
+                            context.row2.push(item)
+                        }
 
                     },
                     fail: function(data, code) {
