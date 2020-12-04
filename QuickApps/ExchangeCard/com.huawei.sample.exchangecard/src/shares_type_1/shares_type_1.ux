@@ -28,7 +28,7 @@
                     </div>
                 </block>
             </div>
-            <text class="disclaimer">{{disclaimer}}</text>    
+            <!-- <text class="disclaimer">{{disclaimer}}</text>     -->
         </div>
 
         <card_bottom_3 button-array="{{buttonArray}}"></card_bottom_3>
@@ -100,9 +100,9 @@
 
     module.exports = {
         data: {
-            title: 'Курсы валют',
+            title: 'VTB Investments',
             disclaimer: '',
-            buttonArray: ['MORE'],
+            buttonArray: ['More...'],
             row1: [],
             row2: [],
         },
@@ -112,7 +112,7 @@
             context.msgList = [];
             fetch.fetch(
                 {
-                    url: "https://mobile.broker.vtb.ru/mob/AndroidTest/Partner/api/hub.axd/VTB/VTBBroker/MarketService/Instrument/List?instruments=EURRUB_1%E2%82%AC@EES_CETS&instruments=USDRUB_1$@EES_CETS&instruments=AAPL_SPB@SPBXM&instruments=BABA_SPB@SPBXM&instruments=DIS_SPB@SPBXM&instruments=AMZN_SPB@SPBXM&token=",                   
+                    url: "https://mobile.broker.vtb.ru/mob/Android/Partner/api/hub.axd/VTB/VTBBroker/MarketService/Instrument/List?instruments=EURRUB_1%E2%82%AC@EES_CETS&instruments=USDRUB_1$@EES_CETS&instruments=AAPL_SPB@SPBXM&instruments=BABA_SPB@SPBXM&instruments=DIS_SPB@SPBXM&instruments=AMZN_SPB@SPBXM",                   
                     header: { 
                         "Authorization": "Basic aHVhd2VpOnBuNjlNa05haXVQS1ZMQmE=",
                         "User-Agent": "Mozilla/5.0 (Linux; U; Android 7.0; zh-cn; STF-AL00 Build/HUAWEISTF-AL00) AppleWebKit/537.36 (KHTML, like Gecko)Version/4.0 Chrome/37.0.0.0 MQQBrowser/7.9 Mobile Safari/537.36",
@@ -135,13 +135,13 @@
                                 'name': inst[i].name.short, 
                                 'data1': inst[i].marketData.last.toFixed(2), 
                                 'data2': inst[i].marketData.change.toFixed(2), 
-                                'data3': inst[i].marketData.changeP.toFixed(2), 
+                                'data3': inst[i].marketData.changeP.toFixed(2) + '%', 
                                 'color': color 
                             };
                             context.row1.push(item)
                         }
 
-                        for (var i = 3; i < 6; i++) {
+                        for (i = 3; i < 6; i++) {
 
                             let color = inst[i].marketData.change >= 0 ? 'shares_color_green' : 'shares_color_red';
 
@@ -149,7 +149,7 @@
                                 'name': inst[i].name.short, 
                                 'data1': inst[i].marketData.last.toFixed(2), 
                                 'data2': inst[i].marketData.change.toFixed(2), 
-                                'data3': inst[i].marketData.changeP.toFixed(2), 
+                                'data3': inst[i].marketData.changeP.toFixed(2) + '%', 
                                 'color': color 
                             };
                             context.row2.push(item)
