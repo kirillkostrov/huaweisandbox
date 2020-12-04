@@ -2,7 +2,7 @@
 <import name="card_bottom_3" src="./common/component/card_bottom_3/card_bottom_3.ux"></import>
 <template>
     <div class="shares_type_1_box" widgetid="9560c226-1231-4bd1-91f7-0b37f23acecb">
-        <card_title title="{{title}}"></card_title>
+        <card_title title="{{$t('message.title')}}"></card_title>
         <div class="main_content">
             <div class="shares_type_1_content_box">
                 <block for="{{row1}}">
@@ -31,7 +31,7 @@
             <!-- <text class="disclaimer">{{disclaimer}}</text>     -->
         </div>
 
-        <card_bottom_3 button-array="{{buttonArray}}"></card_bottom_3>
+        <card_bottom_3 button-array="{{$t('message.buttonArray')}}"></card_bottom_3>
     </div>
 </template>
 <style lang="sass">
@@ -97,19 +97,34 @@
 
 <script>
     import fetch from '@system.fetch'
+    
+    const locales = {
+        zh: require('./i18n/zh.js'),
+        en: require('./i18n/en.js'),
+        ru: require('./i18n/ru.js')
+    }
+    import configuration from '@system.configuration'
+    const localeObject = configuration.getLocale();
+    let local = localeObject.language; 
+
+    const $i18n = new I18n({ locale: local, messages: locales, fallbackLocale: 'ru' });
 
     module.exports = {
         data: {
             title: 'VTB Investments',
             disclaimer: '',
             buttonArray: ['More...'],
-            row1: [],
-            row2: [],
+            i18n: $i18n,
+            row1: [{"name":"USD / RUB","data1":"74.11","data2":"-0.24","data3":"-0.32%","color":"shares_color_red"},{"name":"EUR / RUB","data1":"90.03","data2":"-0.27","data3":"-0.30%","color":"shares_color_red"},{"name":"Amazon","data1":"3194.02","data2":"-11.06","data3":"-0.35%","color":"shares_color_red"}],
+            row2: [{"name":"Alibaba","data1":"271.00","data2":"4.18","data3":"1.57%","color":"shares_color_green"},{"name":"Walt Disney","data1":"153.84","data2":"-0.29","data3":"-0.19%","color":"shares_color_red"},{"name":"Tesla","data1":"590.29","data2":"3.94","data3":"0.67%","color":"shares_color_green"}],
         },
         onInit: function () {
             var context = this;
 
             context.msgList = [];
+            context.row1 = [];
+            context.row2 = [];
+
             fetch.fetch(
                 {
                     url: "https://mobile.broker.vtb.ru/mob/Android/Partner/api/hub.axd/VTB/VTBBroker/MarketService/Instrument/List?instruments=EURRUB_1%E2%82%AC@EES_CETS&instruments=USDRUB_1$@EES_CETS&instruments=AAPL_SPB@SPBXM&instruments=BABA_SPB@SPBXM&instruments=DIS_SPB@SPBXM&instruments=AMZN_SPB@SPBXM",                   
@@ -121,7 +136,6 @@
                      },
                     success: function(data)  {    
                         let result = JSON.parse(data.data);
-                        //console.log(result);
 
                         //context.disclaimer = result.disclaimer;
                         
@@ -140,6 +154,7 @@
                             };
                             context.row1.push(item)
                         }
+                        //console.log(JSON.stringify(context.row1))
 
                         for (i = 3; i < 6; i++) {
 
@@ -154,6 +169,7 @@
                             };
                             context.row2.push(item)
                         }
+                        //console.log(JSON.stringify(context.row2))
 
                     },
                     fail: function(data, code) {
