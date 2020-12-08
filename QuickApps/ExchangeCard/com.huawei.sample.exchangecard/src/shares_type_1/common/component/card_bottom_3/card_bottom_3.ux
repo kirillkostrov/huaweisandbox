@@ -1,8 +1,8 @@
 <template>
     <div class="cardbottom3_box">
         <block for="buttonArray">
-            <text if="$idx === 0" class="cardbottom3_button">{{buttonArray[$idx]}}</text>
-            <text else class="cardbottom3_button cardbottom3_buttonMargin">{{buttonArray[$idx]}}</text>
+            <text if="$idx === 0" class="cardbottom3_button" onclick="buttonClick($idx)">{{buttonArray[$idx]}}</text>
+            <text else class="cardbottom3_button cardbottom3_buttonMargin" onclick="buttonClick($idx)">{{buttonArray[$idx]}}</text>
         </block>
     </div>
 </template>
@@ -24,12 +24,62 @@
     }
 </style>
 <script>
+    import router from "@system.router"; //or var router = require("@system.router")
+    import pkg from "@system.package"; //or var pkg = require("@system.package")
+    import app from "@system.app"; //or var app = require("@system.app")
+    const mainAppPackageName = "com.vtb.investments";
+
     module.exports = {
         props: [
             'buttonArray'
         ],
         data: {
             buttonArray: ['Button','Button','Button']
+        },
+        buttonClick: function (index) {
+            if (index === 0) {
+                console.log('We;re in');
+                this.deeplink_jump("https://broker.vtb.ru/login/vtbinvest/")
+            }
+            console.log(index);
+        },
+        deeplink_jump: function (deeplink_uri) {
+            let self = this;
+            // Check whether the app of a correct version has been installed. Otherwise, the system guides the user to the app details page on HUAWEI AppGallery.
+            try {
+                app.getPackageInfo({
+                    packageName: mainAppPackageName, // Target app package name.
+                    success: function (data) {
+                        // The app has been installed, but the version is incorrect. The system guides the user to HUAWEI AppGallery for installation.
+                        if (self.versionCode < self.deeplinkEnableVersionCode) {
+                            router.push({ uri: "appmarket://details?" + mainAppPackageName });
+                            console.log("V1. The app has been installed, but the version is incorrect. Forwarding user to HUAWEI AppGallery for installation.");
+                        }
+                        else {
+                            router.push({ uri: deeplink_uri });
+                            console.log("V1. The app has been installed, version is correct. Executed deeplink");
+                        }
+                    },
+                    fail: function (errormsg, errorcode) {
+                        router.push({ uri: "appmarket://details?" + mainAppPackageName });
+                        console.log("V1. The app has not been installed. Forwarding user to HUAWEI AppGallery for installation.");
+                    }
+                });
+            } catch (error) {
+                // Use the following logic when the engine version is earlier than 1060.
+                pkg.hasInstalled({
+                    package: mainAppPackageName,
+                    success: function (data) {
+                        router.push({ uri: deeplink_uri });
+                        console.log("V1. The app has been installed, version is correct. Executed deeplink");
+                        console.log("handling success: " + data.result);
+                    },
+                    fail: function (data, code) {
+                        router.push({ uri: "appmarket://details?id=" + mainAppPackageName });
+                        console.log("V1. The app has not been installed. Forwarding user to HUAWEI AppGallery for installation.");
+                    }
+                });
+            }
         },
     }
 </script>

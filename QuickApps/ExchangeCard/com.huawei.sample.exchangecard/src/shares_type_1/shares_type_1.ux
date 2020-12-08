@@ -1,112 +1,120 @@
 <import name="card_title" src="./common/component/card_title/card_title.ux"></import>
 <import name="card_bottom_3" src="./common/component/card_bottom_3/card_bottom_3.ux"></import>
 <template>
-    <div class="shares_type_1_box" widgetid="9560c226-1231-4bd1-91f7-0b37f23acecb">
+    <div class="exchange_card_box" widgetid="9560c226-1231-4bd1-91f7-0b37f23acecb">
         <card_title title="{{$t('message.title')}}"></card_title>
         <div class="main_content">
-            <div class="shares_type_1_content_box">
-                <block for="{{row1}}">
-                    <div class="shares_type_1_msg_box">
-                        <text class="shares_type_1_msg_name">{{$item.name}}</text>
-                        <text class="shares_type_1_msg_data1 {{$item.color}}">{{$item.data1}}</text>
-                        <div style="flex: 1;">
-                            <text class="shares_type_1_msg_data2 {{$item.color}}">{{$item.data2}}</text>
-                            <text class="shares_type_1_msg_data3 {{$item.color}}">{{$item.data3}}</text>
+
+            <div class="currency_content_box">
+                <block for="{{row1}}">                
+                    <div class="currency_item_box"> 
+                        <div style="flex-direction: column; width: 50%">
+                            <text class="currency_name">{{$item.name}}</text>
+                            <div style="flex: 1;">
+                                <text class="currency_deltas {{$item.color}}">{{$item.deltas_text}}</text>
+                            </div>
                         </div>
+                        <text class="currency_value {{$item.color}}">{{$item.data1}}</text>
                     </div>
                 </block>
             </div>
 
             <div style="flex-direction: column;">
                 <block for="{{row2}}">
-                    <div class="shares_type_2_msg_box_2">
-                        <div style="width: 33.3%; flex-direction: column;">
-                            <text style="text-align: left;" class="shares_type_1_msg_name">{{$item.name}}</text>
+                    <div class="stocks_item_box">
+                        <div class="stock_item_name_box">
+                            <text class="stock_item_name">{{$item.name}}</text>
                         </div>
-
-                        <div style="width: 66.7%">
-                            <text style="width: 33.3%;text-align: right;" class="shares_type_1_msg_data2 {{$item.color}}">{{$item.data1}}</text>
-                            <text style="width: 33.3%;text-align: right;" class="shares_type_1_msg_data3 {{$item.color}}">{{$item.data2}}</text>
-                            <text style="width: 33.3%;text-align: right;" class="shares_type_1_msg_data3 {{$item.color}}">{{$item.data3}}</text>
+                        <div class="stock_item_data_box">
+                            <text class="stock_item_value {{$item.color}}">{{$item.data1}}</text>
+                            <text class="stock_item_deltas {{$item.color}}">{{$item.data2}}</text>
+                            <text class="stock_item_deltas {{$item.color}}">{{$item.data3}}</text>
                         </div>
                     </div>
                 </block>
             </div>
-            <!--
-            <div class="shares_type_1_content_box">
-                <block for="{{row2}}">
-                    <div class="shares_type_1_msg_box">
-                        <text class="shares_type_1_msg_name">{{$item.name}}</text>
-                        <text class="shares_type_1_msg_data1 {{$item.color}}">{{$item.data1}}</text>
-                        <div style="flex: 1;">
-                            <text class="shares_type_1_msg_data2 {{$item.color}}">{{$item.data2}}</text>
-                            <text class="shares_type_1_msg_data3 {{$item.color}}">{{$item.data3}}</text>
-                        </div>
-                    </div>
-                </block>
-            </div> -->
-            <!-- <text class="disclaimer">{{disclaimer}}</text>     -->
         </div>
-
         <card_bottom_3 button-array="{{$t('message.buttonArray')}}"></card_bottom_3>
     </div>
 </template>
 <style lang="sass">
+	@import "../common/css/basic.scss";
     @import "./common/css/basic.scss";
 
-    .main_content {
-        flex-direction: column;
-    }
-
-    .disclaimer {
-        @include textSizeCardTags;
-    }
-
-    .shares_type_1_box {
+    .exchange_card_box {
         flex-direction: column;
         padding: dpConvert(0) dpConvert($elementsMarginHorizontalL) dpConvert(0) dpConvert($elementsMarginHorizontalL);
     }
 
-    .shares_type_1_content_box {
+    .main_content {
+        flex-direction: column;
+    } 
+
+    .currency_content_box {
         padding: dpConvert($elementsMarginVerticalL) dpConvert(0) dpConvert($elementsMarginVerticalL) dpConvert(0);
         justify-content: space-around;
     }
 
-    .shares_type_1_msg_box {
+
+    .currency_item_box {
         margin: dpConvert(0) dpConvert($elementsMarginHorizontalS) dpConvert(0) dpConvert($elementsMarginHorizontalS);
         flex: 1;
-        flex-direction: column;
+        flex-direction: row;
+        /* background-color: #989898; */
+        border-radius: dpConvert(4);
+        border-width: dpConvert(1);
+        border-color: #989898;
+        padding: dpConvert(8);
     }
 
-    .shares_type_1_msg_name {
+    .currency_name {
         @include textSizeCardBody3;
         color: $textColorPrimary;
         flex: 1;
-        text-align: center;
     }
 
-    .shares_type_1_msg_data1 {
-        @include textSizeCardBody1;
-        flex: 1;
-        text-align: center;
-    }
-
-    .shares_type_1_msg_data2 {
-        @include textSizeCardBody3;
-        flex: 1;
+    .currency_value {
+        @include textSizeCardBody2;
+        flex: 2;
         text-align: right;
     }
 
-    .shares_type_1_msg_data2b {
+    .currency_deltas {
+        @include textSizeCardBrand;
+        flex: 1;
+    }
+
+    .stocks_item_box {
+        margin: dpConvert(0) dpConvert($elementsMarginHorizontalS) dpConvert(0) dpConvert($elementsMarginHorizontalS);
+    }
+
+    .stock_item_name_box {
+        width: 33.3%;
+        flex-direction: column;
+    }
+
+    .stock_item_data_box {
+        width: 66.7%;
+    }
+
+    .stock_item_name {
+        @include textSizeCardBody3;
+        color: $textColorPrimary;
+        flex: 1;
+    }
+
+    .stock_item_value {
         @include textSizeCardBody3;
         flex: 1;
         text-align: right;
-        font-weight: bold;
+        width: 33.3%;
     }
 
-    .shares_type_1_msg_data3 {
+    .stock_item_deltas {
         @include textSizeCardBody3;
         flex: 1;
+        text-align: right;
+        width: 33.3%;
         margin-left: dpConvert($elementsMarginHorizontalM);
     }
 
@@ -121,13 +129,14 @@
 
 <script>
     import fetch from '@system.fetch'
+    import configuration from '@system.configuration'
     
     const locales = {
         zh: require('./i18n/zh.js'),
         en: require('./i18n/en.js'),
         ru: require('./i18n/ru.js')
     }
-    import configuration from '@system.configuration'
+
     const localeObject = configuration.getLocale();
     let local = localeObject.language; 
 
@@ -136,10 +145,10 @@
     module.exports = {
         data: {
             title: 'VTB Investments',
-            disclaimer: '',
             buttonArray: ['More...'],
             i18n: $i18n,
-            row1: [{"name":"USD / RUB","data1":"74.11","data2":"-0.24","data3":"-0.32%","color":"shares_color_red"},{"name":"EUR / RUB","data1":"90.03","data2":"-0.27","data3":"-0.30%","color":"shares_color_red"},{"name":"Amazon","data1":"3194.02","data2":"-11.06","data3":"-0.35%","color":"shares_color_red"}],
+            //row1: [{"name":"USD / RUB","data1":"74.11","data2":"-0.24","data3":"-0.32%","color":"shares_color_red"},{"name":"EUR / RUB","data1":"90.03","data2":"-0.27","data3":"-0.30%","color":"shares_color_red"},{"name":"Amazon","data1":"3194.02","data2":"-11.06","data3":"-0.35%","color":"shares_color_red"}],
+            row1: [{"name":"USD / RUB","data1":"74.11","data2":"-0.24","data3":"-0.32%", "deltas_text": "-0.24 -0.32%", "color":"shares_color_red"},{"name":"EUR / RUB","data1":"90.03","data2":"-0.27","data3":"-0.30%", "deltas_text": "-0.27 -0.30%", "color":"shares_color_red"}],
             row2: [{"name":"Alibaba","data1":"271.00","data2":"4.18","data3":"1.57%","color":"shares_color_green"},{"name":"Walt Disney","data1":"153.84","data2":"-0.29","data3":"-0.19%","color":"shares_color_red"},{"name":"Tesla","data1":"590.29","data2":"3.94","data3":"0.67%","color":"shares_color_green"}],
         },
         onInit: function () {
@@ -158,13 +167,11 @@
                      },
                     success: function(data)  {    
                         let result = JSON.parse(data.data);
-
-                        //context.disclaimer = result.disclaimer;
                         
                         let inst = result.data.instruments;
 
                         context.row1 = [];
-                        for (var i = 0; i < 3; i++) {
+                        for (var i = 0; i < 2; i++) {
                             
 
                             let color = inst[i].marketData.change >= 0 ? 'shares_color_green' : 'shares_color_red';
@@ -174,11 +181,11 @@
                                 'data1': inst[i].marketData.last.toFixed(2), 
                                 'data2': inst[i].marketData.change.toFixed(2), 
                                 'data3': inst[i].marketData.changeP.toFixed(2) + '%', 
+                                'deltas_text': inst[i].marketData.change.toFixed(2) + ' ' + inst[i].marketData.changeP.toFixed(2) + '%', 
                                 'color': color 
                             };
                             context.row1.push(item)
                         }
-                        //console.log(JSON.stringify(context.row1))
                         
                         context.row2 = [];
                         for (i = 3; i < 6; i++) {
@@ -191,18 +198,16 @@
                                 'data1': inst[i].marketData.last.toFixed(2), 
                                 'data2': inst[i].marketData.change.toFixed(2), 
                                 'data3': inst[i].marketData.changeP.toFixed(2) + '%', 
+                                'deltas_text': inst[i].marketData.change.toFixed(2) + ' ' + inst[i].marketData.changeP.toFixed(2) + '%', 
                                 'color': color 
                             };
                             context.row2.push(item)
                         }
-                        //console.log(JSON.stringify(context.row2))
-
                     },
                     fail: function(data, code) {
                         console.log("handling fail, code=" + code);
                     }
                 })            
         },
-
     }
 </script>

@@ -16,6 +16,9 @@
       "name": "system.fetch"
     },
     {
+      "name": "system.package"
+    },
+    {
       "name": "system.configuration"
     }
   ],
