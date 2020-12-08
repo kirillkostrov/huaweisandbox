@@ -16,6 +16,23 @@
                     </div>
                 </block>
             </div>
+
+            <div style="flex-direction: column;">
+                <block for="{{row2}}">
+                    <div class="shares_type_2_msg_box_2">
+                        <div style="width: 33.3%; flex-direction: column;">
+                            <text style="text-align: left;" class="shares_type_1_msg_name">{{$item.name}}</text>
+                        </div>
+
+                        <div style="width: 66.7%">
+                            <text style="width: 33.3%;text-align: right;" class="shares_type_1_msg_data2 {{$item.color}}">{{$item.data1}}</text>
+                            <text style="width: 33.3%;text-align: right;" class="shares_type_1_msg_data3 {{$item.color}}">{{$item.data2}}</text>
+                            <text style="width: 33.3%;text-align: right;" class="shares_type_1_msg_data3 {{$item.color}}">{{$item.data3}}</text>
+                        </div>
+                    </div>
+                </block>
+            </div>
+            <!--
             <div class="shares_type_1_content_box">
                 <block for="{{row2}}">
                     <div class="shares_type_1_msg_box">
@@ -27,7 +44,7 @@
                         </div>
                     </div>
                 </block>
-            </div>
+            </div> -->
             <!-- <text class="disclaimer">{{disclaimer}}</text>     -->
         </div>
 
@@ -80,6 +97,13 @@
         text-align: right;
     }
 
+    .shares_type_1_msg_data2b {
+        @include textSizeCardBody3;
+        flex: 1;
+        text-align: right;
+        font-weight: bold;
+    }
+
     .shares_type_1_msg_data3 {
         @include textSizeCardBody3;
         flex: 1;
@@ -122,8 +146,6 @@
             var context = this;
 
             context.msgList = [];
-            context.row1 = [];
-            context.row2 = [];
 
             fetch.fetch(
                 {
@@ -141,7 +163,9 @@
                         
                         let inst = result.data.instruments;
 
+                        context.row1 = [];
                         for (var i = 0; i < 3; i++) {
+                            
 
                             let color = inst[i].marketData.change >= 0 ? 'shares_color_green' : 'shares_color_red';
 
@@ -155,8 +179,10 @@
                             context.row1.push(item)
                         }
                         //console.log(JSON.stringify(context.row1))
-
+                        
+                        context.row2 = [];
                         for (i = 3; i < 6; i++) {
+                            
 
                             let color = inst[i].marketData.change >= 0 ? 'shares_color_green' : 'shares_color_red';
 
