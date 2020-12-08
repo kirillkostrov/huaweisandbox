@@ -14,7 +14,7 @@
                                 <text class="currency_deltas {{$item.color}}">{{$item.deltas_text}}</text>
                             </div>
                         </div>
-                        <text class="currency_value {{$item.color}}">{{$item.data1}}</text>
+                        <text class="currency_value {{$item.color}}">{{$item.last}}</text>
                     </div>
                 </block>
             </div>
@@ -26,9 +26,9 @@
                             <text class="stock_item_name">{{$item.name}}</text>
                         </div>
                         <div class="stock_item_data_box">
-                            <text class="stock_item_value {{$item.color}}">{{$item.data1}}</text>
-                            <text class="stock_item_deltas {{$item.color}}">{{$item.data2}}</text>
-                            <text class="stock_item_deltas {{$item.color}}">{{$item.data3}}</text>
+                            <text class="stock_item_value {{$item.color}}">{{$item.last}}</text>
+                            <text class="stock_item_deltas {{$item.color}}">{{$item.change}}</text>
+                            <text class="stock_item_deltas {{$item.color}}">{{$item.changeP}}</text>
                         </div>
                     </div>
                 </block>
@@ -147,9 +147,9 @@
             title: 'VTB Investments',
             buttonArray: ['More...'],
             i18n: $i18n,
-            //row1: [{"name":"USD / RUB","data1":"74.11","data2":"-0.24","data3":"-0.32%","color":"shares_color_red"},{"name":"EUR / RUB","data1":"90.03","data2":"-0.27","data3":"-0.30%","color":"shares_color_red"},{"name":"Amazon","data1":"3194.02","data2":"-11.06","data3":"-0.35%","color":"shares_color_red"}],
-            row1: [{"name":"USD / RUB","data1":"74.11","data2":"-0.24","data3":"-0.32%", "deltas_text": "-0.24 -0.32%", "color":"shares_color_red"},{"name":"EUR / RUB","data1":"90.03","data2":"-0.27","data3":"-0.30%", "deltas_text": "-0.27 -0.30%", "color":"shares_color_red"}],
-            row2: [{"name":"Alibaba","data1":"271.00","data2":"4.18","data3":"1.57%","color":"shares_color_green"},{"name":"Walt Disney","data1":"153.84","data2":"-0.29","data3":"-0.19%","color":"shares_color_red"},{"name":"Tesla","data1":"590.29","data2":"3.94","data3":"0.67%","color":"shares_color_green"}],
+            //row1: [{"name":"USD / RUB","last":"74.11","change":"-0.24","changeP":"-0.32%","color":"shares_color_red"},{"name":"EUR / RUB","last":"90.03","change":"-0.27","changeP":"-0.30%","color":"shares_color_red"},{"name":"Amazon","last":"3194.02","change":"-11.06","changeP":"-0.35%","color":"shares_color_red"}],
+            row1: [{"name":"USD / RUB","last":"74.11","change":"-0.24","changeP":"-0.32%", "deltas_text": "-0.24 -0.32%", "color":"shares_color_red"},{"name":"EUR / RUB","last":"90.03","change":"-0.27","changeP":"-0.30%", "deltas_text": "-0.27 -0.30%", "color":"shares_color_red"}],
+            row2: [{"name":"Alibaba","last":"271.00","change":"4.18","changeP":"1.57%","color":"shares_color_green"},{"name":"Walt Disney","last":"153.84","change":"-0.29","changeP":"-0.19%","color":"shares_color_red"},{"name":"Tesla","last":"590.29","change":"3.94","changeP":"0.67%","color":"shares_color_green"}],
         },
         onInit: function () {
             var context = this;
@@ -178,9 +178,9 @@
 
                             let item = { 
                                 'name': inst[i].name.short, 
-                                'data1': inst[i].marketData.last.toFixed(2), 
-                                'data2': inst[i].marketData.change.toFixed(2), 
-                                'data3': inst[i].marketData.changeP.toFixed(2) + '%', 
+                                'last': inst[i].marketData.last.toFixed(2), 
+                                'change': inst[i].marketData.change.toFixed(2), 
+                                'changeP': inst[i].marketData.changeP.toFixed(2) + '%', 
                                 'deltas_text': inst[i].marketData.change.toFixed(2) + ' ' + inst[i].marketData.changeP.toFixed(2) + '%', 
                                 'color': color 
                             };
@@ -195,9 +195,9 @@
 
                             let item = { 
                                 'name': inst[i].name.short, 
-                                'data1': inst[i].marketData.last.toFixed(2), 
-                                'data2': inst[i].marketData.change.toFixed(2), 
-                                'data3': inst[i].marketData.changeP.toFixed(2) + '%', 
+                                'last': inst[i].marketData.last.toFixed(2), 
+                                'change': inst[i].marketData.change.toFixed(2), 
+                                'changeP': inst[i].marketData.changeP.toFixed(2) + '%', 
                                 'deltas_text': inst[i].marketData.change.toFixed(2) + ' ' + inst[i].marketData.changeP.toFixed(2) + '%', 
                                 'color': color 
                             };

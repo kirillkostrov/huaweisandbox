@@ -34,14 +34,12 @@
             'buttonArray'
         ],
         data: {
-            buttonArray: ['Button','Button','Button']
+            buttonArray: []
         },
         buttonClick: function (index) {
             if (index === 0) {
-                console.log('We;re in');
                 this.deeplink_jump("https://broker.vtb.ru/login/vtbinvest/")
             }
-            console.log(index);
         },
         deeplink_jump: function (deeplink_uri) {
             let self = this;

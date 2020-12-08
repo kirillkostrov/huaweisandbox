@@ -19,6 +19,9 @@
       "name": "system.package"
     },
     {
+      "name": "system.app"
+    },
+    {
       "name": "system.configuration"
     }
   ],
