@@ -27,7 +27,7 @@
     import router from "@system.router"; //or var router = require("@system.router")
     import pkg from "@system.package"; //or var pkg = require("@system.package")
     import app from "@system.app"; //or var app = require("@system.app")
-    const mainAppPackageName = "com.vtb.investments";
+    const mainAppPackageName = "ru.vtb.invest";
 
     module.exports = {
         props: [
