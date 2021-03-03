@@ -42,7 +42,7 @@ import androidx.core.content.ContextCompat;
 
 
 public class LocationActivity extends AppCompatActivity {
-    public static final String TAG = "LocationUpdatesCallback";
+    public static final String TAG = "om.huawei.kkstudy.LabActivities LocationUpdatesCallback";
     private TextView logTextView;
 
     // the callback of the request
@@ -53,6 +53,11 @@ public class LocationActivity extends AppCompatActivity {
     private FusedLocationProviderClient fusedLocationProviderClient;
 
     private SettingsClient settingsClient;
+
+    private Long lastResultTimestamp = 0L;
+
+    private int REQUEST_INTERVAL = 1000;
+    private float SMALLEST_DISPLACEMENT = 1f;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,10 +71,9 @@ public class LocationActivity extends AppCompatActivity {
 
         settingsClient = LocationServices.getSettingsClient(this);
         mLocationRequest = new LocationRequest();
-
-        mLocationRequest.setInterval(10000);
-
-        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        mLocationRequest.setInterval(REQUEST_INTERVAL);
+        mLocationRequest.setSmallestDisplacement(SMALLEST_DISPLACEMENT);
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_HD_ACCURACY);
 
         if (null == mLocationCallback) {
             mLocationCallback = new LocationCallback() {
@@ -79,10 +83,16 @@ public class LocationActivity extends AppCompatActivity {
                         List<Location> locations = locationResult.getLocations();
                         if (!locations.isEmpty()) {
                             for (Location location : locations) {
-                                String msg = "onLocationResult location[Longitude,Latitude,Accuracy]:" + location.getLongitude()
+                                long timeStamp = System.currentTimeMillis();
+                                long timeTaken = timeStamp  - lastResultTimestamp;
+
+                                String time = lastResultTimestamp == 0 ? "0ms" : Long.toString(timeTaken) + "ms";
+                                String msg = time + " onLocationResult location[Longitude,Latitude,Accuracy]:" + location.getLongitude()
                                         + "," + location.getLatitude() + "," + location.getAccuracy();
-                                Log.i(TAG, msg);
+                                Log.d(TAG, msg);
                                 AddTextToLog(msg);
+
+                                lastResultTimestamp = timeStamp;
                             }
                         }
                     }
@@ -128,6 +138,9 @@ public class LocationActivity extends AppCompatActivity {
     }
 
     private void requestLocationUpdatesWithCallback() {
+        String startEntry = "Starting discovery with SmallestDisplacement=" + SMALLEST_DISPLACEMENT + " and Interval=" + REQUEST_INTERVAL + "ms";
+        AddTextToLog(startEntry);
+        Log.d(TAG, startEntry);
         try {
             LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder();
             builder.addLocationRequest(mLocationRequest);
@@ -232,6 +245,7 @@ public class LocationActivity extends AppCompatActivity {
     }
 
     public void RegisterLocationUpdateCallback(View view) {
+
         requestLocationUpdatesWithCallback();
     }
 
