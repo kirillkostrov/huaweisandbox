@@ -20,6 +20,8 @@ import android.widget.TextView;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.huawei.hms.analytics.HiAnalyticsTools;
+
 import java.io.Console;
 import java.lang.reflect.Method;
 import java.net.NetworkInterface;
@@ -76,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
     }};
 
     LinearLayout blocksContainer;
+    LinearLayout secondBlocksContainer;
 
 
     @Override
@@ -83,15 +86,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        HiAnalyticsTools.enableLog();
+
         blocksContainer = findViewById(R.id.blocks_container);
+        secondBlocksContainer = findViewById(R.id.blocks_container1);
 
-        systemInfo(addBlock("System Information"));
-        getDrmInfo(addBlock("Widevine"), WIDEVINE_UUID, true);
-        getDrmInfo(addBlock("ClearKey"), CLEARKEY_UUID, false);
-        getDrmInfo(addBlock("WisePlay"), WISEPLAY_UUID, false);
-        getDrmInfo(addBlock("PlayReady"), PLAYREADY_UUID, false);
+        systemInfo(addBlock("System Information", false));
+        getDrmInfo(addBlock("Widevine", false), WIDEVINE_UUID, true);
+        getDrmInfo(addBlock("ClearKey", false), CLEARKEY_UUID, false);
+        getDrmInfo(addBlock("WisePlay", false), WISEPLAY_UUID, false);
+        getDrmInfo(addBlock("PlayReady", false), PLAYREADY_UUID, false);
 
-        otherDrmInfo((ViewGroup) addBlock("Other DRMs"));
+        otherDrmInfo((ViewGroup) addBlock("Other DRMs", true));
     }
 
     private void addPair(ViewGroup view, String key, String value) {
@@ -104,12 +110,16 @@ public class MainActivity extends AppCompatActivity {
         view.addView(keyValueView);
     }
 
-    private LinearLayout addBlock(String title) {
+    private LinearLayout addBlock(String title, Boolean useSecondBlock) {
         LinearLayout block;
         block = (LinearLayout) View.inflate(this, R.layout.block_layout, null);
         TextView titleTV = block.findViewById(R.id.block_title);
         titleTV.setText(title);
-        blocksContainer.addView(block);
+        if (useSecondBlock && secondBlocksContainer != null) {
+            secondBlocksContainer.addView(block);
+        } else {
+            blocksContainer.addView(block);
+        }
         return block.findViewById(R.id.block_content);
     }
 
