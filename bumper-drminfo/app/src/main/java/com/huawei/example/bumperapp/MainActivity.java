@@ -22,7 +22,7 @@ public class MainActivity extends Activity {
             // у бампера такой же, как у основного приложения, он просто будет заменён основным приложением при обновлении.
             // versionCode в build.gradle должен быть заведомо ниже, чем у основного приложения
 
-            String appId = "your.app.package.name";
+            String appId = "com.kkostrov.drminfo";
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("appmarket://details?id=" + appId));
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.setPackage("com.huawei.appmarket.tv");
