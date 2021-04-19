@@ -1,0 +1,3 @@
+<resources>
+    <style name="Theme.BumperAppExample" parent="@style/Theme.Leanback" />
+</resources>

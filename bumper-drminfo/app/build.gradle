@@ -1,0 +1,46 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    signingConfigs {
+        release {
+            storeFile file('../keystore/bumperkey.jks')
+            storePassword '123456'
+            keyAlias 'bumperkey'
+            keyPassword '123456'
+        }
+        debug {
+            storeFile file('../keystore/bumperkey.jks')
+            storePassword '123456'
+            keyAlias 'bumperkey'
+            keyPassword '123456'
+        }
+    }
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
+
+    defaultConfig {
+        applicationId "com.huawei.example.bumperapp"
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+        signingConfig signingConfigs.debug
+
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation 'androidx.leanback:leanback:1.0.0'
+}
