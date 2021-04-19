@@ -12,17 +12,23 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:allowBackup="false"
+        android:banner="@drawable/banner"
+        android:icon="@drawable/banner"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:logo="@drawable/banner"
         android:supportsRtl="true"
-        android:theme="@style/Theme.DRMInfo"
-        android:banner="@mipmap/ic_banner">
+        android:theme="@style/Theme.DRMInfo">
         <meta-data
             android:name="com.huawei.hms.client.channel.androidMarket"
             android:value="false" />
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:banner="@drawable/banner"
+            android:icon="@drawable/banner"
+            android:label="@string/app_name"
+            android:logo="@drawable/banner"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
