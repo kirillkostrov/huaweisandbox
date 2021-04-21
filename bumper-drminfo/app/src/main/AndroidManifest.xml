@@ -18,10 +18,9 @@
         android:theme="@style/Theme.BumperAppExample">
         <activity
             android:name=".MainActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:banner="@drawable/banner"
             android:label="@string/app_name"
-            android:exported="false"
+            android:exported="true"
             android:screenOrientation="landscape"
             android:permission="systemOrSignature">
             <intent-filter>
