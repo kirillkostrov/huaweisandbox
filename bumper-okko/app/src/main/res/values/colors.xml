@@ -1,4 +1,4 @@
 <resources>
-    <color name="background_gradient_start">#1B4F9E</color>
-    <color name="background_gradient_end">#0B2040</color>
+    <color name="colorPrimary">#2b2036</color>
+    <color name="colorAccent">#6c43bf</color>
 </resources>

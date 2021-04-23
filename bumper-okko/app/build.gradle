@@ -10,24 +10,17 @@ android {
             keyAlias 'bumperkey'
             keyPassword '123456'
         }
-        debug {
-            storeFile file('../keystore/bumperkey.jks')
-            storePassword '123456'
-            keyAlias 'bumperkey'
-            keyPassword '123456'
-        }
     }
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "com.huawei.example.bumperapp"
+        applicationId "tv.okko.androidtv"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
-        signingConfig signingConfigs.debug
-
+        signingConfig signingConfigs.release
     }
 
     buildTypes {
