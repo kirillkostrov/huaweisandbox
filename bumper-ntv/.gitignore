@@ -1,0 +1,38 @@
+# User-specific configurations
+.idea
+*.iml
+
+# Android Studio captures folder
+captures/
+
+# External native build folder generated in Android Studio 2.2 and later
+.externalNativeBuild
+.cxx/
+
+# Built application files
+/**/build/
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Version control
+vcs.xml
+
+# Gradle generated files
+.gradle/
+gradle/
+gradlew
+gradle.properties
+gradlew.bat
+
+# OS-specific files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Project-specific files
+/app/schemas/ru.ntv.today.db.MainDatabase

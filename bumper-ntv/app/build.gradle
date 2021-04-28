@@ -1,0 +1,56 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        applicationId "ru.ntv.client.tv"
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+    }
+
+    // signingConfigs {
+    //     debug {
+    //         storeFile file("ntv_keystore.jks")
+    //         storePassword ""
+    //         keyAlias "ntv_client_tv"
+    //         keyPassword ""
+    //     }
+    //     release {
+    //         storeFile file("ntv_keystore.jks")
+    //         storePassword ""
+    //         keyAlias "ntv_client_tv"
+    //         keyPassword ""
+    //     }
+    // }
+
+    buildTypes {
+        debug {
+            initWith debug
+            minifyEnabled false
+            // signingConfig signingConfigs.debug
+        }
+        release {
+            minifyEnabled true
+            // signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            outputFileName = "ntv-huawei-bumper-${variant.name}-${variant.versionName}-vc${variant.versionCode}.apk"
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+}
