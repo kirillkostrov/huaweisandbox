@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.huawei.example.compositeicon">
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false" />
+    <uses-feature
+        android:name="android.software.leanback"
+        android:required="true" />
+    <permission android:name="systemOrSignature"
+        android:protectionLevel="signature|privileged"/>
+
+    <application
+        android:allowBackup="false"
+        android:icon="@drawable/banner_merged"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.BumperAppExample"
+        tools:ignore="MissingTvBanner">
+
+        <meta-data android:name="huawei_hd_icon_foreground" android:resource="@drawable/banner_fg" />
+        <meta-data android:name="huawei_hd_icon_background" android:resource="@drawable/banner_bg"/>
+        <meta-data android:name="huawei_hd_background" android:resource="@drawable/background_for_launcher"/>
+
+        <activity
+            android:name="com.huawei.example.compositeicon.MainActivity"
+            android:label="@string/app_name"
+            android:exported="true"
+            android:screenOrientation="landscape"
+            android:permission="systemOrSignature">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+<!--                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />-->
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>
