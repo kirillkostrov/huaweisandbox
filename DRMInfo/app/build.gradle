@@ -36,7 +36,14 @@ dependencies {
     implementation 'com.huawei.agconnect:agconnect-core:1.4.2.300'
 
     implementation 'com.huawei.hms:hianalytics:5.2.0.301'
+    implementation 'com.google.android.exoplayer:exoplayer:2.14.0'
+    implementation "androidx.core:core-ktx:+"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
 }
 
 apply plugin: 'com.huawei.agconnect'
+apply plugin: 'kotlin-android'
+repositories {
+    mavenCentral()
+}
