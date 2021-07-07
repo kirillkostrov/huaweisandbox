@@ -4,7 +4,7 @@ IF %1.==. GOTO NoParam
 Echo removing MacOS artefacts
 del /s /q .DS_Store 
 adb disconnect
-adb connect %1
+adb connect %1:5555
 adb remount
 adb root
 adb shell rm /data/local/clean.sh
@@ -21,6 +21,10 @@ adb shell pm clear ru.sberdevices.music
 adb shell pm clear ru.sberdevices.services
 adb shell pm clear ru.sberdevices.assistant
 adb shell pm clear ru.sberdevices.startube
+adb shell pm clear ru.sberdevices.systemui
+adb shell pm clear ru.sberdevices.gamepad.service
+adb shell pm clear ru.sberdevices.smarthome.promo
+adb shell pm clear ru.sberdevices.crashreporter
 
 adb shell reboot
 

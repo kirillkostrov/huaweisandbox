@@ -2,7 +2,7 @@
 IF %1.==. GOTO NoParam
 
 adb disconnect
-adb connect %1
+adb connect %1:5555
 adb remount
 adb shell mount -o remount,rw /version
 
@@ -12,11 +12,15 @@ timeout 3
 echo Proceed to write /hw_product/bin/
 pause
 
+adb push app/GamepadServiceTv/. /version/cust/app/GamepadServiceTv/
 adb push app/StarAssistantTv/. /version/cust/app/StarAssistantTv/
+adb push app/StarCrashReporterTv/. /version/cust/app/StarCrashReporterTv/
 adb push app/StarLauncherTv/. /version/cust/app/StarLauncherTv/
 adb push app/StarMusicTv/. /version/cust/app/StarMusicTv/
 adb push app/StarServicesTv/. /version/cust/app/StarServicesTv/
 adb push app/StarSetupAppTv/. /version/cust/app/StarSetupAppTv/
+adb push app/StarSmarthomeTv/. /version/cust/app/StarSmarthomeTv/
+adb push app/StarSystemUiTv/. /version/cust/app/StarSystemUiTv/
 adb push app/StarTubeTv/. /version/cust/app/StarTubeTv/
 adb push app/StarVideosTv/. /version/cust/app/StarVideosTv/
 adb push app/StarVideoTv/. /version/cust/app/StarVideoTv/
