@@ -1,28 +1,37 @@
 package com.kkostrov.drminfo
 
 import android.annotation.SuppressLint
+import android.annotation.TargetApi
 import android.content.pm.PackageManager
 import android.drm.DrmManagerClient
+import android.graphics.Point
+import android.media.AudioDeviceInfo
 import android.media.AudioFormat.*
+import android.media.AudioManager
 import android.media.MediaDrm
 import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
+import android.view.Display
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.hardware.display.DisplayManagerCompat
+import androidx.core.view.DisplayCompat
 import com.google.android.exoplayer2.audio.AudioCapabilities
-import com.google.android.exoplayer2.mediacodec.MediaCodecInfo
 import com.google.android.exoplayer2.mediacodec.MediaCodecUtil
 import com.google.android.exoplayer2.mediacodec.MediaCodecUtil.DecoderQueryException
 import com.google.android.exoplayer2.util.MimeTypes
 import com.google.android.exoplayer2.util.Util
+import com.google.android.material.internal.ContextUtils.getActivity
 import com.huawei.hms.analytics.HiAnalyticsTools
+import java.lang.Integer.max
 import java.net.NetworkInterface
 import java.util.*
+
 
 class MainActivity : AppCompatActivity() {
     private var blocksContainer: LinearLayout? = null
@@ -78,19 +87,23 @@ class MainActivity : AppCompatActivity() {
             }
             addPair(view, "Supported", supported.joinToString(separator = ", "))
             addPair(view, "Not Supported", notSupported.joinToString(separator = ", "))
-            addPair(view, "Max Number of Channels", it.maxChannelCount.toString())
+//            addPair(view, "Max Number of Channels", it.maxChannelCount.toString())
         }
-        addPair(view, "Supports 5.1", yesNo(hasDolby))
+        addPair(view, "Supports 5.1 (1)", yesNo(hasDolbySupport1))
+        addPair(view, "Supports 5.1 (2)", yesNo(hasDolbySupport2))
+        addPair(view, "Max Channels", trueChannelsCount.toString())
+        addPair(view, "Supports 4K (UHD)", yesNo(isUhdDevice()))
+        addPair(view, "Supports 4K (UHD) (2)", yesNo(isUHD()))
 
         try {
             AudioMimeTypes.forEach { mime ->
                 val list = MediaCodecUtil.getDecoderInfos(mime, false, false)
                 val decoders : MutableList<String> = mutableListOf()
                 list.forEach {
-                    val foo = adjustMaxInputChannelCount(it.name, mime,
+                    val channelsAdjusted = adjustMaxInputChannelCount(it.name, mime,
                             capabilities.maxChannelCount)
-                    decoders.add("${it.name} ($foo channels)")
-                    //var foo = it.isAudioChannelCountSupportedV21(EAC3_CHANNELS_COUNT)
+                    //decoders.add("${it.name} ($channelsAdjusted channels)")
+                    decoders.add(it.name)
                 }
                 if (decoders.isNotEmpty()) addPair(view, mime, decoders.joinToString(separator = ", "))
             }
@@ -99,15 +112,111 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private val hasDolby by lazy {
+    private val hasDolbySupport1 by lazy {
+        AudioCapabilities.getCapabilities(this).let {
+            val supportsEAC3 = it.supportsEncoding(ENCODING_E_AC3)
+            supportsEAC3 && it.maxChannelCount > EAC3_CHANNELS_COUNT // EAC3_CHANNELS_COUNT = 6
+        }
+    }
+
+    private val hasDolbySupport2 by lazy {
+        trueChannelsCount > EAC3_CHANNELS_COUNT // EAC3_CHANNELS_COUNT = 6
+    }
+
+    private val trueChannelsCount by lazy {
+        getMaxChannels()
+    }
+
+    private fun getMaxChannels() : Int {
+        var maxChannels = 2
+        val audioManager:AudioManager = getSystemService(AUDIO_SERVICE) as AudioManager
+        val audioDeviceInfos = audioManager.getDevices(AudioManager.GET_DEVICES_OUTPUTS)
+        audioDeviceInfos.forEach { info ->
+            val channelCounts = info.channelCounts
+            val maxChannelsInInfo = channelCounts.maxByOrNull { it } ?: 0
+            maxChannels = max(maxChannels, maxChannelsInInfo)
+        }
+        return maxChannels
+
+    }
+
+
+
+
+    private fun isUhdDevice() : Boolean {
+
+        val displayManager = DisplayManagerCompat.getInstance(this)
+        val defaultDisplay = displayManager.getDisplay(Display.DEFAULT_DISPLAY)
+
+        defaultDisplay?.let {
+            val modes = DisplayCompat.getSupportedModes(this@MainActivity, it)
+            return modes.any { mode -> mode.physicalHeight >= 2160 && mode.physicalWidth >= 3840 }
+        }
+        return false
+    }
+
+    @SuppressLint("RestrictedApi")
+    fun isUHD(): Boolean {
+        val display: Display = getActivity(this)?.windowManager?.defaultDisplay ?: return false
+        val displaySize: Point = getDisplaySize(display) ?: return false
+        return displaySize.x >= 3840 && displaySize.y >= 2160
+    }
+
+    private fun getDisplaySize(display: Display): Point? {
+        val displaySize = Point()
+        when {
+            Util.SDK_INT >= 23 -> {
+                getDisplaySizeV23(display, displaySize)
+            }
+            Util.SDK_INT >= 17 -> {
+                getDisplaySizeV17(display, displaySize)
+            }
+            Util.SDK_INT >= 16 -> {
+                getDisplaySizeV16(display, displaySize)
+            }
+            else -> {
+                getDisplaySizeV9(display, displaySize)
+            }
+        }
+        return displaySize
+    }
+
+    @TargetApi(23)
+    private fun getDisplaySizeV23(display: Display, outSize: Point) {
+        val modes = display.supportedModes
+        if (modes.isNotEmpty()) {
+            val mode = modes[0]
+            outSize.x = mode.physicalWidth
+            outSize.y = mode.physicalHeight
+        }
+    }
+
+    @TargetApi(17)
+    private fun getDisplaySizeV17(display: Display, outSize: Point) {
+        display.getRealSize(outSize)
+    }
+
+    @TargetApi(16)
+    private fun getDisplaySizeV16(display: Display, outSize: Point) {
+        display.getSize(outSize)
+    }
+
+    private fun getDisplaySizeV9(display: Display, outSize: Point) {
+        outSize.x = display.width
+        outSize.y = display.height
+    }
+
+    private fun hasDolby() : Boolean {
+        var hasDolby = false
         try {
             MediaCodecUtil.getDecoderInfos(MimeTypes.AUDIO_E_AC3, false, false).forEach {
-                it.isAudioChannelCountSupportedV21(EAC3_CHANNELS_COUNT)
+                hasDolby = it.isAudioChannelCountSupportedV21(EAC3_CHANNELS_COUNT)
             }
-        } catch (ignored: MediaCodecUtil.DecoderQueryException) {}
+        } catch (ignored: DecoderQueryException) {}
         AudioCapabilities.getCapabilities(this).let {
-            it.supportsEncoding(ENCODING_E_AC3) && it.maxChannelCount > EAC3_CHANNELS_COUNT
+            hasDolby = it.supportsEncoding(ENCODING_E_AC3) && it.maxChannelCount > EAC3_CHANNELS_COUNT
         }
+        return hasDolby
     }
 
     private fun systemInfo(view: ViewGroup) {
@@ -258,14 +367,14 @@ class MainActivity : AppCompatActivity() {
                 } catch (ex: Exception) {
                     //handle exception
                     ex.printStackTrace()
-                    Log.e(LOG_TAG, ex.message)
+                    Log.e(LOG_TAG, ex.message.toString())
                 }
                 return ""
             }
 
     companion object {
         private const val LOG_TAG = "DRMInfo"
-        const val EAC3_CHANNELS_COUNT = 7
+        const val EAC3_CHANNELS_COUNT = 6
         val COMMON_PSSH_UUID = UUID(0x1077EFECC0B24D02L, -0x531cc3e1ad1d04b5L)
         val CLEARKEY_UUID = UUID(-0x1d8e62a7567a4c37L, 0x781AB030AF78D30EL)
         val PLAYREADY_UUID = UUID(-0x65fb0f8667bfbd7aL, -0x546d19a41f77a06bL)
