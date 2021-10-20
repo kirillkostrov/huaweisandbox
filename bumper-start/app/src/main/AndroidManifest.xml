@@ -8,8 +8,6 @@
     <uses-feature
         android:name="android.software.leanback"
         android:required="true" />
-    <permission android:name="systemOrSignature"
-        android:protectionLevel="signature|privileged"/>
 
     <application
         android:allowBackup="false"
@@ -21,7 +19,7 @@
             android:banner="@drawable/banner"
             android:exported="true"
             android:screenOrientation="landscape"
-            android:permission="systemOrSignature">
+            android:permission="com.huawei.permission.THIRD_PARTY_ACCESS_ACTIVITY">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

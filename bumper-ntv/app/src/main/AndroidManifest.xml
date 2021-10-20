@@ -10,10 +10,6 @@
         android:name="android.software.leanback"
         android:required="true" />
 
-    <permission
-        android:name="systemOrSignature"
-        android:protectionLevel="signature|privileged" />
-
     <application
         android:allowBackup="false"
         android:icon="@drawable/bannerntv"
@@ -23,7 +19,7 @@
             android:name=".MainActivity"
             android:banner="@drawable/bannerntv"
             android:exported="true"
-            android:permission="systemOrSignature"
+            android:permission="com.huawei.permission.THIRD_PARTY_ACCESS_ACTIVITY"
             android:theme="@android:style/Theme.Translucent.NoTitleBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
