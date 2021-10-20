@@ -1,0 +1,12 @@
+<!-- Only one root node is allowed in template. -->
+<div class="container">
+    <div class="text-container" ref="scroll">
+        <text class="joke-text">
+            {{text}}
+        </text>
+    </div>
+<!--    <input id="button_a" class="button" type="button" value="АНЕКДОТ" onclick="scrollUp(1)"/>-->
+<!--    <input id="button_a" class="button" type="button" value="ИСТОРИЯ" onclick="scrollUp(2)"/>-->
+    <input class="button" type="button" value="АНЕКДОТ" onclick="loadNew(1)"/>
+    <input class="button" type="button" value="ИСТОРИЯ" onclick="loadNew(2)"/>
+</div>

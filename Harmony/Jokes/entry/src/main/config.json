@@ -1,0 +1,51 @@
+{
+  "app": {
+    "bundleName": "com.kkostrov.jokes.watch",
+    "vendor": "kkostrov",
+    "version": {
+      "code": 1000000,
+      "name": "1.0.0"
+    }
+  },
+  "deviceConfig": {
+    
+  },
+  "module": {
+    "reqPermissions": [
+      {
+        "name": "ohos.permission.INTERNET",
+        "reason": "Application need access to internet to access API",
+        "usedScene":
+        {
+          "ability": ["com.kkostrov.jokes.watch.MainAbility"],
+          "when": "always"
+        }
+      }
+    ],
+    "deviceType": [
+      "liteWearable",
+      "wearable"
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry",
+      "moduleType": "entry"
+    },
+    "abilities": [
+      {
+        "name": ".MainAbility",
+        "icon": "$media:icon",
+        "label": "$string:entry_MainAbility",
+        "type": "page"
+      }
+    ],
+    "js": [
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": "default"
+      }
+    ]
+  }
+}
