@@ -5,14 +5,14 @@
     "kind": "Directory"
   },
   "applicationId": "com.kkostrov.drminfo",
-  "variantName": "processReleaseResources",
+  "variantName": "release",
   "elements": [
     {
       "type": "SINGLE",
       "filters": [],
-      "versionCode": 1,
-      "versionName": "1.0.3",
-      "outputFile": "app-release.apk"
+      "versionCode": 5,
+      "versionName": "1.0.6",
+      "outputFile": "drminfo_base_release_1.0.6_120122_1436.apk"
     }
   ]
 }

@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         blocksContainer = findViewById(R.id.blocks_container)
         secondBlocksContainer = findViewById(R.id.blocks_container1)
         systemInfo(addBlock("System Information", false))
-        advancedAudioInfo(addBlock("Supported Audio", true))
+        //advancedAudioInfo(addBlock("Supported Audio", true))
         getDrmInfo(addBlock("Widevine", false), WIDEVINE_UUID, true)
         getDrmInfo(addBlock("ClearKey", false), CLEARKEY_UUID, false)
         getDrmInfo(addBlock("WisePlay", false), WISEPLAY_UUID, false)
@@ -92,8 +92,8 @@ class MainActivity : AppCompatActivity() {
         addPair(view, "Supports 5.1 (1)", yesNo(hasDolbySupport1))
         addPair(view, "Supports 5.1 (2)", yesNo(hasDolbySupport2))
         addPair(view, "Max Channels", trueChannelsCount.toString())
-        addPair(view, "Supports 4K (UHD)", yesNo(isUhdDevice()))
-        addPair(view, "Supports 4K (UHD) (2)", yesNo(isUHD()))
+        //addPair(view, "Supports 4K (UHD)", yesNo(isUhdDevice()))
+        //addPair(view, "Supports 4K (UHD) (2)", yesNo(isUHD()))
 
         try {
             AudioMimeTypes.forEach { mime ->
