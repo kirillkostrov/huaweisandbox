@@ -7,7 +7,7 @@ android {
         debug {
             storeFile file('../../../kkostrov.jks')
             storePassword 'killed'
-            keyAlias 'drm'
+            keyAlias 'android'
             keyPassword 'killed'
             v1SigningEnabled true
             v2SigningEnabled true
@@ -20,8 +20,8 @@ android {
         applicationId "com.kkostrov.drminfo"
         minSdkVersion 26
         targetSdkVersion 31
-        versionCode 5
-        versionName '1.0.6'
+        versionCode 6
+        versionName '1.0.7'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 

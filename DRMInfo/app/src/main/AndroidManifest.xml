@@ -12,10 +12,10 @@
 
     <application
         android:allowBackup="false"
-        android:banner="@drawable/banner"
-        android:icon="@drawable/banner"
+        android:banner="@drawable/banner_new"
+        android:icon="@mipmap/ic_launcher_new"
         android:label="@string/app_name"
-        android:logo="@drawable/banner"
+        android:logo="@mipmap/ic_launcher_new"
         android:supportsRtl="true"
         android:theme="@style/Theme.DRMInfo">
         <meta-data
@@ -23,10 +23,7 @@
             android:value="false" />
         <activity
             android:name=".MainActivity"
-            android:banner="@drawable/banner"
-            android:icon="@drawable/banner"
             android:label="@string/app_name"
-            android:logo="@drawable/banner"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
